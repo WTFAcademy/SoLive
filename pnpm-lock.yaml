@@ -57,7 +57,7 @@ importers:
       react: ^18.0.0
       react-dom: ^18.0.0
       react-scripts: 5.0.1
-      solive: workspace:^0.2.1
+      solive-core: workspace:*
       stream-http: ^3.2.0
       tailwindcss: npm:@tailwindcss/postcss7-compat@^2.2.17
       typescript: ^4.9.5
@@ -76,7 +76,7 @@ importers:
       react: 18.2.0
       react-dom: 18.2.0_react@18.2.0
       react-scripts: 5.0.1_j5ip3o3v6sktjzl5cxtjyfbuo4
-      solive: link:../../packages/core
+      solive-core: link:../../packages/core
       stream-http: r2.cnpmjs.org/stream-http/3.2.0
       typescript: 4.9.5
       web-vitals: 2.1.4
@@ -13140,7 +13140,7 @@ packages:
       confusing-browser-globals: r2.cnpmjs.org/confusing-browser-globals/1.0.11
       eslint: r2.cnpmjs.org/eslint/6.8.0
       eslint-plugin-flowtype: r2.cnpmjs.org/eslint-plugin-flowtype/3.13.0_eslint@6.8.0
-      eslint-plugin-import: 2.27.5_tbglwmj7t2rhd43mvxmptakoay
+      eslint-plugin-import: 2.27.5_sifv467yifx7tblloe5bvsehqu
       eslint-plugin-jsx-a11y: 6.7.1_eslint@6.8.0
       eslint-plugin-react: 7.32.2_eslint@6.8.0
       eslint-plugin-react-hooks: r2.cnpmjs.org/eslint-plugin-react-hooks/2.5.1_eslint@6.8.0
