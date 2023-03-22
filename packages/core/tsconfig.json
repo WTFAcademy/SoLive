@@ -1,0 +1,21 @@
+{
+  "include": ["src", "types"],
+  "compilerOptions": {
+    "module": "esnext",
+    "lib": ["dom", "esnext", "WebWorker"],
+    "importHelpers": true,
+    "declaration": true,
+    "sourceMap": true,
+    "rootDir": "./src",
+    "strict": true,
+    "noImplicitReturns": true,
+    "noFallthroughCasesInSwitch": true,
+    "noUnusedParameters": false,
+    "moduleResolution": "node",
+    "jsx": "react",
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "noEmit": true
+  }
+}

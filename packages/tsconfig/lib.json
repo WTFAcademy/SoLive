@@ -1,0 +1,18 @@
+{
+  "$schema": "https://json.schemastore.org/tsconfig",
+  "display": "React Library",
+  "extends": "./base.json",
+  "compilerOptions": {
+    "target": "es6",
+    "module": "esnext",
+    "importHelpers": true,
+    "noImplicitAny": true,
+    "strictNullChecks": true,
+    "strictFunctionTypes": true,
+    "strictPropertyInitialization": true,
+    "noImplicitThis": true,
+    "alwaysStrict": true,
+    "noImplicitReturns": true,
+    "noFallthroughCasesInSwitch": true
+  }
+}

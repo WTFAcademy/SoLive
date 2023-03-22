@@ -1,0 +1,5 @@
+// .eslintignore
+*/**.d.ts
+packages/*/dist
+packages/*/lib
+packages/*/node_modules

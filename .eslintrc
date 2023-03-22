@@ -1,0 +1,47 @@
+{
+  "env": {
+    "browser": true,
+    "es2021": true
+  },
+  "plugins": [
+    "prettier",
+    "@typescript-eslint"
+  ],
+  "extends": [
+    "eslint:recommended",
+    "plugin:@typescript-eslint/recommended",
+    "plugin:import/recommended",
+    "prettier"
+  ],
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "project": [
+      "**/tsconfig.json"
+    ]
+  },
+  "settings": {
+    "import/resolver": {
+      "typescript": {
+        "alwaysTryTypes": false,
+        "project": "packages/*/tsconfig.json"
+      }
+    }
+  },
+  "rules": {
+    "import/order": ["error", { "newlines-between": "always" }],
+    "import/no-named-as-default-member": "off", 
+    "import/no-unresolved": "error",
+    "@typescript-eslint/no-non-null-assertion": "off",
+    "@typescript-eslint/no-unused-vars": "error",
+    "@typescript-eslint/consistent-type-definitions": [
+      "error",
+      "type"
+    ],
+    "@typescript-eslint/no-implicit-any-catch": [
+      "error",
+      { "allowExplicitAny": true }
+    ],
+    "@typescript-eslint/no-explicit-any": "off",
+    "@typescript-eslint/no-empty-interface": "off"
+  }
+}

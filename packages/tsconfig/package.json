@@ -1,0 +1,19 @@
+{
+  "name": "solive-tsconfig",
+  "version": "0.0.1",
+  "license": "MIT",
+  "scripts": {
+    "build": "echo 'nothing to build'"
+  },
+  "files": [
+    "base.json",
+    "lib.json",
+    "react-lib.json"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "nx": {
+    "ignore": true
+  }
+}

@@ -1,0 +1,90 @@
+{
+  "name": "solive-core",
+  "author": "wtf",
+  "version": "0.0.1-alpha",
+  "license": "MIT",
+  "main": "dist/index.js",
+  "typings": "dist/index.d.ts",
+  "module": "dist/react-run-code.esm.js",
+  "files": [
+    "dist",
+    "src"
+  ],
+  "engines": {
+    "node": ">=10"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Open-EdTech/react-run-code"
+  },
+  "scripts": {
+    "start": "tsdx watch",
+    "build": "tsdx build",
+    "test": "tsdx test --passWithNoTests",
+    "lint": "tsdx lint",
+    "prepare": "tsdx build",
+    "size": "size-limit",
+    "analyze": "size-limit --why"
+  },
+  "peerDependencies": {
+    "react": ">=16"
+  },
+  "prettier": {
+    "printWidth": 80,
+    "semi": true,
+    "singleQuote": true,
+    "trailingComma": "es5"
+  },
+  "size-limit": [
+    {
+      "path": "dist/react-run-code.cjs.production.min.js",
+      "limit": "10 KB"
+    },
+    {
+      "path": "dist/react-run-code.esm.js",
+      "limit": "10 KB"
+    }
+  ],
+  "devDependencies": {
+    "@babel/core": "^7.12.3",
+    "@size-limit/preset-small-lib": "^4.7.0",
+    "@types/react": "^18.0.0",
+    "@types/react-dom": "^18.0.0",
+    "@types/semver": "^7.3.13",
+    "babel-loader": "^8.1.0",
+    "buffer": "^6.0.3",
+    "husky": "^4.3.0",
+    "react": "^18.0.0",
+    "react-dom": "^18.0.0",
+    "react-is": "^18.0.0",
+    "size-limit": "^4.7.0",
+    "stream-browserify": "^3.0.0",
+    "stream-http": "^3.2.0",
+    "tsdx": "^0.14.1",
+    "tslib": "^2.5.0",
+    "typescript": "^4.0.5"
+  },
+  "dependencies": {
+    "@material-ui/core": "^4.11.0",
+    "@material-ui/icons": "^4.9.1",
+    "@material-ui/styles": "^4.11.5",
+    "@monaco-editor/react": "^4.4.6",
+    "@remix-project/remix-simulator": "^0.2.24",
+    "@solidity-parser/parser": "^0.15.0",
+    "https-browserify": "^1.0.0",
+    "monaco-editor": "^0.35.0",
+    "react-cool-onclickoutside": "^1.5.8",
+    "react-dnd": "^14.0.0",
+    "react-dnd-html5-backend": "^14.0.0",
+    "semver": "^7.3.8",
+    "solc": "^0.8.18",
+    "solive-compiler": "workspace:*",
+    "solive-solc": "workspace:*",
+    "solive-tsconfig": "workspace:*"
+  },
+  "browser": {
+    "fs": false,
+    "path": false,
+    "os": false
+  }
+}

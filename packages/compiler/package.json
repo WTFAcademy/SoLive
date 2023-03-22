@@ -1,0 +1,41 @@
+{
+  "name": "solive-compiler",
+  "version": "0.0.1-alpha",
+  "main": "dist/index.js",
+  "typings": "dist/index.d.ts",
+  "module": "dist/react-run-code.esm.js",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "start": "tsdx watch",
+    "build": "tsdx build",
+    "test": "tsdx test --passWithNoTests",
+    "lint": "tsdx lint",
+    "prepare": "tsdx build",
+    "size": "size-limit",
+    "analyze": "size-limit --why"
+  },
+  "dependencies": {
+    "semver": "^7.3.8"
+  },
+  "devDependencies": {
+    "@types/semver": "^7.3.13",
+    "solive-tsconfig": "workspace:*"
+  },
+  "size-limit": [
+    {
+      "path": "dist/react-run-code.cjs.production.min.js",
+      "limit": "10 KB"
+    },
+    {
+      "path": "dist/react-run-code.esm.js",
+      "limit": "10 KB"
+    }
+  ],
+  "browser": {
+    "fs": false,
+    "path": false,
+    "os": false
+  }
+}
