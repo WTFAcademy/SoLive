@@ -193,9 +193,9 @@ function registerFileImports(monaco: Monaco, state: any) {
         )
         .map((m: any) => {
           return {
-            label: m.filename,
+            label: `./${m.filename}`,
             kind: monaco.languages.CompletionItemKind.File,
-            insertText: m.filename,
+            insertText: `./${m.filename}`,
             range,
           };
         });
