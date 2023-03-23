@@ -17,6 +17,7 @@ import {
   solidityLanguageConfig,
   solidityTokensProvider,
 } from './syntaxes/solidity';
+import { findModel } from './utils/model';
 
 function initTheme(monaco: Monaco) {
   monaco.editor.defineTheme('myCustomTheme', {
@@ -62,7 +63,7 @@ function registerLangs(monaco: Monaco, state: EditorInitState) {
   registerFileImports(monaco, state);
 }
 
-function registerCommandsAndActions(monaco: Monaco, editor: BaseMonacoEditor) {
+function registerCommandsAndActions(monaco: Monaco, editor: BaseMonacoEditor, dispatch: any, stateRef: EditorInitState) {
   // save
   editor.addCommand(monaco.KeyMod.CtrlCmd | monaco.KeyCode.KeyS, () => {
     // save
@@ -109,6 +110,11 @@ function registerCommandsAndActions(monaco: Monaco, editor: BaseMonacoEditor) {
     if (input && input.resource && input.resource.path) {
       try {
         if (input.options && input.options.selection) {
+          const path = input.resource.path.replace('/', '')
+          const nextModel = findModel(stateRef.models as ModelType[], path)
+          const nextModelIndex = stateRef.models?.findIndex(model => model.filename === path)
+          dispatch({ type: "updateModelIndex", payload: { modelIndex: nextModelIndex } });
+          editor.setModel(nextModel?.model as any);
           editor.revealRange(input.options.selection);
           editor.setPosition({
             column: input.options.selection.startColumn,

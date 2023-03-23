@@ -43,7 +43,7 @@ function App({
     actions.setCodeParser(codeParser);
     actions.updateCodeParserLoading(false);
 
-    registerCommandsAndActions(monaco, editor);
+    registerCommandsAndActions(monaco, editor, dispatch, stateRef.current);
     registerListeners(editor, editorApiRef.current, stateRef.current);
   }
 

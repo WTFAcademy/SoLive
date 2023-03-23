@@ -15,12 +15,12 @@ function App() {
         modelInfos={[
           {
             filename: 'a.sol',
-            value: 'pragma solidity ^0.8.0;\nimport "b.sol";\ncontract MyContract {\n     function foo() external {\n         // do something\n     }\n}\n',
+            value: 'pragma solidity ^0.8.0;\nimport "./b.sol";\ncontract MyContract {\n     function foo() external {\n         // do something\n     }\n}\n',
             language: SupportLanguage.Solidity,
           },
           {
             filename: 'b.sol',
-            value: 'pragma solidity ^0.8.0;\nimport "a.sol";\ncontract MyContract {\n     function foo() external {\n         // do something\n     }\n}\n',
+            value: 'pragma solidity ^0.8.0;\nimport "./a.sol";\ncontract MyContract {\n     function foo() external {\n         // do something\n     }\n}\n',
             language: SupportLanguage.Solidity,
           }
         ]}
