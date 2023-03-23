@@ -85,19 +85,6 @@ importers:
       postcss: r2.cnpmjs.org/postcss/7.0.39
       tailwindcss: r2.cnpmjs.org/@tailwindcss/postcss7-compat/2.2.17
 
-  packages/browser-solc:
-    specifiers:
-      rollup-plugin-web-worker-loader: ^1.6.1
-      solc: ^0.8.18
-      solive-tsconfig: workspace:*
-      tslib: ^2.5.0
-    dependencies:
-      rollup-plugin-web-worker-loader: r2.cnpmjs.org/rollup-plugin-web-worker-loader/1.6.1
-      solc: 0.8.19
-      tslib: 2.5.0
-    devDependencies:
-      solive-tsconfig: link:../tsconfig
-
   packages/compiler:
     specifiers:
       '@types/semver': ^7.3.13
@@ -159,7 +146,7 @@ importers:
       semver: 7.3.8
       solc: 0.8.19
       solive-compiler: link:../compiler
-      solive-solc: link:../browser-solc
+      solive-solc: link:../solc
       solive-tsconfig: link:../tsconfig
     devDependencies:
       '@babel/core': 7.21.3
@@ -177,6 +164,22 @@ importers:
       stream-browserify: r2.cnpmjs.org/stream-browserify/3.0.0
       stream-http: r2.cnpmjs.org/stream-http/3.2.0
       tsdx: r2.cnpmjs.org/tsdx/0.14.1
+      tslib: 2.5.0
+      typescript: 4.9.5
+
+  packages/solc:
+    specifiers:
+      '@rollup/plugin-node-resolve': ^15.0.1
+      '@rollup/plugin-typescript': ^11.0.0
+      rollup: ^2
+      solive-tsconfig: workspace:0.0.1
+      tslib: ^2.5.0
+      typescript: ^4.0.5
+    devDependencies:
+      '@rollup/plugin-node-resolve': 15.0.1_rollup@2.79.1
+      '@rollup/plugin-typescript': 11.0.0_bhcmvni67fkldpaxrtldxbogce
+      rollup: 2.79.1
+      solive-tsconfig: link:../tsconfig
       tslib: 2.5.0
       typescript: 4.9.5
 
@@ -2898,6 +2901,59 @@ packages:
       rollup: 2.79.1
     dev: false
 
+  /@rollup/plugin-node-resolve/15.0.1_rollup@2.79.1:
+    resolution: {integrity: sha512-ReY88T7JhJjeRVbfCyNj+NXAG3IIsVMsX9b5/9jC98dRP8/yxlZdz7mHZbHk5zHr24wZZICS5AcXsFZAXYUQEg==}
+    engines: {node: '>=14.0.0'}
+    peerDependencies:
+      rollup: ^2.78.0||^3.0.0
+    peerDependenciesMeta:
+      rollup:
+        optional: true
+    dependencies:
+      '@rollup/pluginutils': 5.0.2_rollup@2.79.1
+      '@types/resolve': 1.20.2
+      deepmerge: 4.3.1
+      is-builtin-module: 3.2.1
+      is-module: r2.cnpmjs.org/is-module/1.0.0
+      resolve: 1.22.1
+      rollup: 2.79.1
+    dev: true
+
+  /@rollup/plugin-typescript/11.0.0_bhcmvni67fkldpaxrtldxbogce:
+    resolution: {integrity: sha512-goPyCWBiimk1iJgSTgsehFD5OOFHiAknrRJjqFCudcW8JtWiBlK284Xnn4flqMqg6YAjVG/EE+3aVzrL5qNSzQ==}
+    engines: {node: '>=14.0.0'}
+    peerDependencies:
+      rollup: ^2.14.0||^3.0.0
+      tslib: '*'
+      typescript: '>=3.7.0'
+    peerDependenciesMeta:
+      rollup:
+        optional: true
+      tslib:
+        optional: true
+    dependencies:
+      '@rollup/pluginutils': 5.0.2_rollup@2.79.1
+      resolve: 1.22.1
+      rollup: 2.79.1
+      tslib: 2.5.0
+      typescript: 4.9.5
+    dev: true
+
+  /@rollup/pluginutils/5.0.2_rollup@2.79.1:
+    resolution: {integrity: sha512-pTd9rIsP92h+B6wWwFbW8RkZv4hiR/xKsqre4SIuAOaOEQRxi0lqLke9k2/7WegC85GgUs9pjmOjCUi3In4vwA==}
+    engines: {node: '>=14.0.0'}
+    peerDependencies:
+      rollup: ^1.20.0||^2.0.0||^3.0.0
+    peerDependenciesMeta:
+      rollup:
+        optional: true
+    dependencies:
+      '@types/estree': 1.0.0
+      estree-walker: r2.cnpmjs.org/estree-walker/2.0.2
+      picomatch: 2.3.1
+      rollup: 2.79.1
+    dev: true
+
   /@rushstack/eslint-patch/1.2.0:
     resolution: {integrity: sha512-sXo/qW2/pAcmT43VoRKOJbDOfV3cYpq3szSVfIThQXNt+E4DfKj361vaAt3c88U5tPUxzEswam7GW48PJqtKAg==}
     dev: false
@@ -3151,6 +3207,10 @@ packages:
       '@types/node': 18.15.3
       safe-buffer: r2.cnpmjs.org/safe-buffer/5.1.2
     dev: false
+
+  /@types/resolve/1.20.2:
+    resolution: {integrity: sha512-60BCwRFOZCQhDncwQdxxeOEEkbc5dIMccYLwbxsS4TUNeVECQ/pBJ0j09mrHOl/JJvpRPGwO9SvE4nR2Nb/a4Q==}
+    dev: true
 
   /@types/semver/7.3.13:
     resolution: {integrity: sha512-21cFJr9z3g5dW8B0CVI9g2O9beqaThGQ6ZFBqHfwhzLDKUxaqTIy3vnfah/UPkfOiF2pLq+tGz+W8RyCskuslw==}
@@ -5444,6 +5504,13 @@ packages:
       get-intrinsic: 1.2.0
       is-typed-array: 1.1.10
 
+  /is-builtin-module/3.2.1:
+    resolution: {integrity: sha512-BSLE3HnV2syZ0FK0iMA/yUGplUeMmNz4AW5fnTunbCIqZi4vG3WjJT9FHMy5D69xmAYBHXQhJdALdpwVxV501A==}
+    engines: {node: '>=6'}
+    dependencies:
+      builtin-modules: 3.3.0
+    dev: true
+
   /is-callable/1.2.7:
     resolution: {integrity: sha512-1BC0BVFhS/p0qtw6enp8e+8OD0UrK0oFLztSjNzhcKA3WDuJxxAPXzPuPtKkjEY9UUoEWlX/8fgKeu2S8i9JTA==}
     engines: {node: '>= 0.4'}
@@ -7615,7 +7682,6 @@ packages:
     hasBin: true
     optionalDependencies:
       fsevents: r2.cnpmjs.org/fsevents/2.3.2
-    dev: false
 
   /rxjs/7.8.0:
     resolution: {integrity: sha512-F2+gxDshqmIub1KdvZkaEfGDwLNpPvk9Fs6LD/MyQxNgMds/WH9OdDDXOmxUZpME+iSK3rQCctkL0DYyytUqMg==}
@@ -13356,6 +13422,12 @@ packages:
     name: estree-walker
     version: 1.0.1
 
+  r2.cnpmjs.org/estree-walker/2.0.2:
+    resolution: {integrity: sha512-Rfkk/Mp/DL7JVje3u18FxFujQlTNR2q6QfMSMB7AvCBx91NGj/ba3kCfza0f6dVDbw7YlRf/nDrn7pQrCCyQ/w==, registry: https://r.cnpmjs.org/, tarball: https://r2.cnpmjs.org/estree-walker/-/estree-walker-2.0.2.tgz}
+    name: estree-walker
+    version: 2.0.2
+    dev: true
+
   r2.cnpmjs.org/esutils/2.0.3:
     resolution: {integrity: sha512-kVscqXk4OCp68SZ0dkgEKVi6/8ij300KBWTJq32P/dYeWTSwK41WyTxalN1eRmA5Z9UU/LX9D7FWSmV9SAYx6g==, registry: https://r.cnpmjs.org/, tarball: https://r2.cnpmjs.org/esutils/-/esutils-2.0.3.tgz}
     name: esutils
@@ -18765,14 +18837,6 @@ packages:
       tslib: 2.0.1
       typescript: r2.cnpmjs.org/typescript/3.9.10
     dev: true
-
-  r2.cnpmjs.org/rollup-plugin-web-worker-loader/1.6.1:
-    resolution: {integrity: sha512-4QywQSz1NXFHKdyiou16mH3ijpcfLtLGOrAqvAqu1Gx+P8+zj+3gwC2BSL/VW1d+LW4nIHC8F7d7OXhs9UdR2A==, registry: https://r.cnpmjs.org/, tarball: https://r2.cnpmjs.org/rollup-plugin-web-worker-loader/-/rollup-plugin-web-worker-loader-1.6.1.tgz}
-    name: rollup-plugin-web-worker-loader
-    version: 1.6.1
-    peerDependencies:
-      rollup: ^1.9.2 || ^2.0.0
-    dev: false
 
   r2.cnpmjs.org/rollup-pluginutils/2.8.2:
     resolution: {integrity: sha512-EEp9NhnUkwY8aif6bxgovPHMoMoNr2FulJziTndpt5H9RdwC47GSGuII9XxpSdzVGM0GWrNPHV6ie1LTNJPaLQ==, registry: https://r.cnpmjs.org/, tarball: https://r2.cnpmjs.org/rollup-pluginutils/-/rollup-pluginutils-2.8.2.tgz}

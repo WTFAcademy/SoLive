@@ -3,10 +3,10 @@ import Editor, { SupportLanguage } from "solive-core";
 
 function App() {
 
-  // useEffect(() => {
-  //   const worker = new Worker(new URL('./worker.ts', import.meta.url));
-  //   worker.postMessage("");
-  // }, []);
+  useEffect(() => {
+    // const worker = new Worker(new URL('./worker.ts', import.meta.url));
+    // worker.postMessage("");
+  }, []);
 
   return (
     <div className="App">

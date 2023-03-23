@@ -2,6 +2,7 @@
   "extends": "solive-tsconfig/lib.json",
   "compilerOptions": {
     "baseUrl": "./",
+    "outDir": "dist"
   },
-  "include": ["src"]
+  "include": ["src", "**/*.json"]
 }

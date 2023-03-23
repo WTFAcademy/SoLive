@@ -115,9 +115,7 @@ function registerCommandsAndActions(monaco: Monaco, editor: BaseMonacoEditor) {
             lineNumber: input.options.selection.startLineNumber,
           });
         }
-      } catch (e) {
-        console.log(e);
-      }
+      } catch (e) { /* empty */ }
     }
     return result;
   };
@@ -126,12 +124,12 @@ function registerCommandsAndActions(monaco: Monaco, editor: BaseMonacoEditor) {
 function registerFileCompletion(monaco: Monaco) {
   monaco.languages.registerCompletionItemProvider(SupportLanguage.Solidity, {
     provideCompletionItems: (model, position) => {
-      const textUntilPosition = model.getValueInRange({
-        startLineNumber: position.lineNumber,
-        startColumn: 1,
-        endLineNumber: position.lineNumber,
-        endColumn: position.column,
-      });
+      // const textUntilPosition = model.getValueInRange({
+      //   startLineNumber: position.lineNumber,
+      //   startColumn: 1,
+      //   endLineNumber: position.lineNumber,
+      //   endColumn: position.column,
+      // });
 
       const word = model.getWordUntilPosition(position);
 
@@ -220,8 +218,7 @@ function registerListeners(
     let allErrors: ErrorMarker[] = [];
 
     if (output.error || output.errors) {
-      if (output.error) {
-      } else {
+      if (output.error) { /* empty */ } else {
         for (const error of output.errors) {
           if (!error.sourceLocation) {
             const errorMarker = helper.createErrorMarker(error, curFile, {
@@ -272,7 +269,7 @@ function registerListeners(
   };
 
   const registerListenErrorMarkers = () => {
-    editor.onDidChangeModelContent((e) => {
+    editor.onDidChangeModelContent(() => {
       editorState.codeParser.compilerService
         .compile()
         .then((data: unknown) =>
@@ -280,7 +277,7 @@ function registerListeners(
         );
     });
 
-    editor.onDidChangeModel((e) => {
+    editor.onDidChangeModel(() => {
       editorState.codeParser.compilerService
         .compile()
         .then((data: unknown) =>
@@ -301,7 +298,7 @@ function addModels(
   dispatch: any,
   overWriteExisting = false
 ) {
-  const formatModels = [];
+  const formatModels: any[] = [];
   for (const modelInfo of modelInfos) {
     let model = monaco.editor.getModel(monaco.Uri.file(modelInfo.filename));
 
@@ -335,6 +332,7 @@ function addModels(
   const firstModel = formatModels[0];
   //The last model with initial true should be initial
   if (!firstModelInfo.notInitial) {
+    // @ts-ignore
     editor.setModel(firstModel.model);
     dispatch({
       type: 'updateModelIndex',

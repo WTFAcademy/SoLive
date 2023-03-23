@@ -3,6 +3,7 @@
   "version": "0.0.1-alpha",
   "main": "dist/index.js",
   "typings": "dist/index.d.ts",
+  "types": "dist/index.d.ts",
   "module": "dist/react-run-code.esm.js",
   "files": [
     "dist"
