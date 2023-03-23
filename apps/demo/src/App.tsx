@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import Editor, { SupportLanguage } from "solive";
+import Editor, { SupportLanguage } from "solive-core";
 
 function App() {
 
@@ -10,7 +10,7 @@ function App() {
 
   return (
     <div className="App">
-      <Editor 
+      <Editor
         id="1"
         modelInfos={[
           {
