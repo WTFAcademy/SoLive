@@ -7,7 +7,7 @@
   "scripts": {
     "start": "nx run solive-demo:start",
     "start:lib": "nx run-many --target=start",
-    "build:lib": "nx run-many --target=build --projects=solive-solc,solive-compiler,solive-core --parallel=false",
+    "build:lib": "nx run-many --target=build --projects=solive-solc,solive-provider,solive-compiler,solive-core --parallel=false",
     "lint": "eslint **/*.{ts,d.ts,js}",
     "lint:fix": "pnpm run lint --fix",
     "release:only": "changeset publish --registry=https://registry.npmjs.com/",

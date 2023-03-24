@@ -1,12 +1,13 @@
 import React, { useEffect, useMemo } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 
-import PlayButton from './rightButtons';
-import Tab from './tab';
-import NewFileButton from './plusNewFile';
 import { useEditor } from '../../editorContext';
 import { ModelInfoType, SupportLanguage } from '../../../types/monaco';
 import { addModels } from '../../mountFunctions';
+
+import PlayButton from './rightButtons';
+import Tab from './tab';
+import NewFileButton from './plusNewFile';
 
 const useStyles = makeStyles({
   bar: {
@@ -55,7 +56,7 @@ export default function TopBar({ modelInfos }: Props) {
 
   function dragTabMove(draggedIdx: number, draggedToIdx: number) {
     if (models) {
-      let newModels = [...models];
+      const newModels = [...models];
       // drag left
       if (draggedIdx > draggedToIdx) {
         newModels.splice(draggedToIdx, 0, models[draggedIdx]);
@@ -65,7 +66,7 @@ export default function TopBar({ modelInfos }: Props) {
         newModels.splice(draggedToIdx + 1, 0, models[draggedIdx]);
         newModels.splice(draggedIdx, 1);
       }
-      
+
       dispatch({type: 'updateModels', payload: {models: newModels}});
       dispatch({type: "updateModelIndex", payload: {modelIndex: draggedToIdx}});
     }
@@ -73,7 +74,7 @@ export default function TopBar({ modelInfos }: Props) {
 
   function deleteTab(index: number) {
     if (models && models.length > 1) {
-      let newModels = [...models];
+      const newModels = [...models];
       newModels.splice(index, 1);
       dispatch({type: 'updateModels', payload: {models: newModels}});
 

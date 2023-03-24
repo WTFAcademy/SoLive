@@ -1,12 +1,12 @@
-import React, { ChangeEventHandler } from 'react';
+import React, { ChangeEventHandler , useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import useOnclickOutside from 'react-cool-onclickoutside';
 import IconButton from '@material-ui/core/IconButton';
 import AddIconComponent from '@material-ui/icons/Add';
-
-import { useState } from 'react';
-import { SupportLanguage } from '../../../types/monaco';
 import { styled } from '@material-ui/styles';
+
+import { SupportLanguage } from '../../../types/monaco';
+
 
 const useStyles = makeStyles({
   dropdown: {
@@ -45,7 +45,7 @@ const AddIcon = styled(AddIconComponent)(() => ({
 }));
 
 
-interface Props { 
+interface Props {
   plusModel: any
 }
 
@@ -60,7 +60,7 @@ export default function NewFileButton({ plusModel }: Props) {
   });
 
   const createModelOnEnter = () => {
-    let extension = fileType === SupportLanguage.Solidity ? '.sol' : '.js';
+    const extension = fileType === SupportLanguage.Solidity ? '.sol' : '.js';
     plusModel(
       input + extension,
       fileType as SupportLanguage
@@ -86,7 +86,7 @@ export default function NewFileButton({ plusModel }: Props) {
                 setOpenMenu(false);
               }
             }}
-          ></input>
+          />
           <select
             className={classes.dropdownSelect}
             onChange={e => setFileType(e.target.value as SupportLanguage)}

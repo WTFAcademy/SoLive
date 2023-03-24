@@ -1,9 +1,13 @@
-import { useEffect } from "react";
-import Editor, { SupportLanguage } from "solive-core";
+import {useEffect} from "react";
+import Editor, {SupportLanguage} from "solive-core";
+
 
 function App() {
 
   useEffect(() => {
+    // const provider = new Provider();
+    // console.log(provider.provider);
+    // provider.getAccounts().then(console.log);
     // const worker = new Worker(new URL('./worker.ts', import.meta.url));
     // worker.postMessage("");
   }, []);
@@ -24,7 +28,7 @@ function App() {
             language: SupportLanguage.Solidity,
           }
         ]}
-      ></Editor>
+      />
     </div>
   );
 }

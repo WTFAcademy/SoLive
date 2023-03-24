@@ -17,6 +17,8 @@
     "react-dom": "^18.0.0",
     "react-scripts": "5.0.1",
     "solive-core": "workspace:*",
+    "solive-provider": "workspace:0.0.1",
+    "solive-vm-provider": "workspace:*",
     "stream-http": "^3.2.0",
     "typescript": "^4.9.5",
     "web-vitals": "^2.1.4"
@@ -47,6 +49,7 @@
   },
   "devDependencies": {
     "autoprefixer": "^9.8.8",
+    "net-browserify": "^0.2.4",
     "postcss": "^7.0.39",
     "tailwindcss": "npm:@tailwindcss/postcss7-compat@^2.2.17"
   }

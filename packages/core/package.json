@@ -69,7 +69,6 @@
     "@material-ui/icons": "^4.9.1",
     "@material-ui/styles": "^4.11.5",
     "@monaco-editor/react": "^4.4.6",
-    "@remix-project/remix-simulator": "^0.2.24",
     "@solidity-parser/parser": "^0.15.0",
     "https-browserify": "^1.0.0",
     "monaco-editor": "^0.35.0",
@@ -79,6 +78,7 @@
     "semver": "^7.3.8",
     "solc": "^0.8.18",
     "solive-compiler": "workspace:*",
+    "solive-provider": "workspace:*",
     "solive-solc": "workspace:*",
     "solive-tsconfig": "workspace:*"
   },

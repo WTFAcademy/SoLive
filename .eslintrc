@@ -32,13 +32,14 @@
     "import/no-named-as-default-member": "off",
     "import/no-unresolved": "error",
     "@typescript-eslint/no-non-null-assertion": "off",
-    "@typescript-eslint/no-unused-vars": "error",
     "@typescript-eslint/no-implicit-any-catch": [
       "error",
       { "allowExplicitAny": true }
     ],
     "@typescript-eslint/no-explicit-any": "off",
     "@typescript-eslint/no-empty-interface": "off",
-    "@typescript-eslint/ban-ts-comment": "off"
+    "@typescript-eslint/ban-ts-comment": "off",
+    "@typescript-eslint/no-unused-vars": "off",
+    "@typescript-eslint/no-empty-function": "off"
   }
 }

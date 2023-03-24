@@ -35,8 +35,13 @@ module.exports = {
         "path": require.resolve("path-browserify"),
         "tty": require.resolve("tty-browserify"),
         "os": require.resolve("os-browserify/browser"),
+        "punycode": require.resolve("punycode/"),
         "fs": false,
-        "url": require.resolve("url/")
+        "url": require.resolve("url/"),
+        "net": require.resolve("net-browserify"),
+        "child_process": false,
+        async_hooks: false,
+        rawBody: false,
       };
 
       webpackConfig.plugins.push(

@@ -1,0 +1,51 @@
+{
+  "name": "solive-provider",
+  "version": "0.0.1",
+  "description": "",
+  "main": "dist/index.umd.js",
+  "module": "dist/index.esm.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "rimraf dist/* && run-p tsc build:esm build:umd build:min",
+    "dev": "rollup -w -c --environment FORMAT:esm",
+    "build:esm": "rollup -c --environment FORMAT:esm",
+    "build:umd": "rollup -c --environment FORMAT:umd",
+    "build:min": "rollup -c --environment FORMAT:min",
+    "tsc": "tsc",
+    "lint": "eslint 'src/**/*.{js,ts}'"
+  },
+  "keywords": [
+    "array",
+    "array-split",
+    "array-utils",
+    "split"
+  ],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@babel/core": "^7.19.1",
+    "@babel/preset-env": "^7.19.1",
+    "@babel/preset-typescript": "^7.18.6",
+    "@rollup/plugin-node-resolve": "^14.1.0",
+    "@typescript-eslint/eslint-plugin": "^5.38.0",
+    "@typescript-eslint/parser": "^5.38.0",
+    "eslint": "^8.23.1",
+    "husky": "^8.0.1",
+    "lint-staged": "^13.0.3",
+    "lodash.merge": "^4.6.2",
+    "npm-run-all": "^4.1.5",
+    "prettier": "^2.7.1",
+    "rimraf": "^3.0.2",
+    "rollup": "^2.79.0",
+    "rollup-plugin-babel": "^4.4.0",
+    "rollup-plugin-uglify": "^6.0.4",
+    "typescript": "^4.8.3"
+  },
+  "dependencies": {
+    "@ethereumjs/common": "^3.0.2",
+    "@remix-project/remix-simulator": "^0.2.24",
+    "bech32": "1.1.4",
+    "ethers": "^5.4.2",
+    "js-sha3": "^0.8.0"
+  }
+}
