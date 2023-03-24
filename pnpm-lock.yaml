@@ -129,7 +129,7 @@ importers:
       size-limit: ^4.7.0
       solc: ^0.8.18
       solive-compiler: workspace:*
-      solive-provider: workspace:^0.0.1
+      solive-provider: workspace:*
       solive-solc: workspace:*
       solive-tsconfig: workspace:*
       stream-browserify: ^3.0.0
@@ -13558,7 +13558,7 @@ packages:
       confusing-browser-globals: r2.cnpmjs.org/confusing-browser-globals/1.0.11
       eslint: r2.cnpmjs.org/eslint/6.8.0
       eslint-plugin-flowtype: r2.cnpmjs.org/eslint-plugin-flowtype/3.13.0_eslint@6.8.0
-      eslint-plugin-import: 2.27.5_tbglwmj7t2rhd43mvxmptakoay
+      eslint-plugin-import: 2.27.5_sifv467yifx7tblloe5bvsehqu
       eslint-plugin-jsx-a11y: 6.7.1_eslint@6.8.0
       eslint-plugin-react: 7.32.2_eslint@6.8.0
       eslint-plugin-react-hooks: r2.cnpmjs.org/eslint-plugin-react-hooks/2.5.1_eslint@6.8.0
