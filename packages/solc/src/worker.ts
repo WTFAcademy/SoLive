@@ -12,12 +12,13 @@ addEventListener("message", ({ data }) => {
         // @ts-ignore
         postMessage(result);
       });
-  } else {
-    // version find in https://github.com/ethereum/solc-bin/tree/gh-pages/bin
+  } else if (data.type === "init-solc") {
     const jsUri = data.version;
     console.log(jsUri);
 
     importScripts(jsUri);
+  } else {
+    // version find in https://github.com/ethereum/solc-bin/tree/gh-pages/bin
     // @ts-ignore
     const soljson = self.Module;
 
