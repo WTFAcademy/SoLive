@@ -1,5 +1,5 @@
 import {useEffect} from "react";
-import Editor, {SupportLanguage} from "solive-core";
+import Editor from "solive-core";
 
 
 function App() {
@@ -20,12 +20,12 @@ function App() {
           {
             filename: 'a.sol',
             value: 'pragma solidity ^0.8.0;\nimport "./b.sol";\ncontract MyContract {\n     function foo() external {\n         // do something\n     }\n}\n',
-            language: SupportLanguage.Solidity,
+            language: "solidity" as any,
           },
           {
             filename: 'b.sol',
             value: 'pragma solidity ^0.8.0;\nimport "./a.sol";\ncontract MyContract {\n     function foo() external {\n         // do something\n     }\n}\n',
-            language: SupportLanguage.Solidity,
+            language: "solidity" as any,
           }
         ]}
       />

@@ -1,6 +1,8 @@
 import React, { useEffect, useMemo, useReducer, useRef } from "react";
 import monacoForTypes, { editor } from "monaco-editor";
+
 import { BaseMonacoEditor, ModelType } from "../types/monaco";
+
 import CodeParser from "./codeParser";
 
 export interface EditorInitState {
@@ -11,6 +13,7 @@ export interface EditorInitState {
   consoleMessages: any[];
   codeParser: CodeParser;
   codeParserInitLoading: boolean;
+  curAbi: any;
 }
 
 export interface EditorReducerActionType {
@@ -20,7 +23,10 @@ export interface EditorReducerActionType {
   "updateModelIndex" |
   "updateConsoleMessages" |
   "setCodeParser" |
-  "updateCodeParserLoading";
+  "updateCodeParserLoading" |
+  "cleanConsoleMessages" |
+  "cleanModels" |
+  "createCurApi";
   payload: Partial<EditorInitState>;
 }
 
@@ -34,6 +40,7 @@ export type EditorReducerAction = {
   updateCodeParserLoading: (m: boolean) => void;
   cleanConsoleMessages: () => void;
   cleanModels: () => void;
+  createCurApi: (m: any) => void;
 }
 
 export type EditorState = {
@@ -54,6 +61,7 @@ const editorInitState: EditorInitState = {
   consoleMessages: [],
   codeParser: {} as CodeParser,
   codeParserInitLoading: false,
+  curAbi: {},
 }
 
 const editorReducer = (state: EditorInitState, action: EditorReducerActionType): EditorInitState => {
@@ -72,6 +80,8 @@ const editorReducer = (state: EditorInitState, action: EditorReducerActionType):
       return { ...state, codeParser: action.payload.codeParser || {} as CodeParser }
     case "updateCodeParserLoading":
       return { ...state, codeParserInitLoading: action.payload.codeParserInitLoading || false }
+    case "createCurApi":
+      return { ...state, curAbi: action.payload.curAbi || {} }
     default:
       return state;
   }
@@ -94,6 +104,7 @@ export function EditorProvider({ children }: { children: React.ReactNode }) {
       updateCodeParserLoading: (codeParserInitLoading: boolean) => dispatch({ type: "updateCodeParserLoading", payload: { codeParserInitLoading } }),
       cleanModels: () => dispatch({ type: "updateModels", payload: { models: [] } }),
       cleanConsoleMessages: () => dispatch({ type: "updateConsoleMessages", payload: { consoleMessages: [] } }),
+      createCurApi: (curAbi: any) => dispatch({ type: "createCurApi", payload: { curAbi } }),
     }
   }, [])
 

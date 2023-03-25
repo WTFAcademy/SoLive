@@ -1,11 +1,13 @@
 import React, {Dispatch, SetStateAction} from 'react';
 import { DndProvider } from 'react-dnd';
 import { HTML5Backend } from 'react-dnd-html5-backend';
+import {ThemeProvider} from "@mui/material";
 
 import { ModelInfoType } from '../types/monaco';
 
 import { EditorProvider } from './editorContext';
 import MonacoEditor from './monacoEditor';
+import theme from "./theme";
 
 
 export type EditorProps = {
@@ -23,10 +25,12 @@ export default function Editor({
   id
 }: EditorProps) {
   return (
-    <DndProvider backend={HTML5Backend}>
-      <EditorProvider>
-        <MonacoEditor modelInfos={modelInfos} id={id} />
-      </EditorProvider>
-    </DndProvider>
+    <ThemeProvider theme={theme}>
+      <DndProvider backend={HTML5Backend}>
+        <EditorProvider>
+          <MonacoEditor modelInfos={modelInfos} id={id} />
+        </EditorProvider>
+      </DndProvider>
+    </ThemeProvider>
   );
 }

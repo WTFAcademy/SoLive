@@ -1,5 +1,5 @@
 import React, { useEffect, useMemo } from 'react';
-import { makeStyles } from '@material-ui/core/styles';
+import {Box} from "@mui/material";
 
 import { useEditor } from '../../editorContext';
 import { ModelInfoType, SupportLanguage } from '../../../types/monaco';
@@ -9,24 +9,11 @@ import PlayButton from './rightButtons';
 import Tab from './tab';
 import NewFileButton from './plusNewFile';
 
-const useStyles = makeStyles({
-  bar: {
-    display: 'flex',
-    flexDirection: 'row',
-    flexGrow: 1,
-    height: '33px',
-    backgroundColor: '#2d3233',
-    width: '100%',
-    alignItems: 'center',
-  },
-});
-
 interface Props {
   modelInfos: ModelInfoType[];
 }
 
 export default function TopBar({ modelInfos }: Props) {
-  const classes = useStyles();
   const { state, dispatch } = useEditor();
 
   const models = useMemo(() => state.models || [], [state.models]);
@@ -99,7 +86,17 @@ export default function TopBar({ modelInfos }: Props) {
   }, [selectedIdx, editor, selectedIdx]);
 
   return (
-    <div className={classes.bar}>
+    <Box
+      sx={{
+        display: 'flex',
+        flexDirection: 'row',
+        flexGrow: 1,
+        height: '33px',
+        backgroundColor: '#2d3233',
+        width: '100%',
+        alignItems: 'center',
+      }}
+    >
       {models &&
         models
           .filter(model => !model.shown)
@@ -114,6 +111,6 @@ export default function TopBar({ modelInfos }: Props) {
           ))}
       <NewFileButton plusModel={plusModel} />
       <PlayButton modelInfos={modelInfos} />
-    </div>
+    </Box>
   );
 }

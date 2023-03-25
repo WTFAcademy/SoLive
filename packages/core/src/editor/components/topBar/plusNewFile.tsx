@@ -1,46 +1,43 @@
-import React, { ChangeEventHandler , useState } from 'react';
-import { makeStyles } from '@material-ui/core/styles';
+import React, { useState } from 'react';
 import useOnclickOutside from 'react-cool-onclickoutside';
-import IconButton from '@material-ui/core/IconButton';
-import AddIconComponent from '@material-ui/icons/Add';
-import { styled } from '@material-ui/styles';
+import {IconButton, styled} from "@mui/material";
+import AddIcon from '@mui/icons-material/Add';
 
 import { SupportLanguage } from '../../../types/monaco';
 
 
-const useStyles = makeStyles({
-  dropdown: {
-    position: 'relative',
-    display: 'inline-block',
-  },
+const Dropdown = styled('div')(() => ({
+  position: 'relative',
+  display: 'inline-block',
+}));
 
-  dropdownContent: {
-    display: 'flex',
-    position: 'absolute',
-    backgroundColor: '#252526',
-    border: '1px solid #007fd4',
-    minWidth: '160px',
-    zIndex: 1,
-    margin: '3px',
-  },
 
-  dropdownInput: {
-    border: 0,
-    color: '#b0b0b0',
-    backgroundColor: '#2d3233',
-    outline: 'none !important',
-  },
+const DropdownContent = styled('div')(() => ({
+  display: 'flex',
+  position: 'absolute',
+  backgroundColor: '#252526',
+  border: '1px solid #007fd4',
+  minWidth: '160px',
+  zIndex: 1,
+  margin: '3px',
+}));
 
-  dropdownSelect: {
-    border: '0px',
-    borderLeft: '1px solid #007fd4',
-    color: '#b0b0b0',
-    backgroundColor: '#2d3233',
-    outline: 'none !important',
-  },
-});
+const DropdownInput = styled('input')(() => ({
+  border: 0,
+  color: '#b0b0b0',
+  backgroundColor: '#2d3233',
+  outline: 'none !important',
+}));
 
-const AddIcon = styled(AddIconComponent)(() => ({
+const DropdownSelect = styled('select')(() => ({
+  border: '0px',
+  borderLeft: '1px solid #007fd4',
+  color: '#b0b0b0',
+  backgroundColor: '#2d3233',
+  outline: 'none !important',
+}));
+
+const CustomAddIcon = styled(AddIcon)(() => ({
   color: '#787777',
 }));
 
@@ -50,7 +47,6 @@ interface Props {
 }
 
 export default function NewFileButton({ plusModel }: Props) {
-  const classes = useStyles();
   const [openMenu, setOpenMenu] = useState(false);
   const [input, setInput] = useState('');
   const [fileType, setFileType] = useState(SupportLanguage.Solidity);
@@ -68,15 +64,14 @@ export default function NewFileButton({ plusModel }: Props) {
   };
 
   return (
-    <div className={classes.dropdown} ref={ref}>
+    <Dropdown ref={ref}>
       <IconButton size="small" onClick={() => setOpenMenu(true)}>
-        <AddIcon />
+        <CustomAddIcon />
       </IconButton>
 
       {openMenu && (
-        <div className={classes.dropdownContent}>
-          <input
-            className={classes.dropdownInput}
+        <DropdownContent>
+          <DropdownInput
             autoFocus
             placeholder="type file name, press enter"
             onChange={e => setInput(e.target.value)}
@@ -87,8 +82,7 @@ export default function NewFileButton({ plusModel }: Props) {
               }
             }}
           />
-          <select
-            className={classes.dropdownSelect}
+          <DropdownSelect
             onChange={e => setFileType(e.target.value as SupportLanguage)}
             onKeyDown={e => {
               if (e.key === 'Enter') {
@@ -98,9 +92,9 @@ export default function NewFileButton({ plusModel }: Props) {
             }}
           >
             <option value={SupportLanguage.Solidity}>.sol</option>
-          </select>
-        </div>
+          </DropdownSelect>
+        </DropdownContent>
       )}
-    </div>
+    </Dropdown>
   );
 }

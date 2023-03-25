@@ -17,8 +17,6 @@
     "react-dom": "^18.0.0",
     "react-scripts": "5.0.1",
     "solive-core": "workspace:*",
-    "solive-provider": "workspace:0.0.1",
-    "solive-vm-provider": "workspace:*",
     "stream-http": "^3.2.0",
     "typescript": "^4.9.5",
     "web-vitals": "^2.1.4"
@@ -28,12 +26,6 @@
     "build": "craco build",
     "test": "craco test",
     "eject": "react-scripts eject"
-  },
-  "eslintConfig": {
-    "extends": [
-      "react-app",
-      "react-app/jest"
-    ]
   },
   "browserslist": {
     "production": [

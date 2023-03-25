@@ -1,8 +1,11 @@
 import React, { useEffect, useRef } from 'react';
-import { useEditor } from "./editorContext";
 import BaseMonaco from 'monaco-editor';
 import ReactBaseMonacoEditor, { Monaco } from "@monaco-editor/react";
+import { ErrorMarker, MarkerSeverity } from 'solive-compiler';
+
 import { BaseMonacoEditor, EditorApi, ModelInfoType } from '../types/monaco';
+
+import { useEditor } from "./editorContext";
 import {
   initTheme,
   registerLangs,
@@ -12,7 +15,6 @@ import {
 } from './mountFunctions';
 import TopBar from './components/topBar';
 import CodeParser from './codeParser';
-import { ErrorMarker, MarkerSeverity } from 'solive-compiler';
 import { findModel } from './utils/model';
 
 interface Props {
@@ -57,7 +59,7 @@ function App({
       const allMarkersPerfile: Record<string, Array<BaseMonaco.editor.IMarkerData>> = {}
 
       for (const error of errors) {
-        let filePath = error.file
+        const filePath = error.file
 
         if (!filePath) return
         const model = findModel(stateRef.current.models || [], filePath);
