@@ -4,6 +4,7 @@ import ReactBaseMonacoEditor, { Monaco } from "@monaco-editor/react";
 import { ErrorMarker, MarkerSeverity } from 'solive-compiler';
 
 import { BaseMonacoEditor, EditorApi, ModelInfoType } from '../types/monaco';
+import TopBar from "../components/TopBar";
 
 import { useEditor } from "./editorContext";
 import {
@@ -93,6 +94,7 @@ function App({
 
   return (
     <>
+      <TopBar />
       <ReactBaseMonacoEditor
         height="90vh"
         onMount={handleEditorDidMount}

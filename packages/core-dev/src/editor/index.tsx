@@ -5,7 +5,6 @@ import {ModelInfoType} from '../types/monaco';
 import {EditorProvider} from './editorContext';
 import MonacoEditor from './monacoEditor';
 
-
 export type EditorProps = {
   id: string;
   modelInfos: ModelInfoType[];

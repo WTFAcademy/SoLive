@@ -183,6 +183,7 @@ importers:
     specifiers:
       '@babel/core': ^7.18.2
       '@heroicons/react': ^2.0.16
+      '@material-tailwind/react': ^1.4.2
       '@monaco-editor/react': ^4.4.6
       '@rollup/plugin-commonjs': ^22.0.0
       '@rollup/plugin-node-resolve': ^13.3.0
@@ -221,6 +222,7 @@ importers:
       typescript: ^4.7.3
     dependencies:
       '@heroicons/react': 2.0.16_react@18.2.0
+      '@material-tailwind/react': 1.4.2_biqbaboplfbrettd7655fr4n2y
       '@monaco-editor/react': 4.4.6_3vguicescx7w3divwtpzvtv5wy
       monaco-editor: 0.35.0
       postcss: 8.4.21
@@ -2439,6 +2441,40 @@ packages:
       '@ethersproject/properties': 5.7.0
       '@ethersproject/strings': 5.7.0
 
+  /@floating-ui/core/1.2.4:
+    resolution: {integrity: sha512-SQOeVbMwb1di+mVWWJLpsUTToKfqVNioXys011beCAhyOIFtS+GQoW4EQSneuxzmQKddExDwQ+X0hLl4lJJaSQ==}
+    dev: false
+
+  /@floating-ui/dom/1.2.5:
+    resolution: {integrity: sha512-+sAUfpQ3Frz+VCbPCqj+cZzvEESy3fjSeT/pDWkYCWOBXYNNKZfuVsHuv8/JO2zze8+Eb/Q7a6hZVgzS81fLbQ==}
+    dependencies:
+      '@floating-ui/core': 1.2.4
+    dev: false
+
+  /@floating-ui/react-dom/1.3.0_biqbaboplfbrettd7655fr4n2y:
+    resolution: {integrity: sha512-htwHm67Ji5E/pROEAr7f8IKFShuiCKHwUC/UY4vC3I5jiSvGFAYnSYiZO5MlGmads+QqvUkR9ANHEguGrDv72g==}
+    peerDependencies:
+      react: '>=16.8.0'
+      react-dom: '>=16.8.0'
+    dependencies:
+      '@floating-ui/dom': 1.2.5
+      react: 18.2.0
+      react-dom: 18.2.0_react@18.2.0
+    dev: false
+
+  /@floating-ui/react/0.19.2_biqbaboplfbrettd7655fr4n2y:
+    resolution: {integrity: sha512-JyNk4A0Ezirq8FlXECvRtQOX/iBe5Ize0W/pLkrZjfHW9GUV7Xnq6zm6fyZuQzaHHqEnVizmvlA96e1/CkZv+w==}
+    peerDependencies:
+      react: '>=16.8.0'
+      react-dom: '>=16.8.0'
+    dependencies:
+      '@floating-ui/react-dom': 1.3.0_biqbaboplfbrettd7655fr4n2y
+      aria-hidden: 1.2.3
+      react: 18.2.0
+      react-dom: 18.2.0_react@18.2.0
+      tabbable: 6.1.1
+    dev: false
+
   /@gar/promisify/1.1.3:
     resolution: {integrity: sha512-k2Ty1JcVojjJFwrg/ThKi2ujJ7XNLYaFGNB/bWT9wGR+oSMJHMa5w+CUq6p/pVrKeNNgA7pCqEcjSnHVoqJQFw==}
     dev: true
@@ -2915,6 +2951,23 @@ packages:
     resolution: {integrity: sha512-Hcv+nVC0kZnQ3tD9GVu5xSMR4VVYOteQIr/hwFPVEvPdlXqgGEuRjiheChHgdM+JyqdgNcmzZOX/tnl0JOiI7A==}
     dev: false
 
+  /@material-tailwind/react/1.4.2_biqbaboplfbrettd7655fr4n2y:
+    resolution: {integrity: sha512-XJ1Ie8xXMV2qZEtm0LgnJNK+8Lh1Si8TvOf0jKWGI2rHleD8U/Zype6k1AyRhBHHUwc6B19w8uR1fCIFvumURQ==}
+    peerDependencies:
+      react: ^16 || ^17 || ^18
+      react-dom: ^16 || ^17 || ^18
+    dependencies:
+      '@floating-ui/react': 0.19.2_biqbaboplfbrettd7655fr4n2y
+      classnames: 2.3.2
+      deepmerge: 4.3.1
+      framer-motion: 6.5.1_biqbaboplfbrettd7655fr4n2y
+      material-ripple-effects: r2.cnpmjs.org/material-ripple-effects/2.0.1
+      prop-types: 15.8.1
+      react: 18.2.0
+      react-dom: 18.2.0_react@18.2.0
+      tailwind-merge: 1.10.0
+    dev: false
+
   /@monaco-editor/loader/1.3.2_monaco-editor@0.35.0:
     resolution: {integrity: sha512-BTDbpHl3e47r3AAtpfVFTlAi7WXv4UQ/xZmz8atKl4q7epQV5e7+JbigFDViWF71VBi4IIBdcWP57Hj+OWuc9g==}
     peerDependencies:
@@ -2936,6 +2989,53 @@ packages:
       prop-types: 15.8.1
       react: 18.2.0
       react-dom: 18.2.0_react@18.2.0
+    dev: false
+
+  /@motionone/animation/10.15.1:
+    resolution: {integrity: sha512-mZcJxLjHor+bhcPuIFErMDNyrdb2vJur8lSfMCsuCB4UyV8ILZLvK+t+pg56erv8ud9xQGK/1OGPt10agPrCyQ==}
+    dependencies:
+      '@motionone/easing': 10.15.1
+      '@motionone/types': 10.15.1
+      '@motionone/utils': 10.15.1
+      tslib: 2.5.0
+    dev: false
+
+  /@motionone/dom/10.12.0:
+    resolution: {integrity: sha512-UdPTtLMAktHiqV0atOczNYyDd/d8Cf5fFsd1tua03PqTwwCe/6lwhLSQ8a7TbnQ5SN0gm44N1slBfj+ORIhrqw==}
+    dependencies:
+      '@motionone/animation': 10.15.1
+      '@motionone/generators': 10.15.1
+      '@motionone/types': 10.15.1
+      '@motionone/utils': 10.15.1
+      hey-listen: r2.cnpmjs.org/hey-listen/1.0.8
+      tslib: 2.5.0
+    dev: false
+
+  /@motionone/easing/10.15.1:
+    resolution: {integrity: sha512-6hIHBSV+ZVehf9dcKZLT7p5PEKHGhDwky2k8RKkmOvUoYP3S+dXsKupyZpqx5apjd9f+php4vXk4LuS+ADsrWw==}
+    dependencies:
+      '@motionone/utils': 10.15.1
+      tslib: 2.5.0
+    dev: false
+
+  /@motionone/generators/10.15.1:
+    resolution: {integrity: sha512-67HLsvHJbw6cIbLA/o+gsm7h+6D4Sn7AUrB/GPxvujse1cGZ38F5H7DzoH7PhX+sjvtDnt2IhFYF2Zp1QTMKWQ==}
+    dependencies:
+      '@motionone/types': 10.15.1
+      '@motionone/utils': 10.15.1
+      tslib: 2.5.0
+    dev: false
+
+  /@motionone/types/10.15.1:
+    resolution: {integrity: sha512-iIUd/EgUsRZGrvW0jqdst8st7zKTzS9EsKkP+6c6n4MPZoQHwiHuVtTQLD6Kp0bsBLhNzKIBlHXponn/SDT4hA==}
+    dev: false
+
+  /@motionone/utils/10.15.1:
+    resolution: {integrity: sha512-p0YncgU+iklvYr/Dq4NobTRdAPv9PveRDUXabPEeOjBLSO/1FNB2phNTZxOxpi1/GZwYpAoECEa0Wam+nsmhSw==}
+    dependencies:
+      '@motionone/types': 10.15.1
+      hey-listen: r2.cnpmjs.org/hey-listen/1.0.8
+      tslib: 2.5.0
     dev: false
 
   /@mui/base/5.0.0-alpha.122_aen5vu2fkbnw3ssyd5drxdxkh4:
@@ -4069,6 +4169,13 @@ packages:
   /arg/5.0.2:
     resolution: {integrity: sha512-PYjyFOLKQ9y57JvQ6QLo8dAgNqswh8M1RMJYdQduT6xbWSgK36P/Z/v+p888pM69jMMfS8Xd8F6I1kQ/I9HUGg==}
 
+  /aria-hidden/1.2.3:
+    resolution: {integrity: sha512-xcLxITLe2HYa1cnYnwCjkOO1PqUHQpozB8x9AR0OgWN2woOBi5kSDVxKfd0b7sb1hw5qFeJhXm9H1nu3xSfLeQ==}
+    engines: {node: '>=10'}
+    dependencies:
+      tslib: 2.5.0
+    dev: false
+
   /aria-query/5.1.3:
     resolution: {integrity: sha512-R5iJ5lkuHybztUfuOAznmboyjWq8O6sqNqtK7CLOqdydi54VNbORp49mb14KbWgG1QD3JFO9hJdZ+y4KutfdOQ==}
     dependencies:
@@ -4544,6 +4651,10 @@ packages:
       module-error: 1.0.2
       napi-macros: r2.cnpmjs.org/napi-macros/2.0.0
       node-gyp-build: 4.6.0
+    dev: false
+
+  /classnames/2.3.2:
+    resolution: {integrity: sha512-CSbhY4cFEJRe6/GQzIk5qXZ4Jeg5pcsP7b5peFSDpffpe1cqjASH/n9UTjBwOp6XpMSTwQ8Za2K5V02ueA7Tmw==}
     dev: false
 
   /clean-css/5.3.2:
@@ -5889,6 +6000,24 @@ packages:
 
   /fraction.js/4.2.0:
     resolution: {integrity: sha512-MhLuK+2gUcnZe8ZHlaaINnQLl0xRIGRfcGk2yl8xoQAfHrSsL3rYu6FCmBdkdbhc9EPlwyGHewaRsvwRMJtAlA==}
+    dev: false
+
+  /framer-motion/6.5.1_biqbaboplfbrettd7655fr4n2y:
+    resolution: {integrity: sha512-o1BGqqposwi7cgDrtg0dNONhkmPsUFDaLcKXigzuTFC5x58mE8iyTazxSudFzmT6MEyJKfjjU8ItoMe3W+3fiw==}
+    peerDependencies:
+      react: '>=16.8 || ^17.0.0 || ^18.0.0'
+      react-dom: '>=16.8 || ^17.0.0 || ^18.0.0'
+    dependencies:
+      '@motionone/dom': 10.12.0
+      framesync: r2.cnpmjs.org/framesync/6.0.1
+      hey-listen: r2.cnpmjs.org/hey-listen/1.0.8
+      popmotion: r2.cnpmjs.org/popmotion/11.0.3
+      react: 18.2.0
+      react-dom: 18.2.0_react@18.2.0
+      style-value-types: r2.cnpmjs.org/style-value-types/5.0.0
+      tslib: 2.5.0
+    optionalDependencies:
+      '@emotion/is-prop-valid': r2.cnpmjs.org/@emotion/is-prop-valid/0.8.8
     dev: false
 
   /fs-extra/10.1.0:
@@ -9128,6 +9257,14 @@ packages:
       - utf-8-validate
     dev: false
 
+  /tabbable/6.1.1:
+    resolution: {integrity: sha512-4kl5w+nCB44EVRdO0g/UGoOp3vlwgycUVtkk/7DPyeLZUCuNFFKCFG6/t/DgHLrUPHjrZg6s5tNm+56Q2B0xyg==}
+    dev: false
+
+  /tailwind-merge/1.10.0:
+    resolution: {integrity: sha512-WFnDXSS4kFTZwjKg5/oZSGzBRU/l+qcbv5NVTzLUQvJ9yovDAP05h0F2+ZFW0Lw9EcgRoc2AfURUdZvnEFrXKg==}
+    dev: false
+
   /tailwindcss/3.2.7_postcss@8.4.21:
     resolution: {integrity: sha512-B6DLqJzc21x7wntlH/GsZwEXTBttVSl1FtCzC8WP4oBc/NKef7kaax5jeihkkCEWc831/5NDJ9gRNDK6NEioQQ==}
     engines: {node: '>=12.13.0'}
@@ -10415,6 +10552,23 @@ packages:
     name: '@csstools/normalize.css'
     version: 12.0.0
     dev: false
+
+  r2.cnpmjs.org/@emotion/is-prop-valid/0.8.8:
+    resolution: {integrity: sha512-u5WtneEAr5IDG2Wv65yhunPSMLIpuKsbuOktRojfrEiEvRyC85LgPMZI63cr7NUqT8ZIGdSVg8ZKGxIug4lXcA==, registry: https://r.cnpmjs.org/, tarball: https://r2.cnpmjs.org/@emotion/is-prop-valid/-/is-prop-valid-0.8.8.tgz}
+    name: '@emotion/is-prop-valid'
+    version: 0.8.8
+    requiresBuild: true
+    dependencies:
+      '@emotion/memoize': r2.cnpmjs.org/@emotion/memoize/0.7.4
+    dev: false
+    optional: true
+
+  r2.cnpmjs.org/@emotion/memoize/0.7.4:
+    resolution: {integrity: sha512-Ja/Vfqe3HpuzRsG1oBtWTHk2PGZ7GR+2Vz5iYGelAw8dx32K0y7PjVuxK6z1nMpZOqAFsRUPCkK1YjJ56qJlgw==, registry: https://r.cnpmjs.org/, tarball: https://r2.cnpmjs.org/@emotion/memoize/-/memoize-0.7.4.tgz}
+    name: '@emotion/memoize'
+    version: 0.7.4
+    dev: false
+    optional: true
 
   r2.cnpmjs.org/@ethereumjs/common/2.5.0:
     resolution: {integrity: sha512-DEHjW6e38o+JmB/NO3GZBpW4lpaiBpkFgXF6jLcJ6gETBYpEyaA5nTimsWBUJR3Vmtm/didUEbNjajskugZORg==, registry: https://r.cnpmjs.org/, tarball: https://r2.cnpmjs.org/@ethereumjs/common/-/common-2.5.0.tgz}
@@ -15391,6 +15545,14 @@ packages:
       map-cache: r2.cnpmjs.org/map-cache/0.2.2
     dev: true
 
+  r2.cnpmjs.org/framesync/6.0.1:
+    resolution: {integrity: sha512-fUY88kXvGiIItgNC7wcTOl0SNRCVXMKSWW2Yzfmn7EKNc+MpCzcz9DhdHcdjbrtN3c6R4H5dTY2jiCpPdysEjA==, registry: https://r.cnpmjs.org/, tarball: https://r2.cnpmjs.org/framesync/-/framesync-6.0.1.tgz}
+    name: framesync
+    version: 6.0.1
+    dependencies:
+      tslib: 2.5.0
+    dev: false
+
   r2.cnpmjs.org/fresh/0.5.2:
     resolution: {integrity: sha512-zJ2mQYM18rEFOudeV4GShTGIQ7RbzA7ozbU9I/XBpm7kqgMywgmylMwXHxZJmkVoYkna9d2pVXVXPdYTP9ej8Q==, registry: https://r.cnpmjs.org/, tarball: https://r2.cnpmjs.org/fresh/-/fresh-0.5.2.tgz}
     name: fresh
@@ -15917,6 +16079,12 @@ packages:
     name: hex-color-regex
     version: 1.1.0
     dev: true
+
+  r2.cnpmjs.org/hey-listen/1.0.8:
+    resolution: {integrity: sha512-COpmrF2NOg4TBWUJ5UVyaCU2A88wEMkUPK4hNqyCkqHbxT92BbvfjoSozkAIIm6XhicGlJHhFdullInrdhwU8Q==, registry: https://r.cnpmjs.org/, tarball: https://r2.cnpmjs.org/hey-listen/-/hey-listen-1.0.8.tgz}
+    name: hey-listen
+    version: 1.0.8
+    dev: false
 
   r2.cnpmjs.org/hmac-drbg/1.0.1:
     resolution: {integrity: sha512-Tti3gMqLdZfhOQY1Mzf/AanLiqh1WTiJgEj26ZuYQ9fbkLomzGchCws4FyrSd4VkpBfiNhaE1On+lOz894jvXg==, registry: https://r.cnpmjs.org/, tarball: https://r2.cnpmjs.org/hmac-drbg/-/hmac-drbg-1.0.1.tgz}
@@ -18084,6 +18252,12 @@ packages:
       object-visit: r2.cnpmjs.org/object-visit/1.0.1
     dev: true
 
+  r2.cnpmjs.org/material-ripple-effects/2.0.1:
+    resolution: {integrity: sha512-hHlUkZAuXbP94lu02VgrPidbZ3hBtgXBtjlwR8APNqOIgDZMV8MCIcsclL8FmGJQHvnORyvoQgC965vPsiyXLQ==, registry: https://r.cnpmjs.org/, tarball: https://r2.cnpmjs.org/material-ripple-effects/-/material-ripple-effects-2.0.1.tgz}
+    name: material-ripple-effects
+    version: 2.0.1
+    dev: false
+
   r2.cnpmjs.org/mcl-wasm/0.7.9:
     resolution: {integrity: sha512-iJIUcQWA88IJB/5L15GnJVnSQJmf/YaxxV6zRavv83HILHaJQb6y0iFyDMdDO0gN8X37tdxmAOrH/P8B6RB8sQ==, registry: https://r.cnpmjs.org/, tarball: https://r2.cnpmjs.org/mcl-wasm/-/mcl-wasm-0.7.9.tgz}
     name: mcl-wasm
@@ -19494,6 +19668,17 @@ packages:
     transitivePeerDependencies:
       - typescript
     dev: true
+
+  r2.cnpmjs.org/popmotion/11.0.3:
+    resolution: {integrity: sha512-Y55FLdj3UxkR7Vl3s7Qr4e9m0onSnP8W7d/xQLsoJM40vs6UKHFdygs6SWryasTZYqugMjm3BepCF4CWXDiHgA==, registry: https://r.cnpmjs.org/, tarball: https://r2.cnpmjs.org/popmotion/-/popmotion-11.0.3.tgz}
+    name: popmotion
+    version: 11.0.3
+    dependencies:
+      framesync: r2.cnpmjs.org/framesync/6.0.1
+      hey-listen: r2.cnpmjs.org/hey-listen/1.0.8
+      style-value-types: r2.cnpmjs.org/style-value-types/5.0.0
+      tslib: 2.5.0
+    dev: false
 
   r2.cnpmjs.org/posix-character-classes/0.1.1:
     resolution: {integrity: sha512-xTgYBc3fuo7Yt7JbiuFxSYGToMoz8fLoE6TC9Wx1P/u+LfeThMOAqmuyECnlBaaJb+u1m9hHiXUEtwW4OzfUJg==, registry: https://r.cnpmjs.org/, tarball: https://r2.cnpmjs.org/posix-character-classes/-/posix-character-classes-0.1.1.tgz}
@@ -21827,6 +22012,15 @@ packages:
       schema-utils: r2.cnpmjs.org/schema-utils/3.1.1
       webpack: r2.cnpmjs.org/webpack/4.46.0
     dev: true
+
+  r2.cnpmjs.org/style-value-types/5.0.0:
+    resolution: {integrity: sha512-08yq36Ikn4kx4YU6RD7jWEv27v4V+PUsOGa4n/as8Et3CuODMJQ00ENeAVXAeydX4Z2j1XHZF1K2sX4mGl18fA==, registry: https://r.cnpmjs.org/, tarball: https://r2.cnpmjs.org/style-value-types/-/style-value-types-5.0.0.tgz}
+    name: style-value-types
+    version: 5.0.0
+    dependencies:
+      hey-listen: r2.cnpmjs.org/hey-listen/1.0.8
+      tslib: 2.5.0
+    dev: false
 
   r2.cnpmjs.org/supports-color/5.5.0:
     resolution: {integrity: sha512-QjVjwdXIt408MIiAqCX4oUKsgU2EqAGzs2Ppkm4aQYbjm+ZEWEcW4SfFNTr4uMNZma0ey4f5lgLrkB0aX0QMow==, registry: https://r.cnpmjs.org/, tarball: https://r2.cnpmjs.org/supports-color/-/supports-color-5.5.0.tgz}
