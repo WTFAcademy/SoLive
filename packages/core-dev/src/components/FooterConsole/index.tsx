@@ -42,13 +42,13 @@ const FooterConsole = () => {
       id={id + "_tabs"}
       value={selectedTab}
       onChange={(value: string) => console.log(value)}
-      className={`bg-[#0f172a] rounded-b-lg`}
+      className={`bg-[#0f172a] rounded-b-lg !overflow-visible`}
     >
       <TabsHeader>
         {data.map(({ label, value }) => (
           <Tab
             key={id + "_tab_" + value}
-            className={value === selectedTab ? '' : 'text-white'}
+            className={value === selectedTab ? 'z-0' : 'text-white'}
             value={value}
             onClick={() => setSelectedTab(value)}
           >
@@ -56,7 +56,7 @@ const FooterConsole = () => {
           </Tab>
         ))}
       </TabsHeader>
-      <TabsBody animate={animation}>
+      <TabsBody animate={animation} className="!overflow-visible">
         <CallBlock />
         <ConsoleBlock />
       </TabsBody>

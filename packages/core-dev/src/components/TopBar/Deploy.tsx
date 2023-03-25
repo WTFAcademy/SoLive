@@ -81,7 +81,7 @@ const Deploy = () => {
       actions.updateCompilerContract({
         name: selectedContract!,
         address: contract.address,
-        abi: contract.interface.format(),
+        abi: abi,
         signerAddress: '0x5B38Da6a701c568545dCfcB03FcB875f56beddC4',
       });
       setDeployContractAddress(contract.address);

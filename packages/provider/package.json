@@ -46,6 +46,8 @@
     "@remix-project/remix-simulator": "^0.2.24",
     "bech32": "1.1.4",
     "ethers": "^5.4.2",
-    "js-sha3": "^0.8.0"
+    "js-sha3": "^0.8.0",
+    "bn.js": "5.2.1",
+    "hash.js": "1.1.7"
   }
 }
