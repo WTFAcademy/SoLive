@@ -10,7 +10,7 @@ import {
 
 /**
  * @dev Get contract obj of given contract name from last compilation result.
- * @param name contract name
+ * @param contractName
  * @param contracts 'contracts' object from last compilation result
  */
 

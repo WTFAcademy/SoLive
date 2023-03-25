@@ -1,6 +1,5 @@
 import {useEffect} from "react";
-import Editor from "solive-core";
-
+import Editor from "solive-core-dev"
 
 function App() {
 
