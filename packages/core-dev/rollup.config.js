@@ -26,7 +26,10 @@ export default {
         resolve(),
         commonjs(),
         typescript({ useTsconfigDeclarationDir: true }),
-        postcss(),
+        postcss({
+          extensions: [".css", ".scss"],
+          extract: true,
+        }),
         terser()
     ],
     external: ["semver", "solive-compiler", "solive-solc"]

@@ -192,6 +192,7 @@ importers:
       '@types/react': ^18.0.0
       '@types/react-dom': ^18.0.0
       '@types/semver': ^7.3.13
+      autoprefixer: ^9.8.8
       babel-loader: ^8.2.5
       css-loader: ^5.2.7
       html-webpack-plugin: ^5.5.0
@@ -213,6 +214,7 @@ importers:
       solive-compiler: workspace:0.0.1-alpha
       solive-solc: workspace:0.0.1-aplha
       style-loader: ^2.0.0
+      tailwindcss: ^3.2.7
       ts-jest: ^28.0.3
       tslib: ^2.5.0
       typescript: ^4.7.3
@@ -233,6 +235,7 @@ importers:
       '@types/react': 18.0.29
       '@types/react-dom': 18.0.11
       '@types/semver': 7.3.13
+      autoprefixer: r2.cnpmjs.org/autoprefixer/9.8.8
       babel-loader: 8.3.0_@babel+core@7.21.3
       css-loader: r2.cnpmjs.org/css-loader/5.2.7
       html-webpack-plugin: r2.cnpmjs.org/html-webpack-plugin/5.5.0
@@ -250,6 +253,7 @@ importers:
       sass: 1.60.0
       sass-loader: 10.4.1_f2ejq26ukze6afbpw4fh75bsy4
       style-loader: r2.cnpmjs.org/style-loader/2.0.0
+      tailwindcss: 3.2.7_postcss@8.4.21
       ts-jest: 28.0.8_hvbmbnaebbdplfltlj4zjyjzbu
       tslib: 2.5.0
       typescript: 4.9.5
@@ -7578,7 +7582,6 @@ packages:
   /object-hash/3.0.0:
     resolution: {integrity: sha512-RSn9F68PjH9HqtltsSnqYC1XXoWe9Bju5+213R98cNGttag9q9yAOTzdbsqvIa7aNm5WffBZFpWYr2aWrklWAw==}
     engines: {node: '>= 6'}
-    dev: false
 
   /object-inspect/1.12.3:
     resolution: {integrity: sha512-geUvdk7c+eizMNUDkRpW1wJwgfOiOeHbxBR/hLXK1aT6zmVSO0jsQcs7fj6MGw89jC/cjGfLcNOrtMYtGqm81g==}
@@ -7899,7 +7902,6 @@ packages:
       postcss-value-parser: r2.cnpmjs.org/postcss-value-parser/4.2.0
       read-cache: r2.cnpmjs.org/read-cache/1.0.0
       resolve: 1.22.1
-    dev: false
 
   /postcss-js/4.0.1_postcss@8.4.21:
     resolution: {integrity: sha512-dDLF8pEO191hJMtlHFPRa8xsizHaM82MLfNkUHdUtVEV3tgTp5oj+8qbEqYM57SLfc74KSbw//4SeJma2LRVIw==}
@@ -7909,7 +7911,6 @@ packages:
     dependencies:
       camelcase-css: r2.cnpmjs.org/camelcase-css/2.0.1
       postcss: 8.4.21
-    dev: false
 
   /postcss-lab-function/4.2.1_postcss@8.4.21:
     resolution: {integrity: sha512-xuXll4isR03CrQsmxyz92LJB2xX9n+pZJ5jE9JgcnmsCammLyKdlzrBin+25dy6wIjfhJpKBAN80gsTlCgRk2w==}
@@ -8050,7 +8051,6 @@ packages:
     dependencies:
       postcss: 8.4.21
       postcss-selector-parser: 6.0.11
-    dev: false
 
   /postcss-nesting/10.2.0_postcss@8.4.21:
     resolution: {integrity: sha512-EwMkYchxiDiKUhlJGzWsD9b2zvq/r2SSubcRrgP+jujMXFzqvANLt16lJANC+5uZ6hjI7lpRmI6O8JIl+8l1KA==}
@@ -9150,7 +9150,6 @@ packages:
       resolve: 1.22.1
     transitivePeerDependencies:
       - ts-node
-    dev: false
 
   /tar/6.1.13:
     resolution: {integrity: sha512-jdIBIN6LTIe2jqzay/2vtYLlBHa3JF42ot3h1dW8Q0PaAG4v8rm0cvpVePtau5C6OKXGGcgO9q2AMNSWxiLqKw==}
@@ -19403,7 +19402,6 @@ packages:
     name: pify
     version: 2.3.0
     engines: {node: '>=0.10.0'}
-    dev: false
 
   r2.cnpmjs.org/pify/3.0.0:
     resolution: {integrity: sha512-C3FsVNH1udSEX48gGX1xfvwTWfsYWj5U+8/uK15BGzIGrKoUpghX8hWZwa/OFnakBiiVNmBvemTJR5mcy7iPcg==, registry: https://r.cnpmjs.org/, tarball: https://r2.cnpmjs.org/pify/-/pify-3.0.0.tgz}
@@ -20098,7 +20096,6 @@ packages:
     version: 1.0.0
     dependencies:
       pify: r2.cnpmjs.org/pify/2.3.0
-    dev: false
 
   r2.cnpmjs.org/read-pkg-up/7.0.1:
     resolution: {integrity: sha512-zK0TB7Xd6JpCLmlLmufqykGE+/TlOePD6qKClNW7hHDKFh/J7/7gCWGR7joEQEW1bKq3a3yUZSObOoWLFQ4ohg==, registry: https://r.cnpmjs.org/, tarball: https://r2.cnpmjs.org/read-pkg-up/-/read-pkg-up-7.0.1.tgz}

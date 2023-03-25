@@ -1,4 +1,6 @@
 // index.ts
+import "./index.scss";
+
 import Editor from "./editor";
 
 export * from "./types/monaco";
