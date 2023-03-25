@@ -93,9 +93,6 @@ function App({
 
   return (
     <>
-      <div className="p-2 text-blue-500 font-medium">
-        测试
-      </div>
       <ReactBaseMonacoEditor
         height="90vh"
         onMount={handleEditorDidMount}
