@@ -186,10 +186,12 @@ importers:
       '@material-tailwind/react': ^1.4.2
       '@monaco-editor/react': ^4.4.6
       '@rollup/plugin-commonjs': ^22.0.0
+      '@rollup/plugin-json': ^6.0.0
       '@rollup/plugin-node-resolve': ^13.3.0
       '@testing-library/jest-dom': ^5.16.4
       '@testing-library/react': ^12.1.5
       '@types/jest': ^27.5.2
+      '@types/lodash': ^4.14.191
       '@types/node': ^17.0.38
       '@types/react': ^18.0.0
       '@types/react-dom': ^18.0.0
@@ -197,10 +199,12 @@ importers:
       autoprefixer: ^9.8.8
       babel-loader: ^8.2.5
       css-loader: ^5.2.7
+      ethers: ^5
       html-webpack-plugin: ^5.5.0
       identity-obj-proxy: ^3.0.0
       jest: ^28.1.0
       jest-environment-jsdom: ^28.1.0
+      lodash: ^4.17.21
       monaco-editor: ^0.35.0
       node-sass: ^7.0.1
       postcss: '8'
@@ -215,6 +219,7 @@ importers:
       sass: ^1.52.2
       sass-loader: ^10.2.1
       solive-compiler: workspace:0.0.1-alpha
+      solive-provider: workspace:^0.0.1
       solive-solc: workspace:0.0.1-aplha
       style-loader: ^2.0.0
       tailwindcss: ^3.2.7
@@ -225,18 +230,23 @@ importers:
       '@heroicons/react': 2.0.16_react@18.2.0
       '@material-tailwind/react': 1.4.2_biqbaboplfbrettd7655fr4n2y
       '@monaco-editor/react': 4.4.6_3vguicescx7w3divwtpzvtv5wy
+      ethers: 5.7.2
+      lodash: r2.cnpmjs.org/lodash/4.17.21
       monaco-editor: 0.35.0
       postcss: 8.4.21
       react-hook-form: 7.43.7_react@18.2.0
       solive-compiler: link:../compiler
+      solive-provider: link:../provider
       solive-solc: link:../solc
     devDependencies:
       '@babel/core': 7.21.3
       '@rollup/plugin-commonjs': 22.0.2_rollup@2.79.1
+      '@rollup/plugin-json': 6.0.0_rollup@2.79.1
       '@rollup/plugin-node-resolve': 13.3.0_rollup@2.79.1
       '@testing-library/jest-dom': 5.16.5
       '@testing-library/react': 12.1.5_biqbaboplfbrettd7655fr4n2y
       '@types/jest': 27.5.2
+      '@types/lodash': 4.14.191
       '@types/node': 17.0.41
       '@types/react': 18.0.29
       '@types/react-dom': 18.0.11
@@ -3492,6 +3502,19 @@ packages:
       rollup: 2.79.1
     dev: true
 
+  /@rollup/plugin-json/6.0.0_rollup@2.79.1:
+    resolution: {integrity: sha512-i/4C5Jrdr1XUarRhVu27EEwjt4GObltD7c+MkCIpO2QIbojw8MUs+CCTqOphQi3Qtg1FLmYt+l+6YeoIf51J7w==}
+    engines: {node: '>=14.0.0'}
+    peerDependencies:
+      rollup: ^1.20.0||^2.0.0||^3.0.0
+    peerDependenciesMeta:
+      rollup:
+        optional: true
+    dependencies:
+      '@rollup/pluginutils': 5.0.2_rollup@2.79.1
+      rollup: 2.79.1
+    dev: true
+
   /@rollup/plugin-node-resolve/13.3.0_rollup@2.79.1:
     resolution: {integrity: sha512-Lus8rbUo1eEcnS4yTFKLZrVumLPY+YayBdWXgFSHYhTT2iJbMhoaaBL3xl5NCdeRytErGr8tZ0L71BMRmnlwSw==}
     engines: {node: '>= 10.0.0'}
@@ -3810,6 +3833,10 @@ packages:
     dependencies:
       '@types/node': 17.0.41
     dev: false
+
+  /@types/lodash/4.14.191:
+    resolution: {integrity: sha512-BdZ5BCCvho3EIXw6wUCXHe7rS53AIDPLE+JzwgT+OsJk53oBfbSmZZ7CX4VaRoN78N+TJpFi9QPlfIVNmJYWxQ==}
+    dev: true
 
   /@types/mime/3.0.1:
     resolution: {integrity: sha512-Y4XFY5VJAuw0FgAqPNd6NNoV44jbq9Bz2L7Rh/J6jLTiHBSBJa9fxqQIvkIld4GsoDOcCbvzOUAbLPsSKKg+uA==}

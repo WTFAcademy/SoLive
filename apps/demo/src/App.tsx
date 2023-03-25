@@ -18,8 +18,8 @@ function App() {
         id="1"
         modelInfos={[
           {
-            filename: 'a.sol',
-            value: 'pragma solidity ^0.8.0;\nimport "./b.sol";\ncontract MyContract {\n     function foo() external {\n         // do something\n     }\n}\n',
+            filename: 'TokenHelper.sol',
+            value: '\npragma solidity ^0.8.0;\n\ncontract MyContract {\n  address token;\n  constructor(address _token, uint _ui, string _str) {\n    token = _token;\n  }\n\n     function foo() external {\n         // do something\n     }\n}\n',
             language: "solidity" as any,
           },
           {

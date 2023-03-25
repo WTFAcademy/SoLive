@@ -5,20 +5,20 @@ import {
   makeCompilerInput,
 } from 'solive-compiler';
 
-import { EditorInitState } from '../editorContext';
+import { IEditorInitState } from '../editorContext';
 import { EditorApi, ModelType } from '../../types/monaco';
 
 import ParserVersion from './parserVersion';
 
 class CodeParserCompiler {
   editorApi: EditorApi;
-  editorState: EditorInitState;
+  editorState: IEditorInitState;
   compiler: any;
   parseVersion: ParserVersion;
 
   constructor(
     editorApi: EditorApi,
-    editorState: EditorInitState,
+    editorState: IEditorInitState,
     parseVersion: ParserVersion
   ) {
     this.editorApi = editorApi;

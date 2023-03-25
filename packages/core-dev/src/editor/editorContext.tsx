@@ -1,60 +1,64 @@
 import React, {useEffect, useMemo, useReducer, useRef, useState} from "react";
-import monacoForTypes, { editor } from "monaco-editor";
+import monacoForTypes, {editor} from "monaco-editor";
+import VmProvider from "solive-provider";
 
-import { BaseMonacoEditor, ModelType } from "../types/monaco";
+import {BaseMonacoEditor, ModelType} from "../types/monaco";
+import {createConsoleMessage, TConsoleMessage, TInputConsoleMessage} from "../types/console";
+import {TCompiledContract} from "../types/contract";
 
 import CodeParser from "./codeParser";
 
-export interface EditorInitState {
+export interface IEditorInitState {
   editor: editor.IStandaloneCodeEditor | undefined;
   monaco: typeof monacoForTypes | undefined;
   models: ModelType[] | undefined;
   modelIndex: number | undefined;
-  consoleMessages: any[];
+  consoleMessages: TConsoleMessage[];
   codeParser: CodeParser;
   codeParserInitLoading: boolean;
-  curAbi: any;
+  compliedContract: TCompiledContract;
 }
 
-export interface EditorReducerActionType {
+export interface IEditorReducerActionType {
   type: "updateEditor" |
-  "updateMonaco" |
-  "updateModels" |
-  "updateModelIndex" |
-  "updateConsoleMessages" |
-  "setCodeParser" |
-  "updateCodeParserLoading" |
-  "cleanConsoleMessages" |
-  "cleanModels" |
-  "createCurApi";
-  payload: Partial<EditorInitState>;
+    "updateMonaco" |
+    "updateModels" |
+    "updateModelIndex" |
+    "updateConsoleMessages" |
+    "setCodeParser" |
+    "updateCodeParserLoading" |
+    "cleanConsoleMessages" |
+    "cleanModels" |
+    "updateCompilerContract";
+  payload: Partial<IEditorInitState> & { id?: string };
 }
 
-export type EditorReducerAction = {
+export type TEditorReducerAction = {
   updateEditor: (e: BaseMonacoEditor) => void;
   updateMonaco: (m: typeof monacoForTypes) => void;
   updateModels: (m: ModelType[]) => void;
   updateModelIndex: (m: number) => void;
-  updateConsoleMessages: (m: any[]) => void;
+  updateConsoleMessages: (m: TInputConsoleMessage[]) => void;
   setCodeParser: (m: any) => void;
   updateCodeParserLoading: (m: boolean) => void;
   cleanConsoleMessages: () => void;
   cleanModels: () => void;
-  createCurApi: (m: any) => void;
+  updateCompilerContract: (m: TCompiledContract) => void;
 }
 
-export type EditorState = {
-  state: EditorInitState;
-  stateRef: React.MutableRefObject<EditorInitState>;
-  dispatch: React.Dispatch<EditorReducerActionType>;
-  actions: EditorReducerAction;
+export type TEditorContext = {
+  state: IEditorInitState;
+  stateRef: React.MutableRefObject<IEditorInitState>;
+  vmProviderRef: React.MutableRefObject<VmProvider>;
+  dispatch: React.Dispatch<IEditorReducerActionType>;
+  actions: TEditorReducerAction;
   id: string;
 }
 
-const EditorContext = React.createContext<EditorState | undefined>(undefined);
+const EditorContext = React.createContext<TEditorContext | undefined>(undefined);
 
 // Editor Reducer And State
-const editorInitState: EditorInitState = {
+const editorInitState: IEditorInitState = {
   editor: undefined,
   monaco: undefined,
   models: [],
@@ -62,59 +66,87 @@ const editorInitState: EditorInitState = {
   consoleMessages: [],
   codeParser: {} as CodeParser,
   codeParserInitLoading: false,
-  curAbi: {}
+  compliedContract: {} as TCompiledContract,
 }
 
-const editorReducer = (state: EditorInitState, action: EditorReducerActionType): EditorInitState => {
+const editorReducer = (state: IEditorInitState, action: IEditorReducerActionType): IEditorInitState => {
   switch (action.type) {
     case "updateEditor":
-      return { ...state, editor: action.payload.editor }
+      return {...state, editor: action.payload.editor}
     case "updateMonaco":
-      return { ...state, monaco: action.payload.monaco }
+      return {...state, monaco: action.payload.monaco}
     case "updateModels":
-      return { ...state, models: action.payload.models }
+      return {...state, models: action.payload.models}
     case "updateModelIndex":
-      return { ...state, modelIndex: action.payload.modelIndex }
+      return {...state, modelIndex: action.payload.modelIndex}
     case "updateConsoleMessages":
-      return { ...state, consoleMessages: action.payload.consoleMessages || [] }
+      return {
+        ...state,
+        consoleMessages: [
+          ...(action.payload.consoleMessages || []),
+          ...state.consoleMessages,
+        ]
+      }
     case "setCodeParser":
-      return { ...state, codeParser: action.payload.codeParser || {} as CodeParser }
+      return {...state, codeParser: action.payload.codeParser || {} as CodeParser}
     case "updateCodeParserLoading":
-      return { ...state, codeParserInitLoading: action.payload.codeParserInitLoading || false }
-    case "createCurApi":
-      return { ...state, curAbi: action.payload.curAbi || {} }
+      return {...state, codeParserInitLoading: action.payload.codeParserInitLoading || false}
+    case "updateCompilerContract":
+      return {...state, compliedContract: action.payload.compliedContract || {} as TCompiledContract}
     default:
       return state;
   }
 }
 
-// Editor Provider
-export function EditorProvider({ children, id }: { children: React.ReactNode, id: string }) {
-  const [state, dispatch] = useReducer<React.Reducer<EditorInitState, EditorReducerActionType>>(editorReducer, editorInitState);
-  // some provider need to access the state directly
-  const stateRef = useRef(state || {});
+const editorStateMap = new Map<string, IEditorInitState>();
 
-  const actions: EditorReducerAction = useMemo(() => {
+// Editor Provider
+export function EditorProvider({children, id}: { children: React.ReactNode, id: string }) {
+  const [state, dispatch] = useReducer<React.Reducer<IEditorInitState, IEditorReducerActionType>>(editorReducer, editorInitState);
+  const vmProviderRef = useRef<VmProvider>(new VmProvider());
+  const stateRef = useRef<IEditorInitState>(state);
+  // some provider need to access the state directly
+  const actions: TEditorReducerAction = useMemo(() => {
     return {
-      updateEditor: (editor: BaseMonacoEditor) => dispatch({ type: "updateEditor", payload: { editor } }),
-      updateMonaco: (monaco: typeof monacoForTypes) => dispatch({ type: "updateMonaco", payload: { monaco } }),
-      updateModels: (models: ModelType[]) => dispatch({ type: "updateModels", payload: { models } }),
-      updateModelIndex: (modelIndex: number) => dispatch({ type: "updateModelIndex", payload: { modelIndex } }),
-      updateConsoleMessages: (consoleMessages: any[]) => dispatch({ type: "updateConsoleMessages", payload: { consoleMessages } }),
-      setCodeParser: (codeParser: CodeParser) => dispatch({ type: "setCodeParser", payload: { codeParser } }),
-      updateCodeParserLoading: (codeParserInitLoading: boolean) => dispatch({ type: "updateCodeParserLoading", payload: { codeParserInitLoading } }),
-      cleanModels: () => dispatch({ type: "updateModels", payload: { models: [] } }),
-      cleanConsoleMessages: () => dispatch({ type: "updateConsoleMessages", payload: { consoleMessages: [] } }),
-      createCurApi: (curAbi: any) => dispatch({ type: "createCurApi", payload: { curAbi } }),
+      updateEditor: (editor: BaseMonacoEditor) => dispatch({type: "updateEditor", payload: {editor}}),
+      updateMonaco: (monaco: typeof monacoForTypes) => dispatch({type: "updateMonaco", payload: {monaco}}),
+      updateModels: (models: ModelType[]) => dispatch({type: "updateModels", payload: {models}}),
+      updateModelIndex: (modelIndex: number) => dispatch({type: "updateModelIndex", payload: {modelIndex}}),
+      setCodeParser: (codeParser: CodeParser) => dispatch({type: "setCodeParser", payload: {codeParser}}),
+      updateCodeParserLoading: (codeParserInitLoading: boolean) => dispatch({
+        type: "updateCodeParserLoading",
+        payload: {codeParserInitLoading}
+      }),
+      cleanModels: () => dispatch({type: "updateModels", payload: {models: []}}),
+      updateConsoleMessages: (consoleMessages: TInputConsoleMessage[]) => dispatch({
+        type: "updateConsoleMessages",
+        payload: {consoleMessages: consoleMessages.map(msg => createConsoleMessage(msg))}
+      }),
+      cleanConsoleMessages: () => dispatch({type: "updateConsoleMessages", payload: {consoleMessages: []}}),
+      updateCompilerContract: (compliedContract: TCompiledContract) => dispatch({
+        type: "updateCompilerContract",
+        payload: {compliedContract}
+      }),
     }
   }, [])
 
   useEffect(() => {
-    stateRef.current = Object.assign(stateRef.current, state || {});
-  }, [state]);
+    const oldState = editorStateMap.get(id) || {};
+    editorStateMap.set(id, Object.assign(oldState, state || {}));
+    stateRef.current = Object.assign(oldState, state || {});
+  }, [state, id]);
 
   return (
-    <EditorContext.Provider value={{ state, dispatch, stateRef, actions, id }}>
+    <EditorContext.Provider
+      value={{
+        state,
+        dispatch,
+        stateRef,
+        vmProviderRef,
+        actions,
+        id
+      }}
+    >
       {children}
     </EditorContext.Provider>
   );

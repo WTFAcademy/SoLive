@@ -11,7 +11,7 @@ import {
   SupportLanguage,
 } from '../types/monaco';
 
-import { EditorInitState } from './editorContext';
+import { IEditorInitState } from './editorContext';
 import { DefinitionProvider } from './providers/definition/provider';
 import {
   solidityLanguageConfig,
@@ -45,7 +45,7 @@ function initModels(
 }
 
 // this state link to the editor state
-function registerLangs(monaco: Monaco, state: EditorInitState) {
+function registerLangs(monaco: Monaco, state: IEditorInitState) {
   // Register a new language
   monaco.languages.register({ id: SupportLanguage.Solidity });
 
@@ -68,7 +68,7 @@ function registerLangs(monaco: Monaco, state: EditorInitState) {
   registerFileImports(monaco, state);
 }
 
-function registerCommandsAndActions(monaco: Monaco, editor: BaseMonacoEditor, dispatch: any, stateRef: EditorInitState) {
+function registerCommandsAndActions(monaco: Monaco, editor: BaseMonacoEditor, dispatch: any, stateRef: IEditorInitState) {
   // save
   editor.addCommand(monaco.KeyMod.CtrlCmd | monaco.KeyCode.KeyS, () => {
     // save
@@ -215,7 +215,7 @@ function registerFileImports(monaco: Monaco, state: any) {
 function registerListeners(
   editor: BaseMonacoEditor,
   editorApi: EditorApi,
-  editorState: EditorInitState
+  editorState: IEditorInitState
 ) {
   const transformCompileError = async (data: { output: any; input: any }) => {
     const models = editorState?.models || [];
@@ -356,7 +356,7 @@ function addModels(
 
 function getCursorPosition(
   monaco: Monaco,
-  state: EditorInitState,
+  state: IEditorInitState,
   offset = true
 ) {
   if (!monaco) return;

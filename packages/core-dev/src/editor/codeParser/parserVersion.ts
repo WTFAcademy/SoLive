@@ -3,19 +3,19 @@ import semver from 'semver';
 
 import { EditorApi } from '../../types/monaco';
 import { CompilerInfo } from '../../types/solidity';
-import { EditorInitState } from '../editorContext';
+import { IEditorInitState } from '../editorContext';
 import { cache, getCache } from '../utils/cache';
 
 const COMPILER_INFO_KEY = 'compiler_info';
 
 class ParserVersion {
   editorApi: EditorApi;
-  editorState: EditorInitState;
+  editorState: IEditorInitState;
   allVersions: string[] = [];
   latestVersion = '';
   compilerInfo?: CompilerInfo;
 
-  constructor(editorApi: EditorApi, editorState: EditorInitState) {
+  constructor(editorApi: EditorApi, editorState: IEditorInitState) {
     this.editorApi = editorApi;
     this.editorState = editorState;
   }

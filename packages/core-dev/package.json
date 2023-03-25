@@ -23,10 +23,12 @@
   "devDependencies": {
     "@babel/core": "^7.18.2",
     "@rollup/plugin-commonjs": "^22.0.0",
+    "@rollup/plugin-json": "^6.0.0",
     "@rollup/plugin-node-resolve": "^13.3.0",
     "@testing-library/jest-dom": "^5.16.4",
     "@testing-library/react": "^12.1.5",
     "@types/jest": "^27.5.2",
+    "@types/lodash": "^4.14.191",
     "@types/node": "^17.0.38",
     "@types/react": "^18.0.0",
     "@types/react-dom": "^18.0.0",
@@ -58,10 +60,13 @@
     "@heroicons/react": "^2.0.16",
     "@material-tailwind/react": "^1.4.2",
     "@monaco-editor/react": "^4.4.6",
+    "ethers": "^5",
+    "lodash": "^4.17.21",
     "monaco-editor": "^0.35.0",
     "postcss": "8",
     "react-hook-form": "^7.43.7",
     "solive-compiler": "workspace:0.0.1-alpha",
+    "solive-provider": "workspace:^0.0.1",
     "solive-solc": "workspace:0.0.1-aplha"
   }
 }

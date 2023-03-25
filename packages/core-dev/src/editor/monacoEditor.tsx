@@ -37,7 +37,6 @@ function App({modelInfos, height}: Props) {
 
     initTheme(monaco);
     initModels(monaco, editor, modelInfos, dispatch);
-
     const codeParser = new CodeParser(editorApiRef.current, stateRef.current);
     await codeParser.parseVersion.init();
     actions.setCodeParser(codeParser);

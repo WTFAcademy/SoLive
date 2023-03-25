@@ -3,6 +3,7 @@ import resolve from "@rollup/plugin-node-resolve";
 import commonjs from "@rollup/plugin-commonjs";
 import typescript from "rollup-plugin-typescript2";
 import postcss from "rollup-plugin-postcss";
+import json from "@rollup/plugin-json";
 import { terser } from "rollup-plugin-terser";
 
 const packageJson = require("./package.json");
@@ -23,6 +24,7 @@ export default {
     ],
     plugins: [
         peerDepsExternal(),
+        json(),
         resolve(),
         commonjs(),
         typescript({ useTsconfigDeclarationDir: true }),
@@ -32,5 +34,5 @@ export default {
         }),
         terser()
     ],
-    external: ["semver", "solive-compiler", "solive-solc"]
+    external: ["semver", "solive-compiler", "solive-solc", "solive-provider"]
 };

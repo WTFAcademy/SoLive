@@ -1,7 +1,5 @@
 import {XCircleIcon} from "@heroicons/react/24/solid";
 
-import {SupportLanguage} from "../../types/monaco";
-
 import LangIcon from "./LangIcon";
 
 interface IProps {

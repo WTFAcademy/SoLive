@@ -1,16 +1,16 @@
 import { Monaco } from '@monaco-editor/react';
 import BaseMonaco from 'monaco-editor';
 
-import { EditorInitState } from '../../editorContext';
+import { IEditorInitState } from '../../editorContext';
 import { findModel } from '../../utils/model';
 import { ModelType } from '../../../types/monaco';
 
 export class DefinitionProvider
   implements BaseMonaco.languages.DefinitionProvider {
   monaco: Monaco;
-  state: EditorInitState;
+  state: IEditorInitState;
 
-  constructor(monaco: Monaco, state: EditorInitState) {
+  constructor(monaco: Monaco, state: IEditorInitState) {
     this.monaco = monaco;
     this.state = state;
   }
