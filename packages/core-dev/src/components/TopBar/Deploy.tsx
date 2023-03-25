@@ -15,7 +15,7 @@ const resolveConstructor = (abi: any) => {
 }
 
 const Deploy = () => {
-  const {state, vmProviderRef, actions} = useEditor();
+  const {state, vmProviderRef, actions, id} = useEditor();
   const methods = useForm({mode: "onBlur"});
 
   const [compiledContracts, setCompiledContracts] = useState<any>(null);
@@ -42,7 +42,7 @@ const Deploy = () => {
 
   const preDeploy = async () => {
     setCompileLoading(true);
-    methods.reset();
+    resetAll();
     try {
       const compileResult: any = await state.codeParser.compilerService.compile();
       const hasError = compileResult.output.errors.filter((item: any) => item.severity === 'error').length > 0;
@@ -86,6 +86,12 @@ const Deploy = () => {
       });
       setDeployContractAddress(contract.address);
       setDeployError(false);
+      actions.updateConsoleMessages([
+        {
+          type: "success",
+          message: selectedContract + " - 合约部署成功：" + contract.address
+        }
+      ])
     } catch (e: any) {
       setDeployError(true);
       actions.updateConsoleMessages([
@@ -99,25 +105,31 @@ const Deploy = () => {
     setDeployLoading(false);
   }
 
+  const resetAll = () => {
+    methods.reset();
+    setSelectedContract(undefined);
+    setCompiledContracts(null);
+    setCompiledContractKeys(null);
+    setDeployContractAddress(undefined);
+  }
+
   useEffect(() => {
     if (curModel) {
-      methods.reset();
-      setSelectedContract(undefined);
-      setCompiledContracts(null);
-      setCompiledContractKeys(null);
-      setDeployContractAddress(undefined);
+      resetAll();
     }
   }, [modelIndex])
 
+  console.log(compiledContractKeys);
+
   return (
-    <Popover>
+    <Popover placement="bottom-end">
       <PopoverHandler>
         <PlayCircleIcon className="w-6 h-6 text-white cursor-pointer"/>
       </PopoverHandler>
-      <PopoverContent>
+      <PopoverContent className="z-[10]">
         <div className="mb-4 font-medium">当前部署合约：{curModel ? curModel.model.uri.path.substring(1) : '无'}</div>
         <div className="flex gap-2 mb-4">
-          <Button color={error ? 'red' : 'blue'} size="sm" loading={compileLoading} onClick={preDeploy}>
+          <Button color={error ? 'red' : 'blue'} size="sm" onClick={preDeploy}>
             编译合约
           </Button>
           <Button
@@ -125,12 +137,11 @@ const Deploy = () => {
             disabled={error}
             size="sm"
             onClick={methods.handleSubmit(startDeploy)}
-            loading={deployLoading}
           >
             部署
           </Button>
         </div>
-        {deployContractAddress && <div>部署成功：${deployContractAddress}</div>}
+        {deployContractAddress && <div className="mb-4">部署成功, 可查看日志</div>}
         <div className="mb-4">
           {compiledContractKeys && (
             <Select

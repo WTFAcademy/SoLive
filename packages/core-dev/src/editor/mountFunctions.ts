@@ -2,6 +2,7 @@ import { Monaco } from '@monaco-editor/react';
 import { IPosition } from 'monaco-editor';
 import * as helper from 'solive-compiler';
 import { ErrorMarker } from 'solive-compiler';
+import debounce from "lodash/debounce";
 
 import {
   BaseMonacoEditor,
@@ -279,22 +280,19 @@ function registerListeners(
     }
   };
 
-  const registerListenErrorMarkers = () => {
-    editor.onDidChangeModelContent(() => {
-      editorState.codeParser.compilerService
-        .compile()
-        .then((data: unknown) =>
-          transformCompileError(data as unknown as { output: any; input: any })
-        );
-    });
+  const throttledCompile = debounce(async () => {
+    console.log('11');
+    editorState.codeParser.compilerService
+      .compile()
+      .then((data: unknown) =>
+        transformCompileError(data as unknown as { output: any; input: any })
+      );
+  }, 1000, { leading: true, trailing: true });
 
-    editor.onDidChangeModel(() => {
-      editorState.codeParser.compilerService
-        .compile()
-        .then((data: unknown) =>
-          transformCompileError(data as unknown as { output: any; input: any })
-        );
-    });
+  const registerListenErrorMarkers = () => {
+    editor.onDidChangeModelContent(throttledCompile);
+
+    editor.onDidChangeModel(throttledCompile);
   };
 
   registerListenErrorMarkers();

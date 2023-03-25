@@ -1,7 +1,8 @@
 import uniqueId from 'lodash/uniqueId';
 
 export type TInputConsoleMessage = {
-  type: string; message: string
+  type: string;
+  message: string
 };
 
 export type TConsoleMessage = {
