@@ -5,6 +5,7 @@ import { ErrorMarker, MarkerSeverity } from 'solive-compiler';
 
 import { BaseMonacoEditor, EditorApi, ModelInfoType } from '../types/monaco';
 import TopBar from "../components/TopBar";
+import FooterConsole from "../components/FooterConsole";
 
 import { useEditor } from "./editorContext";
 import {
@@ -19,14 +20,11 @@ import { findModel } from './utils/model';
 
 interface Props {
   modelInfos: ModelInfoType[];
-  id: string;
+  height: string;
 }
 
-function App({
-  modelInfos,
-  id
-}: Props) {
-  const { stateRef, dispatch, actions } = useEditor();
+function App({modelInfos, height}: Props) {
+  const { stateRef, dispatch, actions, id } = useEditor();
   const editorRef = useRef<BaseMonacoEditor>();
   const monacoRef = useRef<Monaco>();
   const editorApiRef = useRef<EditorApi>({} as EditorApi);
@@ -96,12 +94,13 @@ function App({
     <>
       <TopBar />
       <ReactBaseMonacoEditor
-        height="90vh"
+        height={height}
         onMount={handleEditorDidMount}
         beforeMount={handleEditorBeforeMount}
         defaultLanguage="solidity"
         defaultValue="// some comment"
       />
+      <FooterConsole />
     </>
   )
 }

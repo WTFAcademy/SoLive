@@ -14,7 +14,25 @@ function App() {
   return (
     <div className="App">
       <Editor
+        height="300px"
         id="1"
+        modelInfos={[
+          {
+            filename: 'a.sol',
+            value: 'pragma solidity ^0.8.0;\nimport "./b.sol";\ncontract MyContract {\n     function foo() external {\n         // do something\n     }\n}\n',
+            language: "solidity" as any,
+          },
+          {
+            filename: 'b.sol',
+            value: 'pragma solidity ^0.8.0;\nimport "./a.sol";\ncontract MyContract {\n     function foo() external {\n         // do something\n     }\n}\n',
+            language: "solidity" as any,
+          }
+        ]}
+      />
+      <br />
+      <Editor
+        height="300px"
+        id="2"
         modelInfos={[
           {
             filename: 'a.sol',

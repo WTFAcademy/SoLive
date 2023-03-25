@@ -1,36 +1,35 @@
-import {useState} from "react";
 
-type Lang = 'sol' | 'js';
+import {PlayCircleIcon} from "@heroicons/react/24/solid"
 
-interface Model {
-  lang: Lang;
-  filename: string;
-}
+import {useEditor} from "../../editor/editorContext";
+
+import Nav from "./Nav";
 
 const TopBar = () => {
-  const [models, setModels] = useState([
-    {filename: 'HelloWorld.sol', lang: 'sol'},
-    {filename: 'HelloWorld.js', lang: 'js'},
-  ] as Model[]);
-  const [showAddModal, setShowAddModal] = useState(false);
+ const {state, actions, id} = useEditor();
 
-  const handleAdd = (model: Model) => {
-    setModels([...models, model]);
-    setShowAddModal(false);
-  };
-
-  const handleRemove = (model: Model) => {
-    setModels(models.filter((m) => m !== model));
-  };
-
-  const handleSelect = (model: Model) => {
-    // alert(`你选中了文件：${model.filename}`);
-  };
+ const models = state.models || [];
+ const modelIndex = state.modelIndex || 0;
 
   return (
-    <div className="h-[50px] rounded-t-lg bg-[#0f172a]">
-      {/* 顶部导航栏 */}
+    <div className="h-[50px] rounded-t-lg bg-[#0f172a] flex items-center px-4 justify-between">
+      <div className="flex items-center gap-1">
+        {models.map((model, index) => (
+          <Nav
+            key={`${id}_${model.model.uri.path.substring(1)}_${index}`}
+            active={index === modelIndex}
+            model={model}
+            onClick={() => {
+              actions.updateModelIndex(index);
+              state.editor?.setModel(model.model);
+            }}
+          />
+        ))}
+      </div>
 
+      <div className="flex">
+        <PlayCircleIcon className="w-6 h-6 text-white cursor-pointer" />
+      </div>
       {/*<Nav models={models} onFileDelete={handleRemove} onFileSelect={handleSelect} onFileAdd={handleAdd} />*/}
 
       {/*/!* 添加新文件 *!/*/}

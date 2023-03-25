@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useReducer, useRef } from "react";
+import React, {useEffect, useMemo, useReducer, useRef, useState} from "react";
 import monacoForTypes, { editor } from "monaco-editor";
 
 import { BaseMonacoEditor, ModelType } from "../types/monaco";
@@ -48,6 +48,7 @@ export type EditorState = {
   stateRef: React.MutableRefObject<EditorInitState>;
   dispatch: React.Dispatch<EditorReducerActionType>;
   actions: EditorReducerAction;
+  id: string;
 }
 
 const EditorContext = React.createContext<EditorState | undefined>(undefined);
@@ -61,7 +62,7 @@ const editorInitState: EditorInitState = {
   consoleMessages: [],
   codeParser: {} as CodeParser,
   codeParserInitLoading: false,
-  curAbi: {},
+  curAbi: {}
 }
 
 const editorReducer = (state: EditorInitState, action: EditorReducerActionType): EditorInitState => {
@@ -88,7 +89,7 @@ const editorReducer = (state: EditorInitState, action: EditorReducerActionType):
 }
 
 // Editor Provider
-export function EditorProvider({ children }: { children: React.ReactNode }) {
+export function EditorProvider({ children, id }: { children: React.ReactNode, id: string }) {
   const [state, dispatch] = useReducer<React.Reducer<EditorInitState, EditorReducerActionType>>(editorReducer, editorInitState);
   // some provider need to access the state directly
   const stateRef = useRef(state || {});
@@ -113,7 +114,7 @@ export function EditorProvider({ children }: { children: React.ReactNode }) {
   }, [state]);
 
   return (
-    <EditorContext.Provider value={{ state, dispatch, stateRef, actions }}>
+    <EditorContext.Provider value={{ state, dispatch, stateRef, actions, id }}>
       {children}
     </EditorContext.Provider>
   );

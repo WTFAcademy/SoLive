@@ -8,6 +8,7 @@ import MonacoEditor from './monacoEditor';
 export type EditorProps = {
   id: string;
   modelInfos: ModelInfoType[];
+  height: string;
   onSuccess?: Dispatch<SetStateAction<number>>;
   onFailure?: () => void;
   onCompile?: () => void;
@@ -18,12 +19,13 @@ export type EditorProps = {
 export default function Editor(
   {
     modelInfos,
-    id
+    id,
+    height
   }: EditorProps
 ) {
   return (
-    <EditorProvider>
-      <MonacoEditor modelInfos={modelInfos} id={id}/>
+    <EditorProvider id={id}>
+      <MonacoEditor height={height} modelInfos={modelInfos}/>
     </EditorProvider>
   );
 }
