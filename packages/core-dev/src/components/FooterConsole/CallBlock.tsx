@@ -1,15 +1,15 @@
-import {Select, Option, Input, Button} from "@material-tailwind/react";
-import {useState} from "react";
-import {ethers} from 'ethers';
+import { Select, Option, Input, Button } from "@material-tailwind/react";
+import { useState } from "react";
+import { ethers } from 'ethers';
 
-import {useEditor} from "../../editor/editorContext";
+import { useEditor } from "../../editor/editorContext";
 
 interface dataObj {
   [key: string]: any
 }
 
 const CallBlock = () => {
-  const {id, state, vmProviderRef, actions} = useEditor();
+  const { id, state, vmProviderRef, actions } = useEditor();
   const [abiItem, setAbiItem] = useState('')
   const [params, setParams] = useState({})
   const [payableAmount, setPayableAmount] = useState('')
@@ -35,7 +35,7 @@ const CallBlock = () => {
     const newParam: dataObj = {}
     newParam[data.target.name] = data.target.value
     setParams((prev) => {
-      return {...prev, ...newParam}
+      return { ...prev, ...newParam }
     })
   }
 
@@ -43,7 +43,7 @@ const CallBlock = () => {
     if (item === '') return ''
     return JSON.parse(item).inputs.map((v: any, k: any) => {
       return <Input variant="standard" key={id + v.name} name={v.name} label={`${v.name}(${v.internalType})`}
-                    onChange={handleInputsChange}/>
+        onChange={handleInputsChange} />
     })
   }
 
@@ -60,20 +60,30 @@ const CallBlock = () => {
     const signer = await vmProviderRef.current.getSigner(contractInfo?.signerAddress)
     const contract = new ethers.Contract(contractInfo?.address, abi, signer);
     let result
-    if (a.stateMutability === 'payable') {
-      const overrides = {
-        value: ethers.utils.parseEther(payableAmount),
+    try {
+      if (a.stateMutability === 'payable') {
+        const overrides = {
+          value: ethers.utils.parseEther(payableAmount),
+        }
+        result = await contract[a.name](...Object.values(params || []), overrides);
+      } else {
+        result = await contract[a.name](...Object.values(params || []));
       }
-      result = await contract[a.name](...Object.values(params || []), overrides);
-    } else {
-      result = await contract[a.name](...Object.values(params || []));
+      if (result === undefined) return
+      actions.updateConsoleMessages([{
+        type: 'success',
+        message: JSON.stringify(result)
+      }])
+    } catch (e) {
+      if (e instanceof Error) {
+        actions.updateConsoleMessages([{
+          type: 'error',
+          message: e.message
+        }])
+      }
     }
 
     console.log(result);
-    actions.updateConsoleMessages([{
-      type: 'success',
-      message: JSON.stringify(result)
-    }])
   }
 
   const displayPayableAmount = (item: any) => {
@@ -81,7 +91,7 @@ const CallBlock = () => {
     return JSON.parse(abiItem).stateMutability === 'payable'
       ? <Input key={id + 'payableAmount'} name='payableAmount' label='payableAmount(ether)' onChange={(v) => {
         setPayableAmount(v.target.value)
-      }}/>
+      }} />
       : ''
   }
 
