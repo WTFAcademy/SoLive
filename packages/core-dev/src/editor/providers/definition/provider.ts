@@ -26,7 +26,7 @@ export class DefinitionProvider
     // 检测是否为import语句
     const checkResult = /import [',"].+[',"];/.test(line)
     if (checkResult) {
-      const filePath = line.match(/(?<=[',"])(.+?)(?=[',"])/g)
+      const filePath = line.match(new RegExp(`(?<=[',"])(.+?)(?=[',"])`, 'g'))
       if (filePath === null) { return null }
       const nextModel = findModel(this.state.models as ModelType[], filePath[0]?.replace('./', ''))
       return {
