@@ -66,6 +66,7 @@
     "monaco-editor": "^0.35.0",
     "postcss": "8",
     "react-hook-form": "^7.43.7",
+    "react-json-view": "^1.21.3",
     "semver": "^7.3.8",
     "solive-compiler": "workspace:0.0.1-alpha",
     "solive-provider": "workspace:^0.0.1",
