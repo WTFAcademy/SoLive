@@ -63,7 +63,7 @@ class CodeParserCompiler {
 
   resolveImports(model: ModelType) {
     const code = model.model.getValue();
-    const importRegex = /^\s*import\s+["']([^"']+\.(sol))["']/gm;
+    const importRegex = new RegExp("^\\s*import\\s+[\"']([^\"']+\\.(sol))[\"']", "gm");
     const importHints: string[] = [];
     let match;
     while ((match = importRegex.exec(code)) !== null) {

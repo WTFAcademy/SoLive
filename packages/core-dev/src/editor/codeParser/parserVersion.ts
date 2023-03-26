@@ -26,7 +26,8 @@ class ParserVersion {
   }
 
   resolveCodeVersion(code: string) {
-    const pragmaArr = code.match(/(pragma solidity (.+?);)/g)
+    const rex = new RegExp("(pragma solidity (.+?);)", "g");
+    const pragmaArr = code.match(rex)
 
     if (!pragmaArr) {
       return this.latestVersion;
