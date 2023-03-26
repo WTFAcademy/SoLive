@@ -10,7 +10,7 @@ const FooterConsole = () => {
   const {id} = useEditor();
 
   return (
-    <div key={id + "_footerConsole"} className="flex bg-[#0f172a] text-white p-2 gap-2 rounded-b-lg h-1 min-h-[200px]">
+    <div key={id + "_footerConsole"} className="flex bg-[#0f172a] text-white p-2 gap-2 rounded-b-lg h-1 min-h-[300px]">
       <Allotment key={id + "_Allotment"}>
         <div className="flex-1 flex-col">
           <div>Execute contract:</div>
