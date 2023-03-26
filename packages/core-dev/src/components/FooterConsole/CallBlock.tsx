@@ -20,7 +20,7 @@ const CallBlock = () => {
   const abiOption = (abiJson: any) => {
     if (!(abiJson instanceof Array)) return ''
     return abiJson.filter(item => {
-      return item.type !== 'constructor'
+      return item.type !== 'constructor' && item.type === 'function'
     }).map((v: any, k: any) => {
       return <Option
         key={id + k}
