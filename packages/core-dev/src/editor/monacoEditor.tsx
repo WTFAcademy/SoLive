@@ -87,6 +87,16 @@ function App({modelInfos, height}: Props) {
         }
       }
     }
+
+    editorApiRef.current.removeErrorMarker = (sources: string[], from = id) => {
+        const files = Object.keys(sources);
+        for (const file of files) {
+          const model = findModel(stateRef.current.models || [], file);
+          if (model) {
+            monacoRef.current?.editor.setModelMarkers(model.model, from, [])
+          }
+        }
+    }
   }, [])
 
   return (

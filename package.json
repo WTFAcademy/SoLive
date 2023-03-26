@@ -6,6 +6,7 @@
   "main": "index.js",
   "scripts": {
     "start": "nx run solive-demo:start",
+    "build:demo": "nx run solive-demo:build",
     "start:lib": "nx run-many --target=start",
     "build:lib": "nx run-many --target=build --projects=solive-solc,solive-provider,solive-compiler,solive-core,solive-core-dev --parallel=false",
     "lint": "eslint **/*.{ts,d.ts,js}",

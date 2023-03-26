@@ -1,7 +1,7 @@
-import { Monaco } from '@monaco-editor/react';
-import { IPosition } from 'monaco-editor';
+import {Monaco} from '@monaco-editor/react';
+import {IPosition} from 'monaco-editor';
 import * as helper from 'solive-compiler';
-import { ErrorMarker } from 'solive-compiler';
+import {ErrorMarker} from 'solive-compiler';
 import debounce from "lodash/debounce";
 
 import {
@@ -12,13 +12,13 @@ import {
   SupportLanguage,
 } from '../types/monaco';
 
-import { IEditorInitState } from './editorContext';
-import { DefinitionProvider } from './providers/definition/provider';
+import {IEditorInitState} from './editorContext';
+import {DefinitionProvider} from './providers/definition/provider';
 import {
   solidityLanguageConfig,
   solidityTokensProvider,
 } from './syntaxes/solidity';
-import { findModel } from './utils/model';
+import {findModel} from './utils/model';
 
 function initTheme(monaco: Monaco) {
   monaco.editor.defineTheme('myCustomTheme', {
@@ -48,7 +48,7 @@ function initModels(
 // this state link to the editor state
 function registerLangs(monaco: Monaco, state: IEditorInitState) {
   // Register a new language
-  monaco.languages.register({ id: SupportLanguage.Solidity });
+  monaco.languages.register({id: SupportLanguage.Solidity});
 
   // Register a tokens provider for the language
   monaco.languages.setMonarchTokensProvider(
@@ -88,7 +88,7 @@ function registerCommandsAndActions(monaco: Monaco, editor: BaseMonacoEditor, di
       monaco.KeyMod.CtrlCmd | monaco.KeyCode.Equal,
     ],
     run: () => {
-      editor.updateOptions({ fontSize: Number(editor.getOption(46)) + 1 });
+      editor.updateOptions({fontSize: Number(editor.getOption(46)) + 1});
     },
   };
   const zoomOutAction = {
@@ -101,7 +101,7 @@ function registerCommandsAndActions(monaco: Monaco, editor: BaseMonacoEditor, di
       monaco.KeyMod.CtrlCmd | monaco.KeyCode.Minus,
     ],
     run: () => {
-      editor.updateOptions({ fontSize: Number(editor.getOption(46)) - 1 });
+      editor.updateOptions({fontSize: Number(editor.getOption(46)) - 1});
     },
   };
 
@@ -119,7 +119,7 @@ function registerCommandsAndActions(monaco: Monaco, editor: BaseMonacoEditor, di
           const path = input.resource.path.replace('/', '')
           const nextModel = findModel(stateRef.models as ModelType[], path)
           const nextModelIndex = stateRef.models?.findIndex(model => model.filename === path)
-          dispatch({ type: "updateModelIndex", payload: { modelIndex: nextModelIndex } });
+          dispatch({type: "updateModelIndex", payload: {modelIndex: nextModelIndex}});
           editor.setModel(nextModel?.model as any);
           editor.revealRange(input.options.selection);
           editor.setPosition({
@@ -127,7 +127,8 @@ function registerCommandsAndActions(monaco: Monaco, editor: BaseMonacoEditor, di
             lineNumber: input.options.selection.startLineNumber,
           });
         }
-      } catch (e) { /* empty */ }
+      } catch (e) { /* empty */
+      }
     }
     return result;
   };
@@ -183,7 +184,7 @@ function registerFileImports(monaco: Monaco, state: any) {
       const match = textUntilPosition.match(/import\s+/);
 
       if (!match) {
-        return { suggestions: [] };
+        return {suggestions: []};
       }
       const word = model.getWordUntilPosition(position);
       const range = {
@@ -222,20 +223,22 @@ function registerListeners(
     const models = editorState?.models || [];
     const modelIndex = editorState?.modelIndex || 0;
     const curFile = models[modelIndex].filename;
-    const curFileContent = models[modelIndex].value;
+    const curFileContent = models[modelIndex].model.getValue();
 
     const sources = data.input.sources || {};
     const output = data.output || {};
 
     let allErrors: ErrorMarker[] = [];
-
+    editorApi.removeErrorMarker(output.sources);
     if (output.error || output.errors) {
-      if (output.error) { /* empty */ } else {
+      if (output.error) { /* empty */
+      } else {
         for (const error of output.errors) {
+          console.log(error);
           if (!error.sourceLocation) {
             const errorMarker = helper.createErrorMarker(error, curFile, {
-              start: { line: 0, column: 0 },
-              end: { line: 0, column: 100 },
+              start: {line: 0, column: 0},
+              end: {line: 0, column: 100},
             });
             allErrors = [...allErrors, errorMarker];
           } else {
@@ -276,18 +279,18 @@ function registerListeners(
           }
         }
       }
+      console.log(allErrors);
       editorApi.addErrorMarker(allErrors);
     }
   };
 
   const throttledCompile = debounce(async () => {
-    console.log('11');
     editorState.codeParser.compilerService
       .compile()
       .then((data: unknown) =>
         transformCompileError(data as unknown as { output: any; input: any })
       );
-  }, 1000, { leading: true, trailing: true });
+  }, 1000, {leading: true, trailing: true});
 
   const registerListenErrorMarkers = () => {
     editor.onDidChangeModelContent(throttledCompile);
@@ -322,7 +325,7 @@ function addModels(
     } else if (overWriteExisting) {
       model.setValue(modelInfo.value);
     }
-    model.updateOptions({ tabSize: 2 });
+    model.updateOptions({tabSize: 2});
     formatModels.push({
       ...modelInfo,
       model,

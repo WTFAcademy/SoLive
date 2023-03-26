@@ -41,4 +41,5 @@ export class ModelInfoType {
 
 export type EditorApi = {
   addErrorMarker: (errors: ErrorMarker[], from?: string) => void;
+  removeErrorMarker: (sources: string[], from?: string) => void;
 };

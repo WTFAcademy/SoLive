@@ -1,10 +1,10 @@
-import { getCompilerVersions } from 'solive-solc';
+import {getCompilerVersions} from 'solive-solc';
 import semver from 'semver';
 
-import { EditorApi } from '../../types/monaco';
-import { CompilerInfo } from '../../types/solidity';
-import { IEditorInitState } from '../editorContext';
-import { cache, getCache } from '../utils/cache';
+import {EditorApi} from '../../types/monaco';
+import {CompilerInfo} from '../../types/solidity';
+import {IEditorInitState} from '../editorContext';
+import {cache, getCache} from '../utils/cache';
 
 const COMPILER_INFO_KEY = 'compiler_info';
 
@@ -26,11 +26,14 @@ class ParserVersion {
   }
 
   resolveCodeVersion(code: string) {
-    const pattern = /pragma solidity\s+(\^|~)?(\d+\.\d+\.\d+)/;
-    const match = pattern.exec(code) as RegExpExecArray;
-    const version = match[2];
-    const symbol = match[1];
-    return symbol ? symbol + version : version;
+    const pragmaArr = code.match(/(pragma solidity (.+?);)/g)
+
+    if (!pragmaArr) {
+      return this.latestVersion;
+    }
+
+    const pragmaStr = pragmaArr[0].replace('pragma solidity', '').trim()
+    return pragmaStr.substring(0, pragmaStr.length - 1);
   }
 
   getVersionUri(version: string) {
@@ -41,7 +44,7 @@ class ParserVersion {
 
   matchVersion(version: string) {
     const bestVersion = semver.maxSatisfying(this.allVersions, version);
-
+    console.log("bestVersion: ",bestVersion);
     if (!bestVersion) {
       console.warn('No version match, use latest version');
       return this.latestVersion; // This is the latest version
