@@ -1,6 +1,6 @@
 ## SOLIVE 
 
-A flexible online playground for Solidity smart contract, inspired by remix and react-live
+A flexible online playground for Solidity smart contract, inspired by remix-IDE and react-live
 
 ### Demo
 - Check demo website: https://solive-demo-503bl316n-wtfacademy.vercel.app/
