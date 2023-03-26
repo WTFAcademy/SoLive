@@ -1,67 +1,28 @@
-import {
-  Tabs,
-  TabsHeader,
-  TabsBody,
-  Tab,
-} from "@material-tailwind/react";
-import {useState} from "react";
+import {Allotment} from "allotment";
 
 import {useEditor} from "../../editor/editorContext";
 
 import CallBlock from "./CallBlock";
 import ConsoleBlock from "./ConsoleBlock";
-
-const animation = {
-  initial: { y: 250 },
-  mount: { y: 0 },
-  unmount: { y: 250 },
-};
+import "allotment/dist/style.css";
 
 const FooterConsole = () => {
   const {id} = useEditor();
-  const data = [
-    {
-      label: "函数执行",
-      value: "call",
-      desc: `It really matters and then like it really doesn't matter.
-      What matters is the people who are sparked by it. And the people
-      who are like offended by it, it doesn't matter.`,
-    },
-    {
-      label: "日志",
-      value: "log",
-      desc: `Because it's about motivating the doers. Because I'm here
-      to follow my dreams and inspire other people to follow their dreams, too.`,
-    },
-  ];
-
-  const [selectedTab, setSelectedTab] = useState("call");
 
   return (
-    <Tabs
-      id={id + "_tabs"}
-      value={selectedTab}
-      onChange={(value: string) => console.log(value)}
-      className={`bg-[#0f172a] rounded-b-lg !overflow-visible`}
-    >
-      <TabsHeader>
-        {data.map(({ label, value }) => (
-          <Tab
-            key={id + "_tab_" + value}
-            className={value === selectedTab ? 'z-0' : 'text-white'}
-            value={value}
-            onClick={() => setSelectedTab(value)}
-          >
-            {label}
-          </Tab>
-        ))}
-      </TabsHeader>
-      <TabsBody animate={animation} className="!overflow-visible">
-        <CallBlock />
-        <ConsoleBlock />
-      </TabsBody>
-    </Tabs>
-  );
+    <div key={id + "_footerConsole"} className="flex bg-[#0f172a] text-white p-2 gap-2 rounded-b-lg h-1 min-h-[200px]">
+      <Allotment key={id + "_Allotment"}>
+        <div className="flex-1 flex-col">
+          <div>Execute contract:</div>
+          <CallBlock/>
+        </div>
+        <div className="flex-[2] flex flex-col ml-2">
+          <div>Console:</div>
+          <ConsoleBlock/>
+        </div>
+      </Allotment>
+    </div>
+  )
 }
 
 export default FooterConsole;
