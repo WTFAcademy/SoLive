@@ -93,6 +93,7 @@ const Deploy = () => {
         }
       ])
     } catch (e: any) {
+      console.log(e);
       setDeployError(true);
       actions.updateConsoleMessages([
         {
