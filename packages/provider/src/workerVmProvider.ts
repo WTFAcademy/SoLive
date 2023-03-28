@@ -1,29 +1,28 @@
 import {Hardfork} from "@ethereumjs/common";
 import {providers} from "ethers";
 
-import {init, sendAsync} from "./no-worker";
-export {default as WorkerVMProvider} from "./workerVmProvider";
-
-class NoWorkerVMProvider {
+class VmProvider {
+  worker: Worker;
   provider: providers.JsonRpcProvider;
 
   constructor() {
-    init({fork: Hardfork.London});
-
+    // @ts-ignore
+    this.worker = new Worker(new URL('./worker.js', import.meta.url), {type: "module"})
+    this.worker.postMessage({ cmd: 'init', fork: Hardfork.London });
 
     let incr = 0
     const stamps: any = {}
-
-    const provider: any = {
+    this.worker.addEventListener('message', (msg) => {
+      if (stamps[msg.data.stamp]) {
+        stamps[msg.data.stamp](msg.data.error, msg.data.result)
+      }
+    })
+    const provider = {
       sendAsync: (query: any, callback: any) => {
         const stamp = Date.now() + incr
         incr++
         stamps[stamp] = callback
-        sendAsync({query, stamp}).then((data: any) => {
-          if (stamps[data.stamp]) {
-            stamps[data.stamp](data.error, data.result)
-          }
-        });
+        this.worker.postMessage({ cmd: 'sendAsync', query, stamp })
       }
     }
 
@@ -39,4 +38,4 @@ class NoWorkerVMProvider {
   }
 }
 
-export default NoWorkerVMProvider;
+export default VmProvider;
