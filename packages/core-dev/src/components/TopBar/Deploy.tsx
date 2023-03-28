@@ -128,10 +128,11 @@ const Deploy = () => {
       <PopoverContent className="z-[10]">
         <div className="mb-4 font-medium">The currently selected file: {curModel ? curModel.model.uri.path.substring(1) : '无'}</div>
         <div className="flex gap-2 mb-4">
-          <Button color={error ? 'red' : 'blue'} size="sm" onClick={preDeploy}>
+          <Button loading={compileLoading} color={error ? 'red' : 'blue'} size="sm" onClick={preDeploy}>
             Compile
           </Button>
           <Button
+            loading={deployLoading}
             color={deployError ? 'red' : 'blue'}
             disabled={error}
             size="sm"
