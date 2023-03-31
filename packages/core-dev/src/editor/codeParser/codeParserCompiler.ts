@@ -3,7 +3,7 @@ import {
   Source,
   Language,
   makeCompilerInput,
-} from 'solive-compiler';
+} from 'solive-compiler-utils';
 
 import { IEditorInitState } from '../editorContext';
 import { EditorApi, ModelType } from '../../types/monaco';

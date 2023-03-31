@@ -1,6 +1,6 @@
 {
   "name": "solive-provider",
-  "version": "0.0.1",
+  "version": "0.0.1-aplha",
   "description": "",
   "main": "dist/index.umd.js",
   "module": "dist/index.esm.js",

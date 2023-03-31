@@ -4,7 +4,6 @@ import commonjs from "@rollup/plugin-commonjs";
 import typescript from "rollup-plugin-typescript2";
 import postcss from "rollup-plugin-postcss";
 import json from "@rollup/plugin-json";
-import { terser } from "rollup-plugin-terser";
 
 const packageJson = require("./package.json");
 
@@ -29,10 +28,10 @@ export default {
         commonjs(),
         typescript({ useTsconfigDeclarationDir: true }),
         postcss({
-          extensions: [".css", ".scss"],
+          extensions: [".css"],
           extract: true,
         }),
-        terser()
+        // terser()
     ],
     external: ["semver", "solive-compiler", "solive-solc", "solive-provider"]
 };

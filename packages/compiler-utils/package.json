@@ -1,5 +1,5 @@
 {
-  "name": "solive-compiler",
+  "name": "solive-compiler-utils",
   "version": "0.0.1-alpha",
   "main": "dist/index.js",
   "typings": "dist/index.d.ts",
@@ -9,20 +9,16 @@
     "dist"
   ],
   "scripts": {
-    "start": "tsdx watch",
-    "build": "tsdx build",
-    "test": "tsdx test --passWithNoTests",
-    "lint": "tsdx lint",
-    "prepare": "tsdx build",
-    "size": "size-limit",
-    "analyze": "size-limit --why"
+    "build": "rollup -c",
+    "start": "rollup -c -w"
   },
   "dependencies": {
     "semver": "^7.3.8"
   },
   "devDependencies": {
     "@types/semver": "^7.3.13",
-    "solive-tsconfig": "workspace:*"
+    "solive-tsconfig": "workspace:*",
+    "rollup": "^2"
   },
   "size-limit": [
     {

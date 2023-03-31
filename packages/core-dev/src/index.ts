@@ -1,5 +1,5 @@
 // index.ts
-import "./index.scss";
+import "./index.css";
 
 import Editor from "./editor";
 

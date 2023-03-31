@@ -1,7 +1,7 @@
 import {Monaco} from '@monaco-editor/react';
 import {IPosition} from 'monaco-editor';
-import * as helper from 'solive-compiler';
-import {ErrorMarker} from 'solive-compiler';
+import * as helper from 'solive-compiler-utils';
+import {ErrorMarker} from 'solive-compiler-utils';
 import debounce from "lodash/debounce";
 
 import {

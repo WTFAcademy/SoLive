@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from 'react';
 import BaseMonaco from 'monaco-editor';
 import ReactBaseMonacoEditor, { Monaco } from "@monaco-editor/react";
-import { ErrorMarker, MarkerSeverity } from 'solive-compiler';
+import { ErrorMarker, MarkerSeverity } from 'solive-compiler-utils';
 
 import { BaseMonacoEditor, EditorApi, ModelInfoType } from '../types/monaco';
 import TopBar from "../components/TopBar";

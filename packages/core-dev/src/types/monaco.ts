@@ -1,5 +1,5 @@
 import BaseMonaco, { editor } from 'monaco-editor';
-import { ErrorMarker } from 'solive-compiler';
+import { ErrorMarker } from 'solive-compiler-utils';
 
 export type BaseMonacoEditor = BaseMonaco.editor.IStandaloneCodeEditor;
 
