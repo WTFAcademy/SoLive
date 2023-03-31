@@ -1,5 +1,5 @@
 {
-  "name": "solive-core-dev",
+  "name": "solive-core",
   "version": "0.0.1-aplha",
   "description": "",
   "main": "dist/index.js",

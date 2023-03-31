@@ -3,8 +3,6 @@ const nodeResolve = require('@rollup/plugin-node-resolve');
 
 export default {
   input: {
-    script: 'src/script.ts',
-    worker: 'src/worker.ts',
     index: 'src/index.ts',
   },
   output: {
@@ -15,4 +13,5 @@ export default {
     typescript(),
     nodeResolve(),
   ],
+  external: ["semver"]
 };
