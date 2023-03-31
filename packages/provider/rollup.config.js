@@ -4,6 +4,7 @@ const {nodeResolve} = require('@rollup/plugin-node-resolve');
 const uglify = require('rollup-plugin-uglify').uglify;
 const merge = require('lodash.merge');
 const pkg = require('./package.json');
+const peerDepsExternal = require("rollup-plugin-peer-deps-external");
 
 const extensions = ['.js', '.ts'];
 
@@ -71,6 +72,7 @@ module.exports = [
       input: 'src/index.ts',
       output: {},
       plugins: [
+        peerDepsExternal(),
         nodeResolve({
           extensions,
           modulesOnly: true,
@@ -80,6 +82,7 @@ module.exports = [
           extensions,
         }),
       ],
+      external: ['@ethereumjs/common', 'ethers'],
     },
     mergeConfig,
   ),
@@ -88,6 +91,7 @@ module.exports = [
       input: 'src/worker.ts',
       output: {},
       plugins: [
+        peerDepsExternal(),
         nodeResolve({
           extensions,
           modulesOnly: true,

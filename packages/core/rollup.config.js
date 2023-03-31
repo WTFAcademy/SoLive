@@ -33,5 +33,5 @@ export default {
         }),
         // terser()
     ],
-    external: ["semver", "solive-compiler", "solive-solc", "solive-provider"]
+    external: ["semver", "solive-compiler", "solive-solc", "solive-provider", "ethers"]
 };
