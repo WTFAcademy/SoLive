@@ -1,0 +1,108 @@
+/**
+ * CSS files with the .module.css suffix will be treated as CSS modules
+ * and scoped locally.
+ */
+
+a:hover{
+  text-decoration: none;
+}
+
+.heroBanner {
+  position: relative;
+  height: 320px;
+  text-align: center;
+  overflow: hidden;
+  text-align: center;
+  color: #FFFFFF;
+  background: linear-gradient(180deg, #000000 0%, #082619 100%);
+}
+
+.heroBannerLeftStar{
+  position: absolute;
+  width: 300px;
+  height: 320px;
+  top: 0;
+  left: 0;
+  z-index: 0;
+}
+
+.heroBannerRightStar{
+  position: absolute;
+  width: 480px;
+  height: 320px;
+  top: 0;
+  right: 0;
+  z-index: 0;
+}
+
+.heroBannerLeftStar svg,
+.heroBannerRightStar svg{
+  width: 100%;
+  height: 100%;
+}
+
+.heroBannerTitle{
+  position: relative;
+  font-family: 'Inter';
+  font-weight: 700;
+  font-size: 48px;
+  line-height: 1.2;
+  margin-top: 75px;
+  padding: 0 20px;
+}
+
+.heroBannerSubTitle{
+  position: relative;
+  font-family: 'Inter';
+  font-weight: 400;
+  font-size: 24px;
+  line-height: 1.2;
+  margin-top: 32px;
+  padding: 0 20px;
+}
+
+.buttons {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.tutorialsLink{
+  position: relative;
+  display: inline-block;
+  padding: 10px 20px;
+  margin: 0 auto;
+  margin-top: 34px;
+  background: #308F0F;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+  border-radius: 4px;
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 1.2;
+  text-align: center;
+  color: #FFFFFF;
+}
+.tutorialsLink:hover{
+  color: #fff;
+  background-color: #21610A;
+  transition: all .3s ease;
+}
+
+
+@media (max-width: 996px){
+  .heroBanner{
+    height: 420px;
+  }
+  .heroBannerLeftStar{
+    width: 100%;
+    height: 85%;
+  }
+  .heroBannerRightStar{
+    display: none;
+  }
+  .heroBannerTitle{
+    font-size: 42px;
+  }
+}
