@@ -3,9 +3,12 @@
   "changelog": "@changesets/cli/changelog",
   "commit": false,
   "fixed": [],
-  "linked": [],
-  "access": "restricted",
+  "linked": [["solive-compiler-utils", "solive-core", "solive-provider", "solive-solc", "solive-tsconfig"]],
+  "access": "public",
   "baseBranch": "main",
   "updateInternalDependencies": "patch",
-  "ignore": []
+  "ignore": ["solive-demo"],
+  "___experimentalUnsafeOptions_WILL_CHANGE_IN_PATCH": {
+    "onlyUpdatePeerDependentsWhenOutOfRange": true
+  }
 }
