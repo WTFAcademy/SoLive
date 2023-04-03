@@ -9,6 +9,8 @@ import { IEditorInitState } from '../editorContext';
 import { EditorApi, ModelType } from '../../types/monaco';
 
 import ParserVersion from './parserVersion';
+import { cache, getCache } from '../utils/cache';
+import axios from 'axios';
 
 class CodeParserCompiler {
   editorApi: EditorApi;
@@ -83,6 +85,7 @@ class CodeParserCompiler {
 
   resolveSource(imports: string[]): Source {
     const monaco = this.editorState.monaco;
+    const domain = 'github.com';
 
     const find = (value: string): ModelType['model'] => {
       const uri = monaco?.Uri.parse(value);
@@ -97,11 +100,43 @@ class CodeParserCompiler {
         Object.assign(sources, {
           [im]: { content: find(im).getValue() },
         });
+      }else if(im.includes(domain)){
+        this.importRemoteFile(im).then(res => {
+          Object.assign(sources, res)
+        });
       }
     });
 
     return sources;
   }
+
+  async importRemoteFile(url: string) {
+    const fileDomain = 'raw.githubusercontent.com';
+    const fileRaw = url.replace('//github.com/', `//${fileDomain}/`).replace('/blob/', '/');
+    const fileName = `github:${fileRaw.split(`${fileDomain}/`).pop()}`;
+    let fileContent = '';
+    if(!!fileName) {
+      const cacheFile = getCache(fileName);
+      if(cacheFile.value){
+        fileContent = cacheFile.value as string;
+      }else{
+        try{
+          const res = await axios.get(fileRaw);
+          fileContent = res.data;
+          cache(fileName, fileContent, { cacheTime: 1000 * 60 * 60 * 24 });
+        }catch(err){
+          console.error(`Error fetching file: ${url}`, err);
+          throw err;
+        }
+      }
+    }else{
+      console.warn('fileName is null');
+    }
+    return {
+      [fileName] : fileContent,
+    };
+  }
+  
 }
 
 export default CodeParserCompiler;
