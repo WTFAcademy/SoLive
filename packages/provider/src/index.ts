@@ -9,6 +9,7 @@ class VmProvider {
     // @ts-ignore
     this.worker = new Worker(new URL('./worker.js', import.meta.url), {type: "module"})
     this.worker.postMessage({ cmd: 'init', fork: Hardfork.London });
+    console.log("init");
 
     let incr = 0
     const stamps: any = {}

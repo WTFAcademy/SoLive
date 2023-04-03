@@ -57,12 +57,15 @@ const config = {
     locales: ["en", "zh"],
   },
 
+  themes: ['solive-docusaurus-theme-code'],
+
   presets: [
     [
       "classic",
       /** @type {import('@docusaurus/preset-classic').Options} */
       ({
         docs: {
+          // eslint-disable-next-line no-undef
           sidebarPath: require.resolve("./sidebars.js"),
           // Please change this to your repo.
           // Remove this to remove the "edit this page" links.
@@ -77,6 +80,7 @@ const config = {
             "https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/",
         },
         theme: {
+          // eslint-disable-next-line no-undef
           customCss: [require.resolve("./src/css/custom.css")],
         },
       }),
@@ -97,9 +101,9 @@ const config = {
         items: [
           {
             type: "doc",
-            docId: "dashboard",
+            docId: "introduction",
             position: "left",
-            label: "Tutorial",
+            label: "Docs",
           },
           { to: "/blog", label: "Blog", position: "left" },
         ],
@@ -111,8 +115,8 @@ const config = {
             title: "Docs",
             items: [
               {
-                label: "Tutorial",
-                to: "/docs/dashboard",
+                label: "Docs",
+                to: "/docs/introduction",
               },
             ],
           },
@@ -138,7 +142,7 @@ const config = {
               },
               {
                 label: "GitHub",
-                href: "https://github.com/WTFAcademy/WTF-Academy-Starknet-Hackathon",
+                href: "https://github.com/WTFAcademy/solive",
               },
             ],
           },

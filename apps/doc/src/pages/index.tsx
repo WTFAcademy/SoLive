@@ -1,12 +1,10 @@
-import React, {useContext} from 'react';
-import clsx from 'clsx';
+import React from 'react';
 import Link from '@docusaurus/Link';
 import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
 import Layout from '@theme/Layout';
 import HomepageFeatures from "@site/src/components/HomepageFeatures";
 
 import styles from "./index.module.css";
-import {useHistory} from "@docusaurus/router";
 
 function HomepageHeader() {
   const { siteConfig } = useDocusaurusContext();
@@ -26,7 +24,7 @@ function HomepageHeader() {
             className={styles.tutorialsLink}
             to="/docs/dashboard"
           >
-            Starknet Tutorials
+            Solive
           </Link>
         </div>
       </div>

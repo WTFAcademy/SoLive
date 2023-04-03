@@ -100,10 +100,12 @@ const editorReducer = (state: IEditorInitState, action: IEditorReducerActionType
 
 const editorStateMap = new Map<string, IEditorInitState>();
 
+const provider = new VmProvider();
+
 // Editor Provider
 export function EditorProvider({children, id}: { children: React.ReactNode, id: string }) {
   const [state, dispatch] = useReducer<React.Reducer<IEditorInitState, IEditorReducerActionType>>(editorReducer, editorInitState);
-  const vmProviderRef = useRef<VmProvider>(new VmProvider());
+  const vmProviderRef = useRef<VmProvider>(provider);
   const stateRef = useRef<IEditorInitState>(state);
   // some provider need to access the state directly
   const actions: TEditorReducerAction = useMemo(() => {

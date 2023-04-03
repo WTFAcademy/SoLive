@@ -37,6 +37,7 @@ function App({modelInfos, height}: Props) {
 
     initTheme(monaco);
     initModels(monaco, editor, modelInfos, dispatch);
+
     const codeParser = new CodeParser(editorApiRef.current, stateRef.current);
     await codeParser.parseVersion.init();
     actions.setCodeParser(codeParser);
@@ -100,9 +101,10 @@ function App({modelInfos, height}: Props) {
   }, [])
 
   return (
-    <>
+    <div id="solive-tailwind">
       <TopBar />
       <ReactBaseMonacoEditor
+        key={id + "_editor"}
         height={height}
         onMount={handleEditorDidMount}
         beforeMount={handleEditorBeforeMount}
@@ -110,7 +112,7 @@ function App({modelInfos, height}: Props) {
         defaultValue="// some comment"
       />
       <FooterConsole />
-    </>
+    </div>
   )
 }
 

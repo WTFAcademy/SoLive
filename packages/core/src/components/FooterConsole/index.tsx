@@ -10,7 +10,7 @@ import "allotment/dist/style.css";
 
 const FooterConsole = () => {
   const { id } = useEditor();
-  const [display, setDisplay] = useState(true)
+  const [display, setDisplay] = useState(false);
 
   return (
     <div>

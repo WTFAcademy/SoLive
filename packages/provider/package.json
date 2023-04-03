@@ -7,7 +7,7 @@
   "types": "dist/index.d.ts",
   "scripts": {
     "build": "rimraf dist/* && run-p tsc build:esm build:umd build:min",
-    "dev": "rollup -w -c --environment FORMAT:esm",
+    "start": "rollup -w -c --environment FORMAT:esm",
     "build:esm": "rollup -c --environment FORMAT:esm",
     "build:umd": "rollup -c --environment FORMAT:umd",
     "build:min": "rollup -c --environment FORMAT:min",
