@@ -31,8 +31,8 @@ const SECTIONS = [
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
-  title: "WTF Starknet",
-  tagline: "Onboarding Developers to Starknet",
+  title: "Solive",
+  tagline: "Online playground for Solidity",
   favicon: "img/favicon.ico",
 
   // Set the production url of your site here
@@ -43,8 +43,8 @@ const config = {
 
   // GitHub pages deployment config.
   // If you aren't using GitHub pages, you don't need these.
-  organizationName: "WTFAcademy", // Usually your GitHub org/user name.
-  projectName: "WTF-Academy-Starknet-Hackathon", // Usually your repo name.
+  organizationName: "Solive", // Usually your GitHub org/user name.
+  projectName: "Solive", // Usually your repo name.
 
   onBrokenLinks: "throw",
   onBrokenMarkdownLinks: "warn",
@@ -147,7 +147,7 @@ const config = {
             ],
           },
         ],
-        copyright: `Copyright © ${new Date().getFullYear()} My Project, Inc. Built with Docusaurus.`,
+        copyright: `Copyright © ${new Date().getFullYear()} Solive, Inc. Built with Docusaurus.`,
       },
       prism: {
         theme: lightCodeTheme,

@@ -11,29 +11,29 @@ type FeatureItem = {
 
 const FeatureList: FeatureItem[] = [
   {
-    title: 'Account Abstraction',
+    title: 'web3 provider support',
     imgUrl: require('@site/static/img/home_feature_item1.png').default,
     description: (
       <>
-        Introduce you to account abstraction on Starknet.
+        you can connect metamask to solve and deploy smart contracts to layer2.
       </>
     ),
   },
   {
-    title: 'Cairo Lang',
+    title: 'import contracts',
     imgUrl: require('@site/static/img/home_feature_item2.png').default,
     description: (
       <>
-        Teach you to write a NFT contract in cairo.
+        import remote contracts, such openzeppelin contracts.
       </>
     ),
   },
   {
-    title: 'Starknet Dapp',
+    title: 'Abi UI',
     imgUrl: require('@site/static/img/home_feature_item3.png').default,
     description: (
       <>
-      Build a simple NFT minting Dapp on Starknet.
+      better solidity ABI to UI design.
       </>
     ),
   },
@@ -54,35 +54,18 @@ export default function HomepageFeatures(): JSX.Element {
   return (
     <section className={styles.features}>
       <div className={styles.overview}>
-        <div className={styles.overviewLogo}>
-          <StarknetLogo/>
-        </div>
         <div className={styles.overviewText}>
-          <h2 className={styles.overviewTextTitle}>Say hi to Starknet 🤟</h2>
-          <p className={styles.overviewTextDes}>Starknet is a permissionless decentralized Validity-Rollup (often referred to as ZK-Rollup). It operates as an L2 network over Ethereum, enabling any dApp to achieve unlimited scale for its computation – without compromising Ethereum's composability and security.</p>
-          <a className={styles.overviewLink} href='https://starknet.io' target="_blank">
-            <span className={styles.overviewLinkText}>https://starknet.io</span>
-            <LinkIcon/>
-          </a>
+          <h2 className={styles.overviewTextTitle}>Say hi to Solive 🤟</h2>
+          <br/>
+          <p className={styles.overviewTextDes}>Solive is a flexible online playground for Solidity smart contracts, inspired by remix-IDE and react-live. Solive enables you to edit, compile, deploy, and interact with solidity smart contracts in one React component. You can embed solive into your website/tutorials and let users run solidity code in the browser. Solive is also compatible with mobile browsers.</p>
         </div>
       </div>
-      <div className={styles.featureTitle}>What will you learn from this tutorial</div>
+      <div className={styles.featureTitle}>What's next:</div>
       <div className={styles.featureList}>
         {FeatureList.map((props, idx) => (
           <Feature key={idx} {...props} />
         ))}
       </div>
-      <Link
-        className={styles.tutorialsLink}
-        to="/docs/dashboard"
-      >
-        Go to tutorial
-        <div className={styles.tutorialsLinkIcon}>
-          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
-          </svg>
-        </div>
-      </Link>
     </section>
   );
 }
