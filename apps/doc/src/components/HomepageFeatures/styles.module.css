@@ -7,6 +7,7 @@
 }
 
 .featureImg {
+  display: inline-block;
   height: 76px;
   width: 76px;
 }

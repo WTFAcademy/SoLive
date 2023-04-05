@@ -24,7 +24,7 @@ function HomepageHeader() {
             className={styles.tutorialsLink}
             to="/docs/dashboard"
           >
-            Solive
+            Get started
           </Link>
         </div>
       </div>
