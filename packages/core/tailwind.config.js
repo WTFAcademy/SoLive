@@ -1,8 +1,6 @@
 module.exports = {
   content: [
-    "./src/**/*.{ts,tsx}",
-    "node_modules/@material-tailwind/react/components/**/*.{js,ts,jsx,tsx}",
-    "node_modules/@material-tailwind/react/theme/components/**/*.{js,ts,jsx,tsx}",
+    "./src/**/*.{js,ts,jsx,tsx}"
   ],
   corePlugins: {
     preflight: false, // 禁用基础样式（预设）
@@ -12,5 +10,5 @@ module.exports = {
   theme: {
     extend: {},
   },
-  plugins: [],
+  plugins: []
 }

@@ -1,7 +1,7 @@
 {
   "name": "solive-docusaurus-theme-code",
   "version": "0.0.1-alpha",
-  "description": "A Docusaurus v2 plugin that supports solive code examples.",
+  "description": "A Docusaurus v2 plugin that supports solidity code live.",
   "main": "dist/index.js",
   "exports": {
     "./client": {
@@ -33,19 +33,16 @@
   },
   "homepage": "",
   "devDependencies": {
-    "@types/jest": "^27.5.2",
     "@types/node": "^17.0.38",
     "@types/react": "^18.0.0",
     "@types/uuid": "^8.3.1",
     "buffer": "^6.0.3",
-    "jest": "^28.1.0",
-    "jest-environment-jsdom": "^28.1.0",
     "process": "^0.11.10",
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
-    "ts-jest": "^28.0.3",
-    "typescript": "^4.0.5",
-    "webpack": "^5.77.0"
+    "typescript": "^4.7.3",
+    "webpack": "^5.77.0",
+    "solive-tsconfig": "workspace:*"
   },
   "peerDependencies": {
     "react": ">=18.0.0"
@@ -54,8 +51,5 @@
     "@docusaurus/types": "^2.3.1",
     "solive-core": "workspace:*",
     "uuid": "^8.3.2"
-  },
-  "publishConfig": {
-    "access": "public"
   }
 }

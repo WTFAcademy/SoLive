@@ -1,24 +1,9 @@
 {
-    "include": [
-        "src/**/*"
-    ],
-    "compilerOptions": {
-        "declaration": true,
-        "declarationDir": "dist",
-        "target": "ES6",
-        "strict": true,
-        "lib": [
-            "DOM",
-            "DOM.Iterable",
-            "ES2019"
-        ],
-        "sourceMap": true,
-        "jsx": "react-jsx",
-        "allowSyntheticDefaultImports": true,
-        "moduleResolution": "node"
-    },
-    "exclude": [
-        "node_modules",
-        "dist"
-    ]
+  "extends": "solive-tsconfig/react-lib.json",
+  "compilerOptions": {
+    "declarationDir": "dist"
+  },
+  "include": [
+    "src/**/*"
+  ]
 }

@@ -30,8 +30,7 @@ export default {
         postcss({
           extensions: [".css"],
           extract: true,
-        }),
-        // terser()
+        })
     ],
     external: ["semver", "solive-compiler", "solive-solc", "solive-provider", "ethers"]
 };

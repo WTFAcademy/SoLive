@@ -1,14 +1,11 @@
 {
+  "extends": "solive-tsconfig/lib.json",
   "compilerOptions": {
     "target": "es2016",
     "module": "commonjs",
-    "declaration": true,
     "emitDeclarationOnly": true,
     "outDir": "./dist",
-    "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
-    "strict": true,
-    "skipLibCheck": true
   },
   "include": ["src"],
 }

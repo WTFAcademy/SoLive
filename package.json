@@ -5,8 +5,10 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "nx run solive-demo:start",
+    "start:demo": "nx run solive-demo:start",
+    "start:doc": "nx run solive-doc:start",
     "build:demo": "nx run solive-demo:build",
+    "build:doc": "nx run solive-doc:build",
     "start:lib": "nx run-many --target=start",
     "build:lib": "nx run-many --target=build --projects=solive-compiler-utils,solive-solc,solive-provider,solive-core,solive-docusaurus-theme-code --parallel=false",
     "lint": "eslint **/*.{ts,d.ts,js}",
@@ -20,17 +22,22 @@
     "postinstall": "pnpm run build:lib",
     "prettier": "prettier --ignore-path .gitignore --write \"**/*.+(js|ts|json)\"",
     "pre-commit": "lint-staged --no-stash",
-    "clean": "rimraf node_modules **/node_modules"
+    "clean": "rimraf **/dist && rimraf node_modules **/node_modules"
   },
   "keywords": [],
   "devDependencies": {
     "@changesets/cli": "^2.22.0",
+    "@rollup/plugin-commonjs": "^22.0.0",
+    "@rollup/plugin-json": "^6.0.0",
+    "@rollup/plugin-node-resolve": "^13.3.0",
+    "@rollup/plugin-typescript": "^11.0.0",
     "@tsconfig/node16-strictest-esm": "^1.0.1",
     "@types/node": "17.0.41",
     "@typescript-eslint/eslint-plugin": "^5.39.0",
     "@typescript-eslint/parser": "^5.39.0",
-    "tsdx": "^0.14.1",
-    "typescript": "^4.0.5",
+    "@babel/core": "^7.19.1",
+    "@babel/preset-env": "^7.19.1",
+    "@babel/preset-typescript": "^7.18.6",
     "eslint": "^8.25.0",
     "eslint-config-prettier": "^8.5.0",
     "eslint-define-config": "^1.5.1",
@@ -39,9 +46,22 @@
     "husky": "^8.0.1",
     "lint-staged": "^13.0.3",
     "nx": "^15.0.0",
+    "postcss": "^8",
+    "postcss-cli": "^8",
     "prettier": "^2.7.1",
     "rimraf": "^3.0.2",
-    "tslib": "^2.5.0"
+    "rollup": "^2.75.5",
+    "rollup-plugin-babel": "^4.4.0",
+    "rollup-plugin-dts": "^5.3.0",
+    "rollup-plugin-peer-deps-external": "^2.2.4",
+    "rollup-plugin-postcss": "^4.0.2",
+    "rollup-plugin-terser": "^7.0.2",
+    "rollup-plugin-typescript2": "^0.32.0",
+    "tslib": "^2.5.0",
+    "typescript": "^4.7.3",
+    "uuid": "^8.3.2",
+    "webpack": "^5.77.0",
+    "eslint-plugin-prettier": "^4.2.1"
   },
   "author": "",
   "license": "ISC",
@@ -68,5 +88,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "dependencies": {
+    "eslint-plugin-prettier": "^4.2.1"
   }
 }

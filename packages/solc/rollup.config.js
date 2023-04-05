@@ -1,5 +1,5 @@
-const typescript = require('@rollup/plugin-typescript');
-const nodeResolve = require('@rollup/plugin-node-resolve');
+import typescript from "rollup-plugin-typescript2";
+import resolve from "@rollup/plugin-node-resolve";
 
 export default {
   input: {
@@ -12,7 +12,7 @@ export default {
     format: 'esm',
   },
   plugins: [
-    typescript(),
-    nodeResolve(),
+    typescript({ useTsconfigDeclarationDir: true }),
+    resolve(),
   ],
 };
