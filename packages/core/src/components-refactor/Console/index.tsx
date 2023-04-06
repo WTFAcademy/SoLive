@@ -12,9 +12,9 @@ const Console = () => {
   const {id} = useEditor();
 
   return (
-    <div className="flex-1 bg-primary-700 pt-2 border-t border-r-0 border-solid border-primary-500 rounded-b-[12px]">
+    <div className="flex-1 bg-primary-700 pt-2 rounded-b-[12px]">
       <NavBar navs={NAVS} />
-      <div className="h-[180px] w-full text-primary-100">
+      <div className="h-full w-full text-primary-100">
           <p>测试</p>
       </div>
     </div>

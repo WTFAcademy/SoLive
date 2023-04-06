@@ -4,9 +4,6 @@ import ReactBaseMonacoEditor, {Monaco} from "@monaco-editor/react";
 import {ErrorMarker, MarkerSeverity} from 'solive-compiler-utils';
 
 import {BaseMonacoEditor, EditorApi, ModelInfoType} from '../types/monaco';
-import Console from "../components-refactor/Console";
-import DeployAndCall from "../components-refactor/DeployAndCall";
-import FileNavBar from "../components-refactor/FileNavBar";
 
 import {useEditor} from "./contexts/editorContext";
 import {
@@ -102,29 +99,18 @@ function App({modelInfos, height}: Props) {
   }, [])
 
   return (
-    <div className="rounded-[12px] bg-primary-700 overflow-auto">
-      <div className="flex-auto border-l border-solid border-primary-500">
-        <FileNavBar/>
-        <ReactBaseMonacoEditor
-          key={id + "_editor"}
-          height={height}
-          onMount={handleEditorDidMount}
-          beforeMount={handleEditorBeforeMount}
-          defaultLanguage="solidity"
-          defaultValue="// some comment"
-          options={{
-            minimap: {
-              enabled: false,
-            }
-          }}
-        />
-        <div className="flex w-full">
-          {/*<Console/>*/}
-          <Console/>
-        </div>
-      </div>
-      <DeployAndCall/>
-    </div>
+    <ReactBaseMonacoEditor
+      key={id + "_editor"}
+      onMount={handleEditorDidMount}
+      beforeMount={handleEditorBeforeMount}
+      defaultLanguage="solidity"
+      defaultValue="// some comment"
+      options={{
+        minimap: {
+          enabled: false,
+        }
+      }}
+    />
   )
 }
 

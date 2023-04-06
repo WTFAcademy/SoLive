@@ -8,13 +8,14 @@ type TNavProps<T> = {
 }
 
 type TProps = {
-  navs: TNavProps<any>[];
+  navs?: TNavProps<any>[];
   onClick?: (id: string, data?: any) => void;
+  placeholderElement?: React.ReactNode;
 }
 
 const NavBar = (props: TProps) => {
-  const {navs, onClick} = props;
-  const [activeId, setActiveId] = useState(navs[0].id);
+  const {navs = [], onClick, placeholderElement} = props;
+  const [activeId, setActiveId] = useState(navs[0]?.id);
 
   const handleClick = (nav: TNavProps<any>) => {
     setActiveId(nav.id);
@@ -22,9 +23,10 @@ const NavBar = (props: TProps) => {
   }
 
   return (
-    <div className="w-full h-[36px] flex">
+    <div className="w-full h-[36px] flex overflow-auto">
       {navs.map(nav => (
         <div
+          key={nav.id}
           className={"nav " + (nav.id === activeId ? "nav-active" : "") + (nav.id === "empty" ? " nav-empty" : "")}
           onClick={() => handleClick(nav)}
         >
@@ -32,7 +34,9 @@ const NavBar = (props: TProps) => {
           {nav.id === activeId && <XMarkIcon className="absolute right-2 w-3 h-3 cursor-pointer mt-[2px] text-[#94A0B3]"/>}
         </div>
       ))}
-      <div className="nav-placeholder"/>
+      <div className="nav-placeholder">
+        {placeholderElement}
+      </div>
     </div>
   )
 }

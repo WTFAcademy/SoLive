@@ -44,6 +44,7 @@
     "@material-tailwind/react": "*",
     "@monaco-editor/react": "^4.4.6",
     "@tailwindcss/forms": "^0.5.3",
+    "allotment": "^1.18.1",
     "axios": "0.27.2",
     "ethers": "^5",
     "lodash": "^4.17.21",
