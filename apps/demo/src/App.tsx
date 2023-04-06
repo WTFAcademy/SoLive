@@ -12,7 +12,7 @@ function App() {
   return (
     <div className="App">
       <Editor
-        height="500px"
+        height="400px"
         id="1"
         modelInfos={[
           {

@@ -1,13 +1,14 @@
-import React, { useEffect, useRef } from 'react';
+import React, {useEffect, useRef} from 'react';
 import BaseMonaco from 'monaco-editor';
-import ReactBaseMonacoEditor, { Monaco } from "@monaco-editor/react";
-import { ErrorMarker, MarkerSeverity } from 'solive-compiler-utils';
+import ReactBaseMonacoEditor, {Monaco} from "@monaco-editor/react";
+import {ErrorMarker, MarkerSeverity} from 'solive-compiler-utils';
 
-import { BaseMonacoEditor, EditorApi, ModelInfoType } from '../types/monaco';
-import TopBar from "../components/TopBar";
-import FooterConsole from "../components/FooterConsole";
+import {BaseMonacoEditor, EditorApi, ModelInfoType} from '../types/monaco';
+import Console from "../components-refactor/Console";
+import DeployAndCall from "../components-refactor/DeployAndCall";
+import FileNavBar from "../components-refactor/FileNavBar";
 
-import { useEditor } from "./contexts/editorContext";
+import {useEditor} from "./contexts/editorContext";
 import {
   initTheme,
   registerLangs,
@@ -16,7 +17,7 @@ import {
   registerListeners,
 } from './mountFunctions';
 import CodeParser from './codeParser';
-import { findModel } from './utils/model';
+import {findModel} from './utils/model';
 
 interface Props {
   modelInfos: ModelInfoType[];
@@ -24,7 +25,7 @@ interface Props {
 }
 
 function App({modelInfos, height}: Props) {
-  const { stateRef, dispatch, actions, id } = useEditor();
+  const {stateRef, dispatch, actions, id} = useEditor();
   const editorRef = useRef<BaseMonacoEditor>();
   const monacoRef = useRef<Monaco>();
   const editorApiRef = useRef<EditorApi>({} as EditorApi);
@@ -90,34 +91,40 @@ function App({modelInfos, height}: Props) {
     }
 
     editorApiRef.current.removeErrorMarker = (sources: string[], from = id) => {
-        const files = Object.keys(sources);
-        for (const file of files) {
-          const model = findModel(stateRef.current.models || [], file);
-          if (model) {
-            monacoRef.current?.editor.setModelMarkers(model.model, from, [])
-          }
+      const files = Object.keys(sources);
+      for (const file of files) {
+        const model = findModel(stateRef.current.models || [], file);
+        if (model) {
+          monacoRef.current?.editor.setModelMarkers(model.model, from, [])
         }
+      }
     }
   }, [])
 
   return (
-    <>
-      <TopBar />
-      <ReactBaseMonacoEditor
-        key={id + "_editor"}
-        height={height}
-        onMount={handleEditorDidMount}
-        beforeMount={handleEditorBeforeMount}
-        defaultLanguage="solidity"
-        defaultValue="// some comment"
-        options={{
-          minimap: {
-            enabled: false,
-          }
-        }}
-      />
-      <FooterConsole />
-    </>
+    <div className="rounded-[12px] bg-primary-700 overflow-auto">
+      <div className="flex-auto border-l border-solid border-primary-500">
+        <FileNavBar/>
+        <ReactBaseMonacoEditor
+          key={id + "_editor"}
+          height={height}
+          onMount={handleEditorDidMount}
+          beforeMount={handleEditorBeforeMount}
+          defaultLanguage="solidity"
+          defaultValue="// some comment"
+          options={{
+            minimap: {
+              enabled: false,
+            }
+          }}
+        />
+        <div className="flex w-full">
+          {/*<Console/>*/}
+          <Console/>
+        </div>
+      </div>
+      <DeployAndCall/>
+    </div>
   )
 }
 

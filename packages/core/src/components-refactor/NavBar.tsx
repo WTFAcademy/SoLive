@@ -22,10 +22,10 @@ const NavBar = (props: TProps) => {
   }
 
   return (
-    <div className="w-full h-[40px] flex">
+    <div className="w-full h-[36px] flex">
       {navs.map(nav => (
         <div
-          className={"nav " + (nav.id === activeId ? "nav-active" : "")}
+          className={"nav " + (nav.id === activeId ? "nav-active" : "") + (nav.id === "empty" ? " nav-empty" : "")}
           onClick={() => handleClick(nav)}
         >
           <span>{nav.label}</span>
