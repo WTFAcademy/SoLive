@@ -1,7 +1,7 @@
 import { TabPanel } from "@material-tailwind/react";
 import ReactJson from 'react-json-view'
 
-import { useEditor } from "../../editor/editorContext";
+import { useEditor } from "../../editor/contexts/editorContext";
 import { generateConsoleMessageToShow } from "../../types/console";
 
 const ConsoleBlock = () => {

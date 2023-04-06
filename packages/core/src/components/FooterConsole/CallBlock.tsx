@@ -2,7 +2,7 @@ import { Select, Option, Input, Button } from "@material-tailwind/react";
 import { useState } from "react";
 import { ethers } from 'ethers';
 
-import { useEditor } from "../../editor/editorContext";
+import { useEditor } from "../../editor/contexts/editorContext";
 
 interface dataObj {
   [key: string]: any

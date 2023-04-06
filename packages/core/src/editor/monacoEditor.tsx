@@ -7,7 +7,7 @@ import { BaseMonacoEditor, EditorApi, ModelInfoType } from '../types/monaco';
 import TopBar from "../components/TopBar";
 import FooterConsole from "../components/FooterConsole";
 
-import { useEditor } from "./editorContext";
+import { useEditor } from "./contexts/editorContext";
 import {
   initTheme,
   registerLangs,
@@ -101,7 +101,7 @@ function App({modelInfos, height}: Props) {
   }, [])
 
   return (
-    <div id="solive-tailwind">
+    <>
       <TopBar />
       <ReactBaseMonacoEditor
         key={id + "_editor"}
@@ -110,9 +110,14 @@ function App({modelInfos, height}: Props) {
         beforeMount={handleEditorBeforeMount}
         defaultLanguage="solidity"
         defaultValue="// some comment"
+        options={{
+          minimap: {
+            enabled: false,
+          }
+        }}
       />
       <FooterConsole />
-    </div>
+    </>
   )
 }
 

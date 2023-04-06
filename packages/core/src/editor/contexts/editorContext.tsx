@@ -2,11 +2,11 @@ import React, {useEffect, useMemo, useReducer, useRef, useState} from "react";
 import monacoForTypes, {editor} from "monaco-editor";
 import VmProvider from "solive-provider";
 
-import {BaseMonacoEditor, ModelType} from "../types/monaco";
-import {createConsoleMessage, TConsoleMessage, TInputConsoleMessage} from "../types/console";
-import {TCompiledContract} from "../types/contract";
+import {BaseMonacoEditor, ModelType} from "../../types/monaco";
+import {createConsoleMessage, TConsoleMessage, TInputConsoleMessage} from "../../types/console";
+import {TCompiledContract} from "../../types/contract";
 
-import CodeParser from "./codeParser";
+import CodeParser from "../codeParser";
 
 export interface IEditorInitState {
   editor: editor.IStandaloneCodeEditor | undefined;

@@ -1,7 +1,7 @@
 import { Monaco } from '@monaco-editor/react';
 import BaseMonaco from 'monaco-editor';
 
-import { IEditorInitState } from '../../editorContext';
+import { IEditorInitState } from '../../contexts/editorContext';
 import { findModel } from '../../utils/model';
 import { ModelType } from '../../../types/monaco';
 

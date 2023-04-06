@@ -1,7 +1,7 @@
 import {useState} from "react";
 import {Bars2Icon} from "@heroicons/react/24/outline";
 
-import {useEditor} from "../../editor/editorContext";
+import {useEditor} from "../../editor/contexts/editorContext";
 
 import CallBlock from "./CallBlock";
 import ConsoleBlock from "./ConsoleBlock";

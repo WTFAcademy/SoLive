@@ -1,4 +1,4 @@
-import {useEditor} from "../../editor/editorContext";
+import {useEditor} from "../../editor/contexts/editorContext";
 
 import Nav from "./Nav";
 import Deploy from "./Deploy";

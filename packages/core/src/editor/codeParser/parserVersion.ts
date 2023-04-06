@@ -3,7 +3,7 @@ import semver from 'semver';
 
 import {EditorApi} from '../../types/monaco';
 import {CompilerInfo} from '../../types/solidity';
-import {IEditorInitState} from '../editorContext';
+import {IEditorInitState} from '../contexts/editorContext';
 import {cache, getCache} from '../utils/cache';
 
 const COMPILER_INFO_KEY = 'compiler_info';

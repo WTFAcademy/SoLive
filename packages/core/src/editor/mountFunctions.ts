@@ -12,7 +12,7 @@ import {
   SupportLanguage,
 } from '../types/monaco';
 
-import {IEditorInitState} from './editorContext';
+import {IEditorInitState} from './contexts/editorContext';
 import {DefinitionProvider} from './providers/definition/provider';
 import {
   solidityLanguageConfig,

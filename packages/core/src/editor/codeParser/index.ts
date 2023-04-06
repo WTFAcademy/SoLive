@@ -1,5 +1,5 @@
 import { EditorApi } from '../../types/monaco';
-import { IEditorInitState } from '../editorContext';
+import { IEditorInitState } from '../contexts/editorContext';
 
 import CodeParserCompiler from './codeParserCompiler';
 import ParserVersion from './parserVersion';

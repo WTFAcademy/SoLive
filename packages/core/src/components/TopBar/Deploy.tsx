@@ -5,7 +5,7 @@ import {useEffect, useMemo, useState} from "react";
 
 import {FormProvider} from "../HookForm";
 import RHFInput from "../HookForm/RHFInput";
-import {useEditor} from "../../editor/editorContext";
+import {useEditor} from "../../editor/contexts/editorContext";
 import Button from "../Button";
 import deploy from "../../editor/utils/deploy";
 

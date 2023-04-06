@@ -5,7 +5,7 @@ import {
   makeCompilerInput,
 } from 'solive-compiler-utils';
 
-import { IEditorInitState } from '../editorContext';
+import { IEditorInitState } from '../contexts/editorContext';
 import { EditorApi, ModelType } from '../../types/monaco';
 
 import ParserVersion from './parserVersion';
@@ -136,7 +136,7 @@ class CodeParserCompiler {
       [fileName] : fileContent,
     };
   }
-  
+
 }
 
 export default CodeParserCompiler;

@@ -2,3 +2,32 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer components {
+  .nav {
+    @apply relative inline-flex items-center w-auto px-4 text-[#94A0B3] bg-[#2B3446] border border-solid border-[#3C475B] rounded-t-[6px] cursor-pointer;
+  }
+
+  .nav-placeholder {
+    @apply flex-auto bg-[#2B3446] border-y border-x-0 border-solid border-[#3C475B];
+  }
+
+  .nav-active {
+    @apply border-x-0 border-t-0 bg-transparent pr-6 text-[#91D1F7] border-b border-solid border-b-[#91D1F7];
+  }
+
+  .nav:not(.nav-active) + .nav {
+    @apply border-l-0 rounded-none;
+  }
+
+  .nav + .nav:not(.nav-active) {
+    @apply rounded-tr-none;
+  }
+
+  .nav:first-child {
+    @apply border-l-0 rounded-tl-none;
+  }
+
+  .nav:last-child {
+    @apply border-r-0 rounded-tr-none;
+  }
+}
