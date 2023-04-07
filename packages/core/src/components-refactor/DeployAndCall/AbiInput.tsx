@@ -2,8 +2,10 @@ import {ABIParameter} from "solive-compiler-utils";
 import {useForm} from "react-hook-form";
 import {forwardRef, useImperativeHandle} from "react";
 
-import RHFInput from "./HookForm/RHFInput";
-import {FormProvider} from "./HookForm";
+import RHFInput from "../HookForm/RHFInput";
+import {FormProvider} from "../HookForm";
+
+import {transformAbiParams} from "./utils";
 
 type TProps = {
   inputs: ABIParameter[];
@@ -26,7 +28,7 @@ const AbiInput = forwardRef(({inputs, value = {}, onChange}: TProps, ref) => {
 
   useImperativeHandle(ref, () => {
     return {
-      getValues: () => getValues(),
+      getValues: () => transformAbiParams(inputs, getValues()),
       watch: () => watch(),
     }
   }, [])

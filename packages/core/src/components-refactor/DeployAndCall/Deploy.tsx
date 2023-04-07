@@ -11,12 +11,11 @@ import Button from "../Button";
 import {useEditor} from "../../editor/contexts/editorContext";
 import Copy from "../Copy";
 import deploy from "../../editor/utils/deploy";
-import AbiInput from "../AbiInput";
 import {useDeployed} from "../../editor/contexts/deployedContext";
 import {useConsole} from "../../editor/contexts/consoleContext";
 
+import AbiInput from "./AbiInput";
 import {getAccountOptions} from "./accounts";
-import {transformAbiParams} from "./utils";
 
 
 const ENVIRONMENT_OPTIONS = [
@@ -191,7 +190,6 @@ const Deploy = () => {
     const abi = selectedContract ? compiledContracts[selectedContract]?.abi : undefined;
     const bytecode = selectedContract ? compiledContracts[selectedContract]?.evm.bytecode.object : undefined;
     const deployParams = abiInputRef.current?.getValues();
-    const formatParams = transformAbiParams(selectedContractDeployParams, deployParams);
     const value = methods.getValues('value');
     const gasLimit = methods.getValues('gasLimit');
 
@@ -199,7 +197,7 @@ const Deploy = () => {
       selectedContract,
       abi,
       bytecode,
-      formatParams,
+      deployParams,
       selectAccount,
       {value, gasLimit},
       vmProviderRef.current
