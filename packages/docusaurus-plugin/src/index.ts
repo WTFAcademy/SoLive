@@ -25,6 +25,7 @@ export default () => ({
           "crypto": require.resolve("crypto-browserify"),
           "stream": require.resolve("stream-browserify"),
           "path": require.resolve("path-browserify"),
+          "events": require.resolve("events/"),
           "process": require.resolve("process/browser"),
           "os": require.resolve("os-browserify/browser"),
           "buffer": require.resolve("buffer/"),
