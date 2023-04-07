@@ -1,6 +1,6 @@
 import {Listbox, Transition} from "@headlessui/react";
 import {CheckIcon, ChevronUpDownIcon} from "@heroicons/react/24/solid";
-import {Fragment, useMemo, useState} from "react";
+import React, {forwardRef, Fragment, useMemo} from "react";
 
 type TProps = {
   value?: any;
@@ -8,16 +8,16 @@ type TProps = {
   options: { label: string; value: any; }[];
 }
 
-const Select = ({options, value, onChange}: TProps) => {
+const Select = forwardRef(({options, value, onChange}: TProps, ref: React.Ref<HTMLElement>) => {
 
   const selectedOpt = useMemo(() => options.find(opt => opt.value === value), [options, value]);
 
   return (
-    <Listbox value={value} onChange={onChange}>
+    <Listbox ref={ref} value={value} onChange={onChange}>
       <div className="relative mt-1">
         <Listbox.Button
           className="box-border w-full py-2 pl-3 pr-10 rounded border-none text-white placeholder:text-[#878E95] text-left bg-[#36384A] focus:outline-none focus:shadow-outline">
-          <span className="block truncate text-[14px] min-h-[14px]">{selectedOpt?.label}</span>
+          <span className="block truncate text-[12px] min-h-[12px]">{selectedOpt?.label}</span>
           <span className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2">
               <ChevronUpDownIcon
                 className="h-5 w-5 text-gray-400"
@@ -46,7 +46,7 @@ const Select = ({options, value, onChange}: TProps) => {
                 {({selected}) => (
                   <>
                       <span
-                        className={`block truncate ${
+                        className={`block truncate text-[12px] ${
                           selected ? 'font-medium' : 'font-normal'
                         }`}
                       >
@@ -66,6 +66,6 @@ const Select = ({options, value, onChange}: TProps) => {
       </div>
     </Listbox>
   )
-}
+})
 
 export default Select;

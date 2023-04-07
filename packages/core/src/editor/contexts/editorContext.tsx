@@ -1,6 +1,7 @@
 import React, {useEffect, useMemo, useReducer, useRef} from "react";
 import monacoForTypes, {editor} from "monaco-editor";
 import VmProvider from "solive-provider";
+import {Hardfork} from "@ethereumjs/common";
 
 import {BaseMonacoEditor, ModelType} from "../../types/monaco";
 import {createConsoleMessage, TConsoleMessage, TInputConsoleMessage} from "../../types/console";
@@ -99,7 +100,7 @@ const editorReducer = (state: IEditorInitState, action: IEditorReducerActionType
 
 const editorStateMap = new Map<string, IEditorInitState>();
 
-const provider = new VmProvider();
+const provider = new VmProvider({fork: Hardfork.London});
 
 // TODO: 待删减拆分后的部分
 // Editor Provider

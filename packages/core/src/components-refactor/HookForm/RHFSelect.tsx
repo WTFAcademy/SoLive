@@ -16,11 +16,12 @@ interface IProps {
   errorMessage?: string;
   warningMessage?: string;
   options: { label: string; value: string }[];
+  widget?: React.ReactNode;
 }
 
 type Props = IProps & React.HTMLAttributes<HTMLDivElement>;
 
-export default function RHFSelect(
+const RHFSelect = (
   {
     name,
     label,
@@ -29,9 +30,10 @@ export default function RHFSelect(
     options,
     errorMessage,
     warningMessage,
+    widget,
     ...other
   }: Props
-) {
+) => {
   const {control} = useFormContext();
 
   const handleChange = (e: any, field: any) => {
@@ -44,8 +46,10 @@ export default function RHFSelect(
       name={name}
       control={control}
       render={({field, fieldState: {error}}) => (
-        <div className="mb-1">
-          <FormItemLabel label={label} />
+        <div className="mb-2">
+          <FormItemLabel label={label}>
+            {widget}
+          </FormItemLabel>
 
           <Select
             options={options}
@@ -61,3 +65,5 @@ export default function RHFSelect(
     />
   );
 }
+
+export default RHFSelect;

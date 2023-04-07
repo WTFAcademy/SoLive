@@ -1,14 +1,18 @@
 import {Hardfork} from "@ethereumjs/common";
 import {providers} from "ethers";
 
+type TVmProviderParams = {
+  fork?: Hardfork;
+}
+
 class VmProvider {
   worker: Worker;
   provider: providers.JsonRpcProvider;
 
-  constructor() {
+  constructor({fork = Hardfork.London}: TVmProviderParams) {
     // @ts-ignore
     this.worker = new Worker(new URL('./worker.js', import.meta.url), {type: "module"})
-    this.worker.postMessage({ cmd: 'init', fork: Hardfork.London });
+    this.worker.postMessage({ cmd: 'init', fork });
     console.log("init");
 
     let incr = 0
@@ -36,6 +40,12 @@ class VmProvider {
 
   async getSigner(address: string) {
     return this.provider.getSigner(address)
+  }
+
+  async getBalances(addresses: string[]) {
+    return await Promise.all(addresses.map(async (address) => {
+      return await this.provider.getBalance(address)
+    }))
   }
 }
 

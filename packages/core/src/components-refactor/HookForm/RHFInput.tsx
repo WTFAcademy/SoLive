@@ -39,7 +39,7 @@ export default function RHFInput({ name, onChange, onBlur, label, errorMessage, 
       name={name}
       control={control}
       render={({ field, fieldState: { error } }) => (
-        <div className="relative mb-1">
+        <div className="relative mb-2">
           <FormItemLabel label={label} />
 
           <Input

@@ -1,10 +1,16 @@
+import React from "react";
+
 interface TProps {
   label: string;
+  children?: React.ReactNode;
 }
 
-const FormItemLabel = ({label}: TProps) => {
+const FormItemLabel = ({label, children}: TProps) => {
   return (
-    <label className="text-primary-100 text-[14px]">{label}</label>
+    <div className="flex justify-between items-center text-primary-100">
+      <label className="text-[12px]">{label}</label>
+      {children}
+    </div>
   );
 };
 

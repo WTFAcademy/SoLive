@@ -1,9 +1,7 @@
 import {useForm} from "react-hook-form";
 
-import Select from "../Select";
 import {FormProvider} from "../HookForm";
 import RHFSelect from "../HookForm/RHFSelect";
-import FormItemLabel from "../HookForm/FormItemLabel";
 
 const Call = () => {
   // 第二种方案数据获取
@@ -26,8 +24,8 @@ const Call = () => {
       {/*3. 数据展示*/}
       {/*两种方式*/}
       {/*第一种：*/}
-      <FormItemLabel label="ABI" />
-      <Select options={[{label: 'test', value: "test"}]} value="test" />
+      {/*<FormItemLabel label="ABI" />*/}
+      {/*<Select options={[{label: 'test', value: "test"}]} value="test" />*/}
       {/*第二种*/}
       <FormProvider methods={methods}>
         <RHFSelect name="callFunction" label="ABI" options={[{label: 'test', value: "test"}]} />

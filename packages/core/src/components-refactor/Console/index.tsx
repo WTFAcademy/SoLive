@@ -2,9 +2,8 @@ import NavBar from "../NavBar";
 import {useEditor} from "../../editor/contexts/editorContext";
 
 const NAVS = [
-  {label: "Deploy", id: "Deploy"},
-  {label: "Call", id: "Call"},
   {label: "Console", id: "console"},
+  {label: "", id: "empty"},
 ];
 
 

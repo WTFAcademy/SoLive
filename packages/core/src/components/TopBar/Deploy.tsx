@@ -74,10 +74,8 @@ const Deploy = () => {
       if (!abi) {
         throw new Error('Please select the deployed contract first.');
       }
-      console.log(selectedContract && compiledContracts[selectedContract]);
       const signer = await vmProviderRef.current.provider.getSigner('0x5B38Da6a701c568545dCfcB03FcB875f56beddC4');
-      const contract = await deploy(abi, bytecode, signer, Object.values(data));
-      console.log(contract, contract.address);
+      const contract = await deploy(abi, bytecode, signer, 0, Object.values(data));
       actions.updateCompilerContract({
         name: selectedContract!,
         address: contract.address,

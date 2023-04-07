@@ -10,7 +10,7 @@ import CssWrapper from "../components-refactor/CssWrapper";
 import {EditorProvider} from './contexts/editorContext';
 import MonacoEditor from './monacoEditor';
 import {ConsoleProvider} from "./contexts/consoleContext";
-import {DeployProvider} from "./contexts/deployContext";
+import {DeployedProvider} from "./contexts/deployedContext";
 
 export type TEditorProps = {
   id: string;
@@ -82,11 +82,11 @@ export default function Editor(props: TEditorProps) {
   return (
     <EditorProvider id={props.id}>
       <ConsoleProvider>
-        <DeployProvider>
+        <DeployedProvider>
           <CssWrapper>
             <Main {...props} />
           </CssWrapper>
-        </DeployProvider>
+        </DeployedProvider>
       </ConsoleProvider>
     </EditorProvider>
   );
