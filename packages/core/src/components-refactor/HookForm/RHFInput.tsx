@@ -6,6 +6,7 @@ import { ControllerRenderProps } from "react-hook-form/dist/types/controller";
 import Input from "../Input";
 
 import ErrorMessage from "./ErrorMessage";
+import FormItemLabel from "./FormItemLabel";
 
 // ----------------------------------------------------------------------
 
@@ -38,8 +39,8 @@ export default function RHFInput({ name, onChange, onBlur, label, errorMessage, 
       name={name}
       control={control}
       render={({ field, fieldState: { error } }) => (
-        <div className="relative mb-4">
-          {/*<FormItemLabel label={label} />*/}
+        <div className="relative mb-1">
+          <FormItemLabel label={label} />
 
           <Input
             {...field}

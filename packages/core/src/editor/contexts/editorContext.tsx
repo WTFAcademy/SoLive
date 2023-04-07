@@ -1,11 +1,10 @@
-import React, {useEffect, useMemo, useReducer, useRef, useState} from "react";
+import React, {useEffect, useMemo, useReducer, useRef} from "react";
 import monacoForTypes, {editor} from "monaco-editor";
 import VmProvider from "solive-provider";
 
 import {BaseMonacoEditor, ModelType} from "../../types/monaco";
 import {createConsoleMessage, TConsoleMessage, TInputConsoleMessage} from "../../types/console";
 import {TCompiledContract} from "../../types/contract";
-
 import CodeParser from "../codeParser";
 
 export interface IEditorInitState {
@@ -102,6 +101,7 @@ const editorStateMap = new Map<string, IEditorInitState>();
 
 const provider = new VmProvider();
 
+// TODO: 待删减拆分后的部分
 // Editor Provider
 export function EditorProvider({children, id}: { children: React.ReactNode, id: string }) {
   const [state, dispatch] = useReducer<React.Reducer<IEditorInitState, IEditorReducerActionType>>(editorReducer, editorInitState);

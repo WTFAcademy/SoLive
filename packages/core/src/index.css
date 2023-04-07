@@ -6,15 +6,15 @@
 
 @layer components {
   .nav {
-    @apply relative inline-flex items-center w-auto px-4 text-[12px] text-[#94A0B3] bg-[#2B3446] border border-solid border-[#3C475B] rounded-t-[6px] cursor-pointer;
+    @apply relative inline-flex items-center w-auto px-4 text-[12px] text-primary-100 bg-primary-400 border border-solid border-primary-500 rounded-t-[6px] cursor-pointer;
   }
 
   .nav-placeholder {
-    @apply flex-auto bg-[#2B3446] border-y border-x-0 border-solid border-[#3C475B];
+    @apply flex-auto bg-primary-400 border-y border-x-0 border-solid border-primary-500;
   }
 
   .nav-active {
-    @apply border-x-0 border-t-0 bg-transparent pr-6 text-[#91D1F7] border-b border-solid border-b-[#91D1F7];
+    @apply border-x-0 border-t-0 bg-transparent pr-6 text-info-500 border-b border-solid border-b-info-500;
   }
 
   .nav-empty {
@@ -36,4 +36,10 @@
   .nav:last-child {
     @apply border-r-0 rounded-tr-none;
   }
+}
+
+
+/* custom scrollbar */
+::-webkit-scrollbar {
+  display: none; /* Chrome Safari */
 }

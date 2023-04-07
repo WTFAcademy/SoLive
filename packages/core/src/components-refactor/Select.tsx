@@ -17,7 +17,7 @@ const Select = ({options, value, onChange}: TProps) => {
       <div className="relative mt-1">
         <Listbox.Button
           className="box-border w-full py-2 pl-3 pr-10 rounded border-none text-white placeholder:text-[#878E95] text-left bg-[#36384A] focus:outline-none focus:shadow-outline">
-          <span className="block truncate">{selectedOpt?.label}</span>
+          <span className="block truncate text-[14px] min-h-[14px]">{selectedOpt?.label}</span>
           <span className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2">
               <ChevronUpDownIcon
                 className="h-5 w-5 text-gray-400"
@@ -32,7 +32,7 @@ const Select = ({options, value, onChange}: TProps) => {
           leaveTo="opacity-0"
         >
           <Listbox.Options
-            className="list-none ps-0 absolute mt-1 max-h-60 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm">
+            className="list-none ps-0 absolute z-50 mt-1 max-h-60 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm">
             {options.map((opt, personIdx) => (
               <Listbox.Option
                 key={personIdx}
