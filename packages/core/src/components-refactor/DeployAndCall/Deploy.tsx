@@ -37,6 +37,7 @@ const resolveConstructor = (abi: any = []) => {
 
 const useCompile = () => {
   const {state, actions, id} = useEditor();
+  const {addConsole} = useConsole();
   const models = state.models || [];
   const modelIndex = state.modelIndex || 0;
   const curModel = models[modelIndex];
@@ -48,7 +49,6 @@ const useCompile = () => {
   const [error, setError] = useState<boolean>(false);
 
   const compile = async () => {
-    console.log('1111');
     setLoading(true);
     resetAll();
     try {
@@ -70,12 +70,10 @@ const useCompile = () => {
     } catch (e: any) {
       console.log(e);
       setError(true);
-      actions.updateConsoleMessages([
-        {
-          type: "error",
-          message: e.message,
-        }
-      ])
+      addConsole([{
+        type: "error",
+        message: e.message,
+      }]);
     }
     setLoading(false);
   }
@@ -114,7 +112,7 @@ const useDeploy = () => {
         throw new Error('Please select the deployed contract first.');
       }
       const signer = await provider.provider.getSigner(signerAddress);
-      const contract = await deploy(abi, bytecode, signer, callOptions, Object.values(params || ''));
+      const contract = await deploy(abi, bytecode, signer, callOptions, Object.values(params || {}));
       console.log(contract, contract.address);
       setCompiledContract({
         name,
