@@ -114,7 +114,7 @@ const useDeploy = () => {
         throw new Error('Please select the deployed contract first.');
       }
       const signer = await provider.provider.getSigner(signerAddress);
-      const contract = await deploy(abi, bytecode, signer, callOptions, Object.values(params));
+      const contract = await deploy(abi, bytecode, signer, callOptions, Object.values(params || ''));
       console.log(contract, contract.address);
       setCompiledContract({
         name,
