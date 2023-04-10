@@ -11,6 +11,7 @@ import {EditorProvider} from './contexts/editorContext';
 import MonacoEditor from './monacoEditor';
 import {ConsoleProvider} from "./contexts/consoleContext";
 import {DeployedProvider} from "./contexts/deployedContext";
+import {RelayNetworkProvider} from "./contexts/relayNetworkContext";
 
 export type TEditorProps = {
   id: string;
@@ -60,7 +61,7 @@ const Main = (props: TEditorProps) => {
                 <MonacoEditor height={height} modelInfos={modelInfos}/>
               </Allotment.Pane>
               <Allotment.Pane minSize={78} preferredSize="40%" visible={consoleVisible}>
-                <Console />
+                <Console/>
               </Allotment.Pane>
             </Allotment>
           </div>
@@ -81,13 +82,15 @@ const Main = (props: TEditorProps) => {
 export default function Editor(props: TEditorProps) {
   return (
     <EditorProvider id={props.id}>
-      <ConsoleProvider>
-        <DeployedProvider>
-          <CssWrapper>
-            <Main {...props} />
-          </CssWrapper>
-        </DeployedProvider>
-      </ConsoleProvider>
+      <RelayNetworkProvider>
+        <ConsoleProvider>
+          <DeployedProvider>
+            <CssWrapper>
+              <Main {...props} />
+            </CssWrapper>
+          </DeployedProvider>
+        </ConsoleProvider>
+      </RelayNetworkProvider>
     </EditorProvider>
   );
 }

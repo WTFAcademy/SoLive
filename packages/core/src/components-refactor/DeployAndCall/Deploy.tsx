@@ -13,6 +13,7 @@ import Copy from "../Copy";
 import deploy from "../../editor/utils/deploy";
 import {useDeployed} from "../../editor/contexts/deployedContext";
 import {useConsole} from "../../editor/contexts/consoleContext";
+import {useRelayNetwork} from "../../editor/contexts/relayNetworkContext";
 
 import AbiInput from "./AbiInput";
 import {getAccountOptions} from "./accounts";
@@ -25,7 +26,6 @@ const ENVIRONMENT_OPTIONS = [
   {label: 'merge', value: Hardfork.Merge},
 ]
 
-const DEFAULT_VM_PROVIDER = new VmProvider({fork: Hardfork.London});
 const DEFAULT_ACCOUNT = '0x5B38Da6a701c568545dCfcB03FcB875f56beddC4';
 const DEFAULT_GAS_LIMIT = 3000000;
 const DEFAULT_VALUE = 0;
@@ -148,12 +148,11 @@ const useDeploy = () => {
 const Deploy = () => {
   const {compile, loading: compileLoading, error, compiledContracts, compiledOptions} = useCompile();
   const {startDeploy, loading: deployLoading} = useDeploy();
-  const {setSelectedNetwork} = useDeployed();
+  const {setSelectedNetwork, providerRef} = useRelayNetwork();
 
   const [accounts, setAccounts] = useState<string[]>([]);
   const [accountOptions, setAccountOptions] = useState<{ label: string; value: string }[]>([]);
 
-  const vmProviderRef = useRef<VmProvider>(DEFAULT_VM_PROVIDER);
   const methods = useForm({
     defaultValues: {
       environment: Hardfork.London,
@@ -178,7 +177,7 @@ const Deploy = () => {
 
   const updateAccountOptions = async (accounts: string[]) => {
     try {
-      const options = await getAccountOptions(accounts, vmProviderRef.current);
+      const options = await getAccountOptions(accounts, providerRef.current);
       setAccountOptions(options);
     } catch (e) {
       console.log(e)
@@ -199,20 +198,21 @@ const Deploy = () => {
       deployParams,
       selectAccount,
       {value, gasLimit},
-      vmProviderRef.current
+      providerRef.current
     );
     updateAccountOptions(accounts);
   }
 
   useEffect(() => {
     if (environment) {
-      vmProviderRef.current = new VmProvider({fork: environment});
       setSelectedNetwork(environment);
-      vmProviderRef.current.getAccounts().then(async (accounts) => {
-        setValue('account', accounts[0]);
-        setAccounts(accounts);
-        await updateAccountOptions(accounts);
-      });
+      Promise.resolve().then(() => {
+        providerRef.current.getAccounts().then(async (accounts) => {
+          setValue('account', accounts[0]);
+          setAccounts(accounts);
+          await updateAccountOptions(accounts);
+        });
+      })
     }
   }, [environment]);
 

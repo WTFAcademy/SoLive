@@ -12,7 +12,14 @@ export const formatAccounts = async (accounts: string[], provider: VmProvider) =
 export const getAccountOptions = async (accounts: string[], provider: VmProvider) => {
   const formattedAccounts = await formatAccounts(accounts, provider);
   return formattedAccounts.map((item) => ({
-    label: `(${ethers.utils.formatEther(item.balance).toString()} ETH) ${item.account}`,
+    label: `(${cutStringNumber(ethers.utils.formatEther(item.balance), 3)} ETH) ${item.account}`,
     value: item.account,
   }));
+}
+
+
+const cutStringNumber = (numStr: string, decimals: number) => {
+  const index = numStr.indexOf('.'); // 找到小数点的位置
+   // 截取小数点后第二位及之后的字符串
+  return numStr.substring(0, index + 1 + decimals);
 }
