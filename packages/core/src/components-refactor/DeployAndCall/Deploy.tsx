@@ -94,7 +94,7 @@ const useCompile = () => {
 
 const useDeploy = () => {
   const {addConsole} = useConsole();
-  const {setCompiledContract} = useDeployed();
+  const {addCompiledContract} = useDeployed();
   const [loading, setLoading] = useState(false);
 
   const startDeploy = async (
@@ -114,7 +114,7 @@ const useDeploy = () => {
       const signer = await provider.provider.getSigner(signerAddress);
       const contract = await deploy(abi, bytecode, signer, callOptions, Object.values(params || {}));
       console.log(contract, contract.address);
-      setCompiledContract({
+      addCompiledContract({
         name,
         address: contract.address,
         abi: abi,
@@ -148,6 +148,7 @@ const useDeploy = () => {
 const Deploy = () => {
   const {compile, loading: compileLoading, error, compiledContracts, compiledOptions} = useCompile();
   const {startDeploy, loading: deployLoading} = useDeploy();
+  const {setSelectedNetwork} = useDeployed();
 
   const [accounts, setAccounts] = useState<string[]>([]);
   const [accountOptions, setAccountOptions] = useState<{ label: string; value: string }[]>([]);
@@ -206,6 +207,7 @@ const Deploy = () => {
   useEffect(() => {
     if (environment) {
       vmProviderRef.current = new VmProvider({fork: environment});
+      setSelectedNetwork(environment);
       vmProviderRef.current.getAccounts().then(async (accounts) => {
         setValue('account', accounts[0]);
         setAccounts(accounts);

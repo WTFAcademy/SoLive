@@ -4,21 +4,36 @@ import {TCompiledContract} from "../../types/contract";
 
 
 type TContext = {
-  compiledContract: TCompiledContract;
-  setCompiledContract: (compiledContract: TCompiledContract) => void;
+  compiledContracts: TCompiledContract[];
+  addCompiledContract: (compiledContract: TCompiledContract) => void;
+  clearCompiledContract: () => void;
+  selectedNetwork?: string;
+  setSelectedNetwork: (network: string) => void;
 }
 
 const DeployedContext = React.createContext<TContext | undefined>(undefined);
 
 // Editor Provider
 export function DeployedProvider({children}: { children: React.ReactNode }) {
-  const [compiledContract, setCompiledContract] = useState<TCompiledContract>({} as TCompiledContract);
+  const [compiledContracts, setCompiledContracts] = useState<TCompiledContract[]>([]);
+  const [selectedNetwork, setSelectedNetwork] = useState<string>();
+
+  const addCompiledContract = (compiledContract: TCompiledContract) => {
+    setCompiledContracts(old => [...old, compiledContract]);
+  }
+
+  const clearCompiledContract = () => {
+    setCompiledContracts([]);
+  }
 
   return (
     <DeployedContext.Provider
       value={{
-        compiledContract,
-        setCompiledContract
+        compiledContracts,
+        addCompiledContract,
+        clearCompiledContract,
+        setSelectedNetwork,
+        selectedNetwork
       }}
     >
       {children}
