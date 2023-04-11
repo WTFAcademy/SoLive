@@ -1,6 +1,6 @@
 import React, {useEffect, useRef} from 'react';
 import BaseMonaco from 'monaco-editor';
-import ReactBaseMonacoEditor, {Monaco} from "@monaco-editor/react";
+import ReactBaseMonacoEditor, {Monaco, loader} from "@monaco-editor/react";
 import {ErrorMarker, MarkerSeverity} from 'solive-compiler-utils';
 
 import {BaseMonacoEditor, EditorApi, ModelInfoType} from '../types/monaco';
@@ -15,6 +15,8 @@ import {
 } from './mountFunctions';
 import CodeParser from './codeParser';
 import {findModel} from './utils/model';
+
+loader.config({ paths: { vs: 'https://cdn.jsdelivr.net/npm/monaco-editor@0.37.1/min/vs' } });
 
 interface Props {
   modelInfos: ModelInfoType[];
