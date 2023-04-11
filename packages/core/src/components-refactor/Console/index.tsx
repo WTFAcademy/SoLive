@@ -18,9 +18,9 @@ const Console = () => {
   const consoleMessages = consoles || [];
 
   return (
-    <div key={id + "_console"} className="flex-1 bg-primary-700 pt-2 rounded-b-[12px]">
+    <div key={id + "_console"} className="h-full flex-1 bg-primary-700 pt-2 rounded-b-[12px]">
       <NavBar globalId={id} navs={NAVS} />
-      <div className="h-full text-primary-100 p-2 text-[12px]">
+      <div className="h-full text-primary-100 p-2 text-[12px] overflow-scroll">
         {consoleMessages.map((item, index) => {
           let data
           try {
