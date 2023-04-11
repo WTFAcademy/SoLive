@@ -49,6 +49,7 @@ const Main = (props: TEditorProps) => {
       >
         <Allotment.Pane
           minSize={200}
+          snap={false}
         >
           <div className="w-full h-full border-none border-l border-solid border-primary-500">
             <Allotment
