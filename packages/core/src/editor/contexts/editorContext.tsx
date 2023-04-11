@@ -49,7 +49,7 @@ export type TEditorReducerAction = {
 export type TEditorContext = {
   state: IEditorInitState;
   stateRef: React.MutableRefObject<IEditorInitState>;
-  vmProviderRef: React.MutableRefObject<VmProvider>;
+  vmProviderRef: React.MutableRefObject<VmProvider | null>;
   dispatch: React.Dispatch<IEditorReducerActionType>;
   actions: TEditorReducerAction;
   id: string;
@@ -100,13 +100,11 @@ const editorReducer = (state: IEditorInitState, action: IEditorReducerActionType
 
 const editorStateMap = new Map<string, IEditorInitState>();
 
-const provider = new VmProvider({fork: Hardfork.London});
-
 // TODO: 待删减拆分后的部分
 // Editor Provider
 export function EditorProvider({children, id}: { children: React.ReactNode, id: string }) {
   const [state, dispatch] = useReducer<React.Reducer<IEditorInitState, IEditorReducerActionType>>(editorReducer, editorInitState);
-  const vmProviderRef = useRef<VmProvider>(provider);
+  const vmProviderRef = useRef<VmProvider | null>(null);
   const stateRef = useRef<IEditorInitState>(state);
   // some provider need to access the state directly
   const actions: TEditorReducerAction = useMemo(() => {
