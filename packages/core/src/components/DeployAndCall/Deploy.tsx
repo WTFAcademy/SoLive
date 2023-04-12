@@ -168,7 +168,7 @@ const Deploy = () => {
   const selectAccount = watch('account');
   const selectedContract = watch('contract');
   const selectedContractDeployParams = useMemo(() => {
-    if (!selectedContract) {
+    if (!selectedContract || selectedContract === '') {
       return []
     }
     return resolveConstructor(compiledContracts[selectedContract]?.abi);
@@ -201,6 +201,11 @@ const Deploy = () => {
       providerRef.current
     );
     updateAccountOptions(accounts);
+  }
+
+  const handleCompile = () => {
+    setValue('contract', '');
+    compile();
   }
 
   useEffect(() => {
@@ -241,7 +246,7 @@ const Deploy = () => {
         <AbiInput ref={abiInputRef} inputs={selectedContractDeployParams}/>
       )}
       <div className="flex justify-end gap-2 mb-2">
-        <Button type="default" loading={compileLoading} onClick={compile}>Compile</Button>
+        <Button type="default" loading={compileLoading} onClick={handleCompile}>Compile</Button>
         <Button type="primary" loading={deployLoading} onClick={handleDeploy}>Deploy</Button>
       </div>
     </div>

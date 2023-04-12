@@ -18,12 +18,11 @@ import {findModel} from './utils/model';
 
 loader.config({ paths: { vs: 'https://cdn.jsdelivr.net/npm/monaco-editor@0.37.1/min/vs' } });
 
-interface Props {
+interface IProps {
   modelInfos: ModelInfoType[];
-  height: string;
 }
 
-function App({modelInfos, height}: Props) {
+function App({modelInfos}: IProps) {
   const {stateRef, dispatch, actions, id} = useEditor();
   const editorRef = useRef<BaseMonacoEditor>();
   const monacoRef = useRef<Monaco>();

@@ -8,7 +8,7 @@ hide_title: true
 You can create a Solidity interactive code editor with the `solive-docusaurus-theme-code` plugin. First, add the plugin to your package.
 
 ```bash npm2yarn
-npm install --save @docusaurus/theme-live-codeblock
+npm install --save solive-docusaurus-theme-code
 ```
 
 You will also need to add the plugin to your `docusaurus.config.js`.
@@ -63,7 +63,7 @@ contract Storage {
 
 The code block will be rendered as an interactive editor.
 
-```solidity solive height=300px
+```solidity solive height="500px" deployDefaultVisible="false" consoleDefaultVisible="false"
 ---
 filename: Storage.sol
 ---
