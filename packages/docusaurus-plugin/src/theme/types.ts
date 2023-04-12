@@ -4,6 +4,8 @@ export interface SoliveCodeBlockProps extends Props {
   solive: string;
   height?: string;
   width?: string;
+  deployDefaultVisible?: string;
+  consoleDefaultVisible?: string;
 }
 
 export type DispatchTypes = 'reset' | 'loading' | 'loaded' | 'error'
