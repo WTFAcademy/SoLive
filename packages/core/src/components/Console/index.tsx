@@ -10,16 +10,21 @@ const NAVS = [
   {label: "", id: "empty"},
 ];
 
+type TProps = {
+  onDeleteClick?: () => void;
+}
 
-const Console = () => {
+const Console = (props: TProps) => {
   const { id } = useEditor();
   const {consoles} = useConsole();
 
   const consoleMessages = consoles || [];
 
+  const handleDeleteClick = () => props.onDeleteClick && props.onDeleteClick();
+
   return (
     <div key={id + "_console"} className="h-full flex flex-col flex-1 bg-primary-700 pt-2 rounded-b-[12px]">
-      <NavBar globalId={id} navs={NAVS} />
+      <NavBar globalId={id} navs={NAVS} onDeleteClick={handleDeleteClick} />
       <div className="flex-auto mb-4 text-primary-100 p-2 text-[12px] overflow-scroll">
         {consoleMessages.map((item, index) => {
           let data

@@ -75,7 +75,7 @@ const Main = (props: TEditorProps) => {
               onVisibleChange={handleConsoleVisible}
             >
               <Allotment.Pane minSize={100}>
-                <FileNavBar onClickRun={() => setDeployVisible(old => !old)}/>
+                <FileNavBar onClickRun={() => {setDeployVisible(old => !old); setConsoleVisible(old => !old)}}/>
                 <MonacoEditor modelInfos={modelInfos}/>
               </Allotment.Pane>
               <Allotment.Pane
@@ -83,7 +83,7 @@ const Main = (props: TEditorProps) => {
                 preferredSize={console.defaultHeight || "30%"}
                 visible={consoleVisible}
               >
-                <Console/>
+                <Console onDeleteClick={() => setConsoleVisible(false)} />
               </Allotment.Pane>
               {!consoleVisible &&
               <Allotment.Pane snap={false} maxSize={24} minSize={24}>
