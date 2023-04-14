@@ -16,7 +16,7 @@ self.onmessage = (e: MessageEvent) => {
         provider.sendAsync(data.query, (error: any, result: any) => {
           self.postMessage({
             cmd: 'sendAsyncResult',
-            error,
+            error: JSON.stringify(error),
             result,
             stamp: data.stamp
           })

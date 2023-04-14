@@ -22,7 +22,7 @@ class VmProvider {
     const stamps: any = {}
     this.worker.addEventListener('message', (msg) => {
       if (stamps[msg.data.stamp]) {
-        stamps[msg.data.stamp](msg.data.error, msg.data.result)
+        stamps[msg.data.stamp](JSON.parse(msg.data.error), msg.data.result)
       }
     })
     const provider = {
