@@ -1,21 +1,38 @@
 import React, {Dispatch, SetStateAction, useState} from 'react';
 import {Allotment} from "allotment";
+import {CommandLineIcon} from "@heroicons/react/24/outline";
 
 import {ModelInfoType} from '../types/monaco';
-import FileNavBar from "../components-refactor/FileNavBar";
-import Console from "../components-refactor/Console";
-import DeployAndCall from "../components-refactor/DeployAndCall";
-import CssWrapper from "../components-refactor/CssWrapper";
+import FileNavBar from "../components/FileNavBar";
+import Console from "../components/Console";
+import DeployAndCall from "../components/DeployAndCall";
+import CssWrapper from "../components/CssWrapper";
 
 import {EditorProvider} from './contexts/editorContext';
 import MonacoEditor from './monacoEditor';
 import {ConsoleProvider} from "./contexts/consoleContext";
 import {DeployedProvider} from "./contexts/deployedContext";
+import {RelayNetworkProvider} from "./contexts/relayNetworkContext";
+
+export type TConsoleProps = {
+  defaultVisible?: boolean;
+  defaultHeight?: string;
+  minHeight?: number;
+}
+
+export type TDeployProps = {
+  defaultVisible?: boolean;
+  defaultWidth?: string;
+  minWidth?: number;
+  maxWidth?: number;
+}
 
 export type TEditorProps = {
   id: string;
   modelInfos: ModelInfoType[];
   height: string;
+  console?: TConsoleProps;
+  deploy?: TDeployProps;
   onSuccess?: Dispatch<SetStateAction<number>>;
   onFailure?: () => void;
   onCompile?: () => void;
@@ -24,9 +41,9 @@ export type TEditorProps = {
 };
 
 const Main = (props: TEditorProps) => {
-  const {height, modelInfos} = props;
-  const [consoleVisible, setConsoleVisible] = useState(true);
-  const [deployVisible, setDeployVisible] = useState(true);
+  const {height, console = {}, deploy = {}, modelInfos} = props;
+  const [consoleVisible, setConsoleVisible] = useState<boolean>(console.defaultVisible === undefined ? true : console.defaultVisible);
+  const [deployVisible, setDeployVisible] = useState<boolean>(deploy.defaultVisible === undefined ? true : deploy.defaultVisible);
 
   const handleDeployContainerVisible = (index: number, value: boolean) => {
     if (index === 1) {
@@ -41,13 +58,14 @@ const Main = (props: TEditorProps) => {
   }
 
   return (
-    <div className="rounded-[12px] bg-primary-700 overflow-auto h-[500px]">
+    <div className="rounded-[12px] bg-primary-700 overflow-auto" style={{height}}>
       <Allotment
         snap
         onVisibleChange={handleDeployContainerVisible}
       >
         <Allotment.Pane
           minSize={200}
+          snap={false}
         >
           <div className="w-full h-full border-none border-l border-solid border-primary-500">
             <Allotment
@@ -56,19 +74,34 @@ const Main = (props: TEditorProps) => {
               onVisibleChange={handleConsoleVisible}
             >
               <Allotment.Pane minSize={100}>
-                <FileNavBar/>
-                <MonacoEditor height={height} modelInfos={modelInfos}/>
+                <FileNavBar onClickRun={() => setDeployVisible(old => !old)}/>
+                <MonacoEditor modelInfos={modelInfos}/>
               </Allotment.Pane>
-              <Allotment.Pane minSize={78} preferredSize="40%" visible={consoleVisible}>
-                <Console />
+              <Allotment.Pane
+                minSize={console.minHeight || 78}
+                preferredSize={console.defaultHeight || "30%"}
+                visible={consoleVisible}
+              >
+                <Console/>
               </Allotment.Pane>
+              {!consoleVisible &&
+              <Allotment.Pane snap={false} maxSize={24} minSize={24}>
+                <div
+                  className="ml-4 h-full flex items-center gap-1 text-[12px] text-primary-100 cursor-pointer"
+                  onClick={() => setConsoleVisible(true)}
+                >
+                  <CommandLineIcon className="w-4 h-4"/>
+                  <span>Console</span>
+                </div>
+              </Allotment.Pane>
+              }
             </Allotment>
           </div>
         </Allotment.Pane>
         <Allotment.Pane
-          maxSize={240}
-          minSize={140}
-          preferredSize="200px"
+          maxSize={deploy.maxWidth || 240}
+          minSize={deploy.minWidth || 140}
+          preferredSize={deploy.defaultWidth || "200px"}
           visible={deployVisible}
         >
           <DeployAndCall/>
@@ -81,13 +114,15 @@ const Main = (props: TEditorProps) => {
 export default function Editor(props: TEditorProps) {
   return (
     <EditorProvider id={props.id}>
-      <ConsoleProvider>
-        <DeployedProvider>
-          <CssWrapper>
-            <Main {...props} />
-          </CssWrapper>
-        </DeployedProvider>
-      </ConsoleProvider>
+      <RelayNetworkProvider>
+        <ConsoleProvider>
+          <DeployedProvider>
+            <CssWrapper>
+              <Main {...props} />
+            </CssWrapper>
+          </DeployedProvider>
+        </ConsoleProvider>
+      </RelayNetworkProvider>
     </EditorProvider>
   );
 }

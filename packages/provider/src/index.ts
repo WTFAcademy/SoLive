@@ -5,13 +5,16 @@ type TVmProviderParams = {
   fork?: Hardfork;
 }
 
+let workCache: Worker | null = null;
+
 class VmProvider {
   worker: Worker;
   provider: providers.JsonRpcProvider;
 
   constructor({fork = Hardfork.London}: TVmProviderParams) {
     // @ts-ignore
-    this.worker = new Worker(new URL('./worker.js', import.meta.url), {type: "module"})
+
+    this.worker = workCache ? workCache : workCache = new Worker(new URL('./worker.js', import.meta.url), {type: "module"})
     this.worker.postMessage({ cmd: 'init', fork });
     console.log("init");
 

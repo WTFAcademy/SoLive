@@ -2,7 +2,7 @@ import uniqueId from 'lodash/uniqueId';
 
 export type TInputConsoleMessage = {
   type: string;
-  message: string
+  message: any;
 };
 
 export type TConsoleMessage = {

@@ -7,15 +7,22 @@
 
 import React from 'react'
 import CodeBlock from '@theme-init/CodeBlock'
+import BrowserOnly from '@docusaurus/BrowserOnly';
 
 import type {SoliveCodeBlockProps} from '../types'
-import SoliveCodeBlock from "../SoliveCodeBlock";
 
 const componentWrapper = (Component: typeof CodeBlock) => {
   const WrappedComponent = (props: SoliveCodeBlockProps) => {
 
-    if (props.solive) {
-      return <SoliveCodeBlock {...props} />
+    if (props.solive && typeof window !== 'undefined') {
+      return (
+        <BrowserOnly fallback={<div>Loading...</div>}>
+          {() => {
+            const SoliveCodeBlock = require('../SoliveCodeBlock').default;
+            return <SoliveCodeBlock {...props} />;
+          }}
+        </BrowserOnly>
+      )
     }
 
     return <CodeBlock {...props} />

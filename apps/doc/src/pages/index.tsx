@@ -1,5 +1,4 @@
 import React from 'react';
-import Link from '@docusaurus/Link';
 import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
 import Layout from '@theme/Layout';
 import HomepageFeatures from "@site/src/components/HomepageFeatures";
@@ -19,14 +18,6 @@ function HomepageHeader() {
         </div>
         <h1 className={styles.heroBannerTitle}>{siteConfig.title}</h1>
         <p className={styles.heroBannerSubTitle}>{siteConfig.tagline}</p>
-        <div className={styles.buttons}>
-          <Link
-            className={styles.tutorialsLink}
-            to="/docs/dashboard"
-          >
-            Get started
-          </Link>
-        </div>
       </div>
     </header>
   );

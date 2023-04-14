@@ -109,29 +109,29 @@ function registerCommandsAndActions(monaco: Monaco, editor: BaseMonacoEditor, di
   editor.addAction(zoominAction);
 
   // @ts-ignore
-  // const editorService = editor._codeEditorService;
-  // const openEditorBase = editorService.openCodeEditor.bind(editorService);
-  // editorService.openCodeEditor = async (input: any, source: any) => {
-  //   const result = await openEditorBase(input, source);
-  //   if (input && input.resource && input.resource.path) {
-  //     try {
-  //       if (input.options && input.options.selection) {
-  //         const path = input.resource.path.replace('/', '')
-  //         const nextModel = findModel(stateRef.models as ModelType[], path)
-  //         const nextModelIndex = stateRef.models?.findIndex(model => model.filename === path)
-  //         dispatch({type: "updateModelIndex", payload: {modelIndex: nextModelIndex}});
-  //         editor.setModel(nextModel?.model as any);
-  //         editor.revealRange(input.options.selection);
-  //         editor.setPosition({
-  //           column: input.options.selection.startColumn,
-  //           lineNumber: input.options.selection.startLineNumber,
-  //         });
-  //       }
-  //     } catch (e) { /* empty */
-  //     }
-  //   }
-  //   return result;
-  // };
+  const editorService = editor._codeEditorService;
+  const openEditorBase = editorService.openCodeEditor.bind(editorService);
+  editorService.openCodeEditor = async (input: any, source: any) => {
+    const result = await openEditorBase(input, source);
+    if (input && input.resource && input.resource.path) {
+      try {
+        if (input.options && input.options.selection) {
+          const path = input.resource.path.replace('/', '')
+          const nextModel = findModel(stateRef.models as ModelType[], path)
+          const nextModelIndex = stateRef.models?.findIndex(model => model.filename === path)
+          dispatch({type: "updateModelIndex", payload: {modelIndex: nextModelIndex}});
+          editor.setModel(nextModel?.model as any);
+          editor.revealRange(input.options.selection);
+          editor.setPosition({
+            column: input.options.selection.startColumn,
+            lineNumber: input.options.selection.startLineNumber,
+          });
+        }
+      } catch (e) { /* empty */
+      }
+    }
+    return result;
+  };
 }
 
 function registerFileCompletion(monaco: Monaco) {
@@ -343,7 +343,7 @@ function addModels(
   const firstModelInfo = modelInfos[0];
   const firstModel = formatModels[0];
   //The last model with initial true should be initial
-  if (!firstModelInfo.notInitial) {
+  if (!firstModelInfo?.notInitial) {
     // @ts-ignore
     editor.setModel(firstModel.model);
     dispatch({

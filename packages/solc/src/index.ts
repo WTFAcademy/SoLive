@@ -17,16 +17,6 @@ export const solidityCompiler = async (
   if (oldWorkerInfo) {
     const timestamp = oldWorkerInfo.timestamp;
     worker = oldWorkerInfo.worker;
-
-    if ((Date.now() - timestamp) / 1000 > 60) {
-      worker = new Worker(new URL('./worker.js', import.meta.url), {type: 'module'});
-      worker.postMessage({type: 'init-solc', version: version})
-      workerMap.set(version, {
-        worker,
-        version,
-        timestamp: Date.now(),
-      });
-    }
   } else {
     worker = new Worker(new URL('./worker.js', import.meta.url), {type: 'module'});
     worker.postMessage({type: 'init-solc', version: version})

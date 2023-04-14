@@ -2,9 +2,11 @@
 import { Controller, useFormContext } from "react-hook-form";
 import React, { ChangeEvent } from "react";
 import { ControllerRenderProps } from "react-hook-form/dist/types/controller";
-import { Input, InputProps } from "@material-tailwind/react";
+
+import Input from "../Input";
 
 import ErrorMessage from "./ErrorMessage";
+import FormItemLabel from "./FormItemLabel";
 
 // ----------------------------------------------------------------------
 
@@ -17,7 +19,7 @@ interface IProps {
   warningMessage?: string;
 }
 
-type Props = IProps & InputProps & React.RefAttributes<HTMLInputElement>;
+type Props = IProps & React.HTMLAttributes<HTMLInputElement>;
 
 export default function RHFInput({ name, onChange, onBlur, label, errorMessage, warningMessage, ...other }: Props) {
   const { control } = useFormContext();
@@ -37,10 +39,15 @@ export default function RHFInput({ name, onChange, onBlur, label, errorMessage, 
       name={name}
       control={control}
       render={({ field, fieldState: { error } }) => (
-        <div className="relative mb-4">
-          {/*<FormItemLabel label={label} />*/}
+        <div className="relative mb-2">
+          <FormItemLabel label={label} />
 
-          <Input label={label} {...field} onChange={(e) => handleChange(e, field)} onBlur={(e) => handleBlur(e, field)} {...other} />
+          <Input
+            {...field}
+            onChange={(e: any) => handleChange(e, field)}
+            onBlur={(e: any) => handleBlur(e, field)}
+            {...other}
+          />
 
           <ErrorMessage error={error || errorMessage || warningMessage} type={!(error && errorMessage) && warningMessage ? "warning" : "error"} />
         </div>

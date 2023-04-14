@@ -1,20 +1,36 @@
-import {Button as TailButton} from "@material-tailwind/react";
-import {ButtonProps} from "@material-tailwind/react/components/Button";
 import React from "react";
 
 import Loading from "./Loading";
 
-type Props = {
+type TProps = {
+  children: React.ReactNode;
+  type?: "primary" | "default";
+  onClick?: () => void;
+  className?: string;
   loading?: boolean;
-} & ButtonProps &  React.RefAttributes<HTMLButtonElement>;
+}
 
-const Button = ({loading, children, ...other}: Props) => {
+const Button = (props: TProps) => {
+  const {
+    type = "default",
+    children,
+    loading = false,
+    className,
+    onClick
+  } = props;
+
+  const commonClasses = "pointer-events-auto rounded-md text-[12px] inline-flex items-center px-3 py-1 cursor-pointer"
+  const buttonClasses = type === 'primary' ?
+    `${commonClasses} bg-other-600 leading-5 text-white hover:bg-other-500` :
+    `${commonClasses} text-white bg-primary-300`
+
+  const loadingClasses = loading ? " opacity-50 pointer-events-disabled" : "";
 
   return (
-    <TailButton className="flex items-center gap-2" {...other}>
-        {loading && <Loading className="text-sm" />}
-        {children}
-    </TailButton>
+    <div className={buttonClasses + loadingClasses + " " + className} onClick={onClick}>
+      {loading && <Loading className="w-[12px] h-[12px] mr-1"/>}
+      {children}
+    </div>
   )
 }
 
