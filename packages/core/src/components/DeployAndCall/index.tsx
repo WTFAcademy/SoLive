@@ -16,9 +16,9 @@ const PlaceholderElement = () => {
 const DeployAndCall = () => {
 
   return (
-    <div className="w-full h-full bg-primary-700 pt-2">
+    <div className="w-full h-full flex flex-col bg-primary-700 pt-2">
       <NavBar placeholderElement={<PlaceholderElement />} />
-      <div className="px-2 py-2 h-[464px] box-border">
+      <div className="px-2 py-2 flex-auto box-border">
         <Allotment vertical>
           <Allotment.Pane maxSize={280} preferredSize="100%">
             <Deploy />

@@ -14,7 +14,7 @@ const Select = forwardRef(({options, value, onChange}: TProps, ref: React.Ref<HT
 
   return (
     <Listbox ref={ref} value={value} onChange={onChange}>
-      <div className="relative mt-1">
+      <div className="relative mt-1 text-black">
         <Listbox.Button
           className="box-border w-full py-2 pl-3 pr-10 rounded border-none text-white placeholder:text-[#878E95] text-left bg-[#36384A] focus:outline-none focus:shadow-outline">
           <span className="block truncate text-[12px] min-h-[12px]">{selectedOpt?.label}</span>
