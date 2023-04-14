@@ -14,8 +14,12 @@ function App() {
         height="100vh"
         id="1"
         deploy={{
-          maxWidth: width / 4,
-          minWidth: width / 6
+          maxWidth: width / 4 < 240 ? 240 : width / 4,
+          minWidth: width / 6 < 140 ? 140 : width / 6,
+          defaultVisible: !(width < 800)
+        }}
+        console={{
+          defaultVisible: !(width < 800)
         }}
         modelInfos={[
           {
