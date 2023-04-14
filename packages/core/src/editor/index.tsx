@@ -31,6 +31,7 @@ export type TEditorProps = {
   id: string;
   modelInfos: ModelInfoType[];
   height: string;
+  rounded?: string;
   console?: TConsoleProps;
   deploy?: TDeployProps;
   onSuccess?: Dispatch<SetStateAction<number>>;
@@ -41,7 +42,7 @@ export type TEditorProps = {
 };
 
 const Main = (props: TEditorProps) => {
-  const {height, console = {}, deploy = {}, modelInfos} = props;
+  const {height, console = {}, deploy = {}, rounded = '12px', modelInfos} = props;
   const [consoleVisible, setConsoleVisible] = useState<boolean>(console.defaultVisible === undefined ? true : console.defaultVisible);
   const [deployVisible, setDeployVisible] = useState<boolean>(deploy.defaultVisible === undefined ? true : deploy.defaultVisible);
 
@@ -58,7 +59,7 @@ const Main = (props: TEditorProps) => {
   }
 
   return (
-    <div className="rounded-[12px] bg-primary-700 overflow-auto" style={{height}}>
+    <div className="bg-primary-700 overflow-auto" style={{height, borderRadius: rounded}}>
       <Allotment
         snap
         onVisibleChange={handleDeployContainerVisible}
