@@ -7,3 +7,5 @@ packages/*/coverage
 packages/*/test
 packages/**/*.config.js
 packages/**/*.config.json
+**/*.config.js
+apps/doc/sidebars.js

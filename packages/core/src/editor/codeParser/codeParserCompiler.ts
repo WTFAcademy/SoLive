@@ -4,13 +4,13 @@ import {
   Language,
   makeCompilerInput,
 } from 'solive-compiler-utils';
+import axios from 'axios';
 
 import { IEditorInitState } from '../contexts/editorContext';
 import { EditorApi, ModelType } from '../../types/monaco';
+import { cache, getCache } from '../utils/cache';
 
 import ParserVersion from './parserVersion';
-import { cache, getCache } from '../utils/cache';
-import axios from 'axios';
 
 class CodeParserCompiler {
   editorApi: EditorApi;
@@ -115,7 +115,7 @@ class CodeParserCompiler {
     const fileRaw = url.replace('//github.com/', `//${fileDomain}/`).replace('/blob/', '/');
     const fileName = `github:${fileRaw.split(`${fileDomain}/`).pop()}`;
     let fileContent = '';
-    if(!!fileName) {
+    if(fileName) {
       const cacheFile = getCache(fileName);
       if(cacheFile.value){
         fileContent = cacheFile.value as string;
