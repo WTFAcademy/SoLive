@@ -163,6 +163,12 @@ const Deploy = () => {
     }
   });
 
+  useEffect(()=>{
+    if(compiledOptions.length > 0){
+      methods.setValue('contract', compiledOptions[0]?.value);
+    }
+  }, [compiledOptions]);
+
   const {watch, setValue} = methods;
   const environment = watch('environment');
   const selectAccount = watch('account');
