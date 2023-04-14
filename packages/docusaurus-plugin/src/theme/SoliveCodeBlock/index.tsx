@@ -1,11 +1,10 @@
 import Editor from "solive-core";
 import React, {useMemo} from "react";
-import { v4 as uuidv4 } from 'uuid';
+import {v4 as uuidv4} from 'uuid';
 
-import type { SoliveCodeBlockProps } from '../types'
+import type {SoliveCodeBlockProps} from '../types'
 
 import 'solive-core/dist/index.css';
-
 import resolveMeta from "./resolveMeta";
 import transformModel from "./transformModel";
 
@@ -28,13 +27,13 @@ const SoliveCodeBlock = (props: SoliveCodeBlockProps) => {
 
   return (
     <div style={{width: width, maxWidth: '800px', margin: 'auto'}}>
-      <Editor
-        console={{defaultVisible: consoleDefaultVisible === 'true'}}
-        deploy={{defaultVisible: deployDefaultVisible === 'true'}}
-        height={height}
-        id={id}
-        modelInfos={modelInfos}
-      />
+        <Editor
+          console={{defaultVisible: consoleDefaultVisible === 'true'}}
+          deploy={{defaultVisible: deployDefaultVisible === 'true'}}
+          height={height}
+          id={id}
+          modelInfos={modelInfos}
+        />
     </div>
   )
 }

@@ -2,15 +2,12 @@
   "name": "solive-provider",
   "version": "0.0.1-aplha",
   "description": "",
-  "main": "dist/index.umd.js",
-  "module": "dist/index.esm.js",
+  "module": "dist/index.js",
   "types": "dist/index.d.ts",
   "scripts": {
-    "build": "rimraf dist/* && run-p tsc build:esm build:umd build:min",
+    "build": "rimraf dist/* && run-p tsc build:esm",
     "start": "rollup -w -c --environment FORMAT:esm",
     "build:esm": "rollup -c --environment FORMAT:esm",
-    "build:umd": "rollup -c --environment FORMAT:umd",
-    "build:min": "rollup -c --environment FORMAT:min",
     "tsc": "tsc",
     "lint": "eslint 'src/**/*.{js,ts}'"
   },

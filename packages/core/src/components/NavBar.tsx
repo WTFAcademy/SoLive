@@ -31,7 +31,7 @@ const NavBar = (props: TProps) => {
   }, [activeNavId])
 
   return (
-    <div className="w-full h-[36px] flex overflow-auto">
+    <div className="w-full h-[36px] shrink-0 flex overflow-auto">
       {navs.map((nav, index) => (
         <div
           key={`${globalId}_${nav.id}_${index}`}

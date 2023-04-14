@@ -343,7 +343,7 @@ function addModels(
   const firstModelInfo = modelInfos[0];
   const firstModel = formatModels[0];
   //The last model with initial true should be initial
-  if (!firstModelInfo.notInitial) {
+  if (!firstModelInfo?.notInitial) {
     // @ts-ignore
     editor.setModel(firstModel.model);
     dispatch({

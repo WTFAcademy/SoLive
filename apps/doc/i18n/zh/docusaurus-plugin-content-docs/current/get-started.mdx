@@ -1,0 +1,100 @@
+---
+title: Get Started
+hide_title: true
+---
+
+# Get Started
+
+You can create a Solidity interactive code editor with the `solive-docusaurus-theme-code` plugin. First, add the plugin to your package.
+
+```bash npm2yarn
+npm install --save solive-docusaurus-theme-code
+```
+
+You will also need to add the plugin to your `docusaurus.config.js`.
+
+```js {3}
+module.exports = {
+  // ...
+  themes: ['solive-docusaurus-theme-code'],
+  // ...
+};
+```
+
+To use the plugin, create a code block with `solive` attached to the language meta string.
+
+````md
+```solidity solive height=300px
+---
+filename: Storage.sol
+---
+
+// SPDX-License-Identifier: GPL-3.0
+
+pragma solidity >=0.7.0 <0.9.0;
+
+/**
+ * @title Storage
+ * @dev Store & retrieve value in a variable
+ * @custom:dev-run-script ./scripts/deploy_with_ethers.ts
+ */
+contract Storage {
+
+    uint256 number;
+
+    /**
+     * @dev Store value in variable
+     * @param num value to store
+     */
+    function store(uint256 num) public {
+        number = num;
+    }
+
+    /**
+     * @dev Return value
+     * @return value of 'number'
+     */
+    function retrieve() public view returns (uint256){
+        return number;
+    }
+}
+```
+````
+
+The code block will be rendered as an interactive editor.
+
+```solidity solive height="500px" deployDefaultVisible="false" consoleDefaultVisible="false"
+---
+filename: Storage.sol
+---
+
+// SPDX-License-Identifier: GPL-3.0
+
+pragma solidity >=0.7.0 <0.9.0;
+
+/**
+ * @title Storage
+ * @dev Store & retrieve value in a variable
+ * @custom:dev-run-script ./scripts/deploy_with_ethers.ts
+ */
+contract Storage {
+
+    uint256 number;
+
+    /**
+     * @dev Store value in variable
+     * @param num value to store
+     */
+    function store(uint256 num) public {
+        number = num;
+    }
+
+    /**
+     * @dev Return value
+     * @return value of 'number'
+     */
+    function retrieve() public view returns (uint256){
+        return number;
+    }
+}
+```

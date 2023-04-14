@@ -54,7 +54,7 @@ const config = {
   // to replace "en" with "zh-Hans".
   i18n: {
     defaultLocale: "en",
-    locales: ["en", "zh"],
+    locales: ["en"],
   },
 
   themes: ['solive-docusaurus-theme-code'],
@@ -104,8 +104,7 @@ const config = {
             docId: "introduction",
             position: "left",
             label: "Docs",
-          },
-          { to: "/blog", label: "Blog", position: "left" },
+          }
         ],
       },
       footer: {
@@ -136,10 +135,6 @@ const config = {
           {
             title: "More",
             items: [
-              {
-                label: "Blog",
-                to: "/blog",
-              },
               {
                 label: "GitHub",
                 href: "https://github.com/WTFAcademy/solive",

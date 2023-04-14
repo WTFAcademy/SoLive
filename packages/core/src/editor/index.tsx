@@ -1,5 +1,6 @@
 import React, {Dispatch, SetStateAction, useState} from 'react';
 import {Allotment} from "allotment";
+import {CommandLineIcon} from "@heroicons/react/24/outline";
 
 import {ModelInfoType} from '../types/monaco';
 import FileNavBar from "../components/FileNavBar";
@@ -73,7 +74,7 @@ const Main = (props: TEditorProps) => {
               onVisibleChange={handleConsoleVisible}
             >
               <Allotment.Pane minSize={100}>
-                <FileNavBar/>
+                <FileNavBar onClickRun={() => setDeployVisible(old => !old)}/>
                 <MonacoEditor modelInfos={modelInfos}/>
               </Allotment.Pane>
               <Allotment.Pane
@@ -83,6 +84,17 @@ const Main = (props: TEditorProps) => {
               >
                 <Console/>
               </Allotment.Pane>
+              {!consoleVisible &&
+              <Allotment.Pane snap={false} maxSize={24} minSize={24}>
+                <div
+                  className="ml-4 h-full flex items-center gap-1 text-[12px] text-primary-100 cursor-pointer"
+                  onClick={() => setConsoleVisible(true)}
+                >
+                  <CommandLineIcon className="w-4 h-4"/>
+                  <span>Console</span>
+                </div>
+              </Allotment.Pane>
+              }
             </Allotment>
           </div>
         </Allotment.Pane>

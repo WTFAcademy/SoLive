@@ -19,46 +19,16 @@ const jobs = {
       format: 'esm',
       file: resolve(pkg.module),
     },
-  },
-  umd: {
-    output: {
-      format: 'umd',
-      file: resolve(pkg.main),
-      name: 'rem',
-    },
-  },
-  min: {
-    output: {
-      format: 'umd',
-      file: resolve(pkg.main.replace(/(.\w+)$/, '.min$1')),
-      name: 'rem',
-    },
-    plugins: [uglify()],
-  },
+  }
 };
 
 const workerJobs = {
   esm: {
     output: {
       format: 'esm',
-      file: "dist/worker.esm.js",
-    },
-  },
-  umd: {
-    output: {
-      format: 'umd',
       file: "dist/worker.js",
-      name: 'rem',
     },
-  },
-  min: {
-    output: {
-      format: 'umd',
-      file: "dist/worker.min.js",
-      name: 'rem',
-    },
-    plugins: [uglify()],
-  },
+  }
 }
 
 // 从环境变量获取打包特征
@@ -101,6 +71,7 @@ module.exports = [
           extensions,
         }),
       ],
+      external: ['@remix-project/remix-simulator'],
     },
     workerMergeConfig,
   )

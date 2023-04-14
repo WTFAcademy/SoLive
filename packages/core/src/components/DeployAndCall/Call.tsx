@@ -10,13 +10,12 @@ const Call = () => {
 
   return (
     <div className="h-full w-full overflow-scroll">
-      <div className="text-primary-100 font-medium text-[14px] py-2 px-2">
+      <div className="text-primary-100 font-medium text-[14px] py-2 px-1">
         <span>Call</span>
-        <span className="text-primary-100 text-[10px] ml-1 inline-flex">上拉展示</span>
       </div>
       <div className="mt-2">
         {compiledContracts.length === 0 ?
-          <span className="text-primary-100">No contract has been deployed yet.</span> : ''}
+          <span className="text-primary-100 text-[12px]">No contract has been deployed yet.</span> : ''}
         {compiledContracts.map((v) => {
           return <div className="mt-2" key={v.address}>
             <Disclosure key={v.address}>

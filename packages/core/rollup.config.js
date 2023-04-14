@@ -24,7 +24,10 @@ export default {
     plugins: [
         peerDepsExternal(),
         json(),
-        resolve(),
+        resolve({
+          preferBuiltins: true,
+          mainFields: ['events', 'buffer', 'url', 'assert', 'util']
+        }),
         commonjs(),
         typescript({ useTsconfigDeclarationDir: true }),
         postcss({
