@@ -1,6 +1,7 @@
 import React, {Dispatch, SetStateAction, useState} from 'react';
 import {Allotment} from "allotment";
 import {CommandLineIcon} from "@heroicons/react/24/outline";
+import merge from "lodash/merge";
 
 import {ModelInfoType} from '../types/monaco';
 import FileNavBar from "../components/FileNavBar";
@@ -18,6 +19,8 @@ export type TConsoleProps = {
   defaultVisible?: boolean;
   defaultHeight?: string;
   minHeight?: number;
+  triggerControl?: boolean;
+  open?: boolean;
 }
 
 export type TDeployProps = {
@@ -25,26 +28,63 @@ export type TDeployProps = {
   defaultWidth?: string;
   minWidth?: number;
   maxWidth?: number;
+  open?: boolean;
+}
+
+export type TFileNavProps = {
+  open?: boolean;
 }
 
 export type TEditorProps = {
   id: string;
   modelInfos: ModelInfoType[];
   height: string;
+  fileNav?: TFileNavProps;
   rounded?: string;
   console?: TConsoleProps;
   deploy?: TDeployProps;
-  onSuccess?: Dispatch<SetStateAction<number>>;
-  onFailure?: () => void;
-  onCompile?: () => void;
-  submissionCount?: number;
+  // onSuccess?: Dispatch<SetStateAction<number>>;
+  // onFailure?: () => void;
+  // onCompile?: () => void;
+  // submissionCount?: number;
   children?: any;
 };
 
+const DefaultConsoleProps = {
+  open: true,
+  triggerControl: true,
+  defaultVisible: true,
+  minHeight: 78,
+  defaultHeight: "30%",
+}
+
+const DefaultDeployProps = {
+  open: true,
+  defaultVisible: true,
+  maxWidth: 240,
+  minWidth: 140,
+  defaultWidth: "200px"
+}
+
+const DefaultFileNavProps = {
+  open: true
+}
+
 const Main = (props: TEditorProps) => {
-  const {height, console = {}, deploy = {}, rounded = '12px', modelInfos} = props;
-  const [consoleVisible, setConsoleVisible] = useState<boolean>(console.defaultVisible === undefined ? true : console.defaultVisible);
-  const [deployVisible, setDeployVisible] = useState<boolean>(deploy.defaultVisible === undefined ? true : deploy.defaultVisible);
+  const {
+    height,
+    console = {},
+    deploy = {},
+    fileNav = {},
+    rounded = '12px',
+    modelInfos
+  } = props;
+  const consoleProps = merge(DefaultConsoleProps, console);
+  const deployProps = merge(DefaultDeployProps, deploy);
+  const fileNavProps = merge(DefaultFileNavProps, fileNav);
+
+  const [consoleVisible, setConsoleVisible] = useState<boolean>(consoleProps.defaultVisible);
+  const [deployVisible, setDeployVisible] = useState<boolean>(deployProps.defaultVisible);
 
   const handleDeployContainerVisible = (index: number, value: boolean) => {
     if (index === 1) {
@@ -75,38 +115,47 @@ const Main = (props: TEditorProps) => {
               onVisibleChange={handleConsoleVisible}
             >
               <Allotment.Pane minSize={100}>
-                <FileNavBar onClickRun={() => {setDeployVisible(old => !old); setConsoleVisible(old => !old)}}/>
+                {fileNavProps.open && (
+                  <FileNavBar onClickRun={() => {
+                    setDeployVisible(old => !old);
+                    setConsoleVisible(old => !old)
+                  }}/>
+                )}
                 <MonacoEditor modelInfos={modelInfos}/>
               </Allotment.Pane>
-              <Allotment.Pane
-                minSize={console.minHeight || 78}
-                preferredSize={console.defaultHeight || "30%"}
-                visible={consoleVisible}
-              >
-                <Console onDeleteClick={() => setConsoleVisible(false)} />
-              </Allotment.Pane>
-              {!consoleVisible &&
-              <Allotment.Pane snap={false} maxSize={24} minSize={24}>
-                <div
-                  className="ml-4 h-full flex items-center gap-1 text-[12px] text-primary-100 cursor-pointer"
-                  onClick={() => setConsoleVisible(true)}
+              {consoleProps.open && (
+                <Allotment.Pane
+                  minSize={consoleProps.minHeight}
+                  preferredSize={consoleProps.defaultHeight}
+                  visible={consoleVisible}
                 >
-                  <CommandLineIcon className="w-4 h-4"/>
-                  <span>Console</span>
-                </div>
-              </Allotment.Pane>
-              }
+                  <Console onDeleteClick={() => setConsoleVisible(false)}/>
+                </Allotment.Pane>
+              )}
+              {!consoleVisible && consoleProps.open && consoleProps.triggerControl && (
+                <Allotment.Pane snap={false} maxSize={24} minSize={24}>
+                  <div
+                    className="ml-4 h-full flex items-center gap-1 text-[12px] text-primary-100 cursor-pointer"
+                    onClick={() => setConsoleVisible(true)}
+                  >
+                    <CommandLineIcon className="w-4 h-4"/>
+                    <span>Console</span>
+                  </div>
+                </Allotment.Pane>
+              )}
             </Allotment>
           </div>
         </Allotment.Pane>
-        <Allotment.Pane
-          maxSize={deploy.maxWidth || 240}
-          minSize={deploy.minWidth || 140}
-          preferredSize={deploy.defaultWidth || "200px"}
-          visible={deployVisible}
-        >
-          <DeployAndCall/>
-        </Allotment.Pane>
+        {deployProps.open && (
+          <Allotment.Pane
+            maxSize={deployProps.maxWidth}
+            minSize={deployProps.minWidth}
+            preferredSize={deployProps.defaultWidth}
+            visible={deployVisible}
+          >
+            <DeployAndCall/>
+          </Allotment.Pane>
+        )}
       </Allotment>
     </div>
   )
