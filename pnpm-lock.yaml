@@ -261,6 +261,7 @@ importers:
       identity-obj-proxy: ^3.0.0
       lodash: ^4.17.21
       monaco-editor: ^0.35.0
+      process: ^0.11.10
       react: ^18.0.0
       react-dev-utils: ^12.0.1
       react-dom: ^18.0.0
@@ -285,6 +286,7 @@ importers:
       ethers: 5.7.2
       lodash: r2.cnpmjs.org/lodash/4.17.21
       monaco-editor: 0.35.0
+      process: r2.cnpmjs.org/process/0.11.10
       react-hook-form: 7.43.9_react@18.2.0
       react-json-view: r2.cnpmjs.org/react-json-view/1.21.3_zn3vyfk3tbnwebg5ldvieekjaq
       semver: 7.3.8
@@ -8959,16 +8961,6 @@ packages:
       postcss-value-parser: r2.cnpmjs.org/postcss-value-parser/4.2.0
     dev: false
 
-  /postcss-import/14.1.0:
-    resolution: {integrity: sha512-flwI+Vgm4SElObFVPpTIT7SU7R3qk2L7PyduMcokiaVKuWv9d/U+Gm/QAd8NDLuykTWTkcrjOeD2Pp1rMeBTGw==}
-    engines: {node: '>=10.0.0'}
-    peerDependencies:
-      postcss: ^8.0.0
-    dependencies:
-      postcss-value-parser: r2.cnpmjs.org/postcss-value-parser/4.2.0
-      read-cache: r2.cnpmjs.org/read-cache/1.0.0
-      resolve: 1.22.1
-
   /postcss-import/14.1.0_postcss@8.4.21:
     resolution: {integrity: sha512-flwI+Vgm4SElObFVPpTIT7SU7R3qk2L7PyduMcokiaVKuWv9d/U+Gm/QAd8NDLuykTWTkcrjOeD2Pp1rMeBTGw==}
     engines: {node: '>=10.0.0'}
@@ -8979,15 +8971,6 @@ packages:
       postcss-value-parser: r2.cnpmjs.org/postcss-value-parser/4.2.0
       read-cache: r2.cnpmjs.org/read-cache/1.0.0
       resolve: 1.22.1
-    dev: false
-
-  /postcss-js/4.0.1:
-    resolution: {integrity: sha512-dDLF8pEO191hJMtlHFPRa8xsizHaM82MLfNkUHdUtVEV3tgTp5oj+8qbEqYM57SLfc74KSbw//4SeJma2LRVIw==}
-    engines: {node: ^12 || ^14 || >= 16}
-    peerDependencies:
-      postcss: ^8.4.21
-    dependencies:
-      camelcase-css: r2.cnpmjs.org/camelcase-css/2.0.1
 
   /postcss-js/4.0.1_postcss@8.4.21:
     resolution: {integrity: sha512-dDLF8pEO191hJMtlHFPRa8xsizHaM82MLfNkUHdUtVEV3tgTp5oj+8qbEqYM57SLfc74KSbw//4SeJma2LRVIw==}
@@ -8997,7 +8980,6 @@ packages:
     dependencies:
       camelcase-css: r2.cnpmjs.org/camelcase-css/2.0.1
       postcss: 8.4.21
-    dev: false
 
   /postcss-lab-function/4.2.1_postcss@8.4.21:
     resolution: {integrity: sha512-xuXll4isR03CrQsmxyz92LJB2xX9n+pZJ5jE9JgcnmsCammLyKdlzrBin+25dy6wIjfhJpKBAN80gsTlCgRk2w==}
@@ -9009,21 +8991,6 @@ packages:
       postcss: 8.4.21
       postcss-value-parser: r2.cnpmjs.org/postcss-value-parser/4.2.0
     dev: false
-
-  /postcss-load-config/3.1.4:
-    resolution: {integrity: sha512-6DiM4E7v4coTE4uzA8U//WhtPwyhiim3eyjEMFCnUpzbrkK9wJHgKDT2mR+HbtSrd/NubVaYTOpSpjUl8NQeRg==}
-    engines: {node: '>= 10'}
-    peerDependencies:
-      postcss: '>=8.0.9'
-      ts-node: '>=9.0.0'
-    peerDependenciesMeta:
-      postcss:
-        optional: true
-      ts-node:
-        optional: true
-    dependencies:
-      lilconfig: 2.1.0
-      yaml: r2.cnpmjs.org/yaml/1.10.2
 
   /postcss-load-config/3.1.4_postcss@7.0.39:
     resolution: {integrity: sha512-6DiM4E7v4coTE4uzA8U//WhtPwyhiim3eyjEMFCnUpzbrkK9wJHgKDT2mR+HbtSrd/NubVaYTOpSpjUl8NQeRg==}
@@ -9181,14 +9148,6 @@ packages:
       string-hash: r2.cnpmjs.org/string-hash/1.1.3
     dev: true
 
-  /postcss-nested/6.0.0:
-    resolution: {integrity: sha512-0DkamqrPcmkBDsLn+vQDIrtkSbNkv5AD/M322ySo9kqFkCIYklym2xEmWkwo+Y3/qZo34tzEPNUw4y7yMCdv5w==}
-    engines: {node: '>=12.0'}
-    peerDependencies:
-      postcss: ^8.2.14
-    dependencies:
-      postcss-selector-parser: 6.0.11
-
   /postcss-nested/6.0.0_postcss@8.4.21:
     resolution: {integrity: sha512-0DkamqrPcmkBDsLn+vQDIrtkSbNkv5AD/M322ySo9kqFkCIYklym2xEmWkwo+Y3/qZo34tzEPNUw4y7yMCdv5w==}
     engines: {node: '>=12.0'}
@@ -9197,7 +9156,6 @@ packages:
     dependencies:
       postcss: 8.4.21
       postcss-selector-parser: 6.0.11
-    dev: false
 
   /postcss-nesting/10.2.0_postcss@8.4.21:
     resolution: {integrity: sha512-EwMkYchxiDiKUhlJGzWsD9b2zvq/r2SSubcRrgP+jujMXFzqvANLt16lJANC+5uZ6hjI7lpRmI6O8JIl+8l1KA==}
@@ -10463,8 +10421,6 @@ packages:
     resolution: {integrity: sha512-Vkiouc41d4CEq0ujXl6oiGFQ7bA3WEhUZdTgXAhtKxSy49OmKs8rEfQmupsfF0IGW8fv2iQkp1EVUuapCFrZ9g==}
     engines: {node: '>=12.13.0'}
     hasBin: true
-    peerDependencies:
-      postcss: ^8.0.9
     dependencies:
       arg: 5.0.2
       chokidar: 3.5.3
@@ -10481,10 +10437,10 @@ packages:
       object-hash: 3.0.0
       picocolors: r2.cnpmjs.org/picocolors/1.0.0
       postcss: 8.4.21
-      postcss-import: 14.1.0
-      postcss-js: 4.0.1
-      postcss-load-config: 3.1.4
-      postcss-nested: 6.0.0
+      postcss-import: 14.1.0_postcss@8.4.21
+      postcss-js: 4.0.1_postcss@8.4.21
+      postcss-load-config: 3.1.4_postcss@8.4.21
+      postcss-nested: 6.0.0_postcss@8.4.21
       postcss-selector-parser: 6.0.11
       postcss-value-parser: r2.cnpmjs.org/postcss-value-parser/4.2.0
       quick-lru: r2.cnpmjs.org/quick-lru/5.1.1
