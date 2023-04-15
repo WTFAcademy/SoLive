@@ -26,7 +26,6 @@ export default () => ({
           "stream": require.resolve("stream-browserify"),
           "path": require.resolve("path-browserify"),
           "events": require.resolve("events/"),
-          "process": require.resolve("process/browser"),
           "os": require.resolve("os-browserify/browser"),
           "buffer": require.resolve("buffer/"),
           "url": require.resolve("url/"),
