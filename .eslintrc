@@ -3,10 +3,7 @@
     "browser": true,
     "es2021": true
   },
-  "plugins": [
-    "prettier",
-    "@typescript-eslint"
-  ],
+  "plugins": ["prettier", "@typescript-eslint"],
   "extends": [
     "eslint:recommended",
     "plugin:@typescript-eslint/recommended",
@@ -15,9 +12,7 @@
   ],
   "parser": "@typescript-eslint/parser",
   "parserOptions": {
-    "project": [
-      "**/tsconfig.json"
-    ]
+    "project": ["**/tsconfig.json"]
   },
   "settings": {
     "import/resolver": {
@@ -30,7 +25,12 @@
   "rules": {
     "import/order": ["error", { "newlines-between": "always" }],
     "import/no-named-as-default-member": "off",
-    "import/no-unresolved": "error",
+    "import/no-unresolved": [
+      "error",
+      {
+        "ignore": ["^@theme-original", "^@docusaurus"]
+      }
+    ],
     "@typescript-eslint/no-non-null-assertion": "off",
     "@typescript-eslint/no-explicit-any": "off",
     "@typescript-eslint/no-empty-interface": "off",
