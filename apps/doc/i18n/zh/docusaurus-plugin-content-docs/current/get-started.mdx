@@ -1,100 +1,192 @@
 ---
-title: Get Started
+title: 开始
+sidebar_position: 1
 hide_title: true
 ---
 
-# Get Started
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
 
-You can create a Solidity interactive code editor with the `solive-docusaurus-theme-code` plugin. First, add the plugin to your package.
+## 开始
 
-```bash npm2yarn
-npm install --save solive-docusaurus-theme-code
+### 安装
+
+<Tabs>
+<TabItem value="npm" label="Npm">
+
+```sh
+npm install solive
 ```
 
-You will also need to add the plugin to your `docusaurus.config.js`.
+</TabItem>
+<TabItem value="Yarn" label="Yarn">
 
-```js {3}
+```sh
+yarn add solive
+```
+
+</TabItem>
+<TabItem value="Pnpm" label="Pnpm">
+
+```sh
+pnpm install solive
+```
+
+</TabItem>
+</Tabs>
+
+### 使用
+
+#### 1. 配置webpack
+
+<Tabs>
+<TabItem value="react" label="React">
+
+```js
+// 使用craco配置：
+const webpack = require("webpack");
+
 module.exports = {
   // ...
-  themes: ['solive-docusaurus-theme-code'],
-  // ...
+  webpack: {
+    configure: (webpackConfig, { env, paths }) => {
+      // eslint-disable-next-line no-param-reassign
+      webpackConfig.resolve.fallback = {
+        "http": require.resolve("stream-http"),
+        "https": require.resolve("https-browserify"),
+        "zlib": require.resolve("browserify-zlib"),
+        "stream": require.resolve("stream-browserify"),
+        "events": require.resolve("events/"),
+        "crypto": require.resolve("crypto-browserify"),
+        "assert": require.resolve("assert/"),
+        "buffer": require.resolve("buffer/"),
+        "util": require.resolve("util/"),
+        "path": require.resolve("path-browserify"),
+        "tty": require.resolve("tty-browserify"),
+        "os": require.resolve("os-browserify/browser"),
+        "punycode": require.resolve("punycode/"),
+        "fs": false,
+        "url": require.resolve("url/"),
+        "net": require.resolve("net-browserify"),
+        "child_process": false,
+        async_hooks: false,
+        rawBody: false,
+      };
+
+      webpackConfig.plugins.push(
+        new webpack.ProvidePlugin({
+          Buffer: ["buffer", "Buffer"]
+        })
+      );
+      return webpackConfig;
+    }
+  }
 };
+
 ```
 
-To use the plugin, create a code block with `solive` attached to the language meta string.
+</TabItem>
+<TabItem value="Yarn" label="NextJS">
 
-````md
-```solidity solive height=300px
----
-filename: Storage.sol
----
+```js
+// next.config.js
 
-// SPDX-License-Identifier: GPL-3.0
+/** @type {import('next').NextConfig} */
+const nextConfig = {
+  // ...
+  webpack: (webpackConfig, { buildId, dev, isServer, defaultLoaders, webpack }) => {
+    webpackConfig.resolve.fallback = {
+      "http": require.resolve("stream-http"),
+      "https": require.resolve("https-browserify"),
+      "zlib": require.resolve("browserify-zlib"),
+      "stream": require.resolve("stream-browserify"),
+      "events": require.resolve("events/"),
+      "crypto": require.resolve("crypto-browserify"),
+      "assert": require.resolve("assert/"),
+      "buffer": require.resolve("buffer/"),
+      "util": require.resolve("util/"),
+      "path": require.resolve("path-browserify"),
+      "tty": require.resolve("tty-browserify"),
+      "os": require.resolve("os-browserify/browser"),
+      "punycode": require.resolve("punycode/"),
+      "fs": false,
+      "url": require.resolve("url/"),
+      "net": require.resolve("net-browserify"),
+      "child_process": false,
+      async_hooks: false,
+      rawBody: false,
+    };
 
-pragma solidity >=0.7.0 <0.9.0;
-
-/**
- * @title Storage
- * @dev Store & retrieve value in a variable
- * @custom:dev-run-script ./scripts/deploy_with_ethers.ts
- */
-contract Storage {
-
-    uint256 number;
-
-    /**
-     * @dev Store value in variable
-     * @param num value to store
-     */
-    function store(uint256 num) public {
-        number = num;
-    }
-
-    /**
-     * @dev Return value
-     * @return value of 'number'
-     */
-    function retrieve() public view returns (uint256){
-        return number;
-    }
+    webpackConfig.plugins.push(
+      new webpack.ProvidePlugin({
+        Buffer: ["buffer", "Buffer"]
+      })
+    );
+    return webpackConfig;
+  },
 }
+
+module.exports = nextConfig
 ```
-````
 
-The code block will be rendered as an interactive editor.
+</TabItem>
+</Tabs>
 
-```solidity solive height="500px" deployDefaultVisible="false" consoleDefaultVisible="false"
----
-filename: Storage.sol
----
+#### 2. 引入样式
 
-// SPDX-License-Identifier: GPL-3.0
+```js
+import 'solive-core/dist/index.css';
+```
 
-pragma solidity >=0.7.0 <0.9.0;
+#### 3. 使用
 
+```react
+<Editor
+  height="500px"
+  modelInfos={[
+    {
+      filename: '_Storage.sol',
+      value: "// SPDX-License-Identifier: GPL-3.0\n\npragma solidity >=0.7.0 <0.9.0;\n\n/**\n * @title Storage\n * @dev Store & retrieve value in a variable\n * @custom:dev-run-script ./scripts/deploy_with_ethers.ts\n */\ncontract Storage {\n\n    uint256 number;\n\n    /**\n     * @dev Store value in variable\n     * @param num value to store\n     */\n    function store(uint256 num) public {\n        number = num;\n    }\n\n    /**\n     * @dev Return value \n     * @return value of 'number'\n     */\n    function retrieve() public view returns (uint256){\n        return number;\n    }\n}",
+      language: "solidity" as any,
+    },
+  ]}
+/>
+```
+
+即可看到效果：
+
+```solidity solive height="500px" consoleDefaultVisible="true" deployDefaultVisible="true"
 /**
- * @title Storage
- * @dev Store & retrieve value in a variable
- * @custom:dev-run-script ./scripts/deploy_with_ethers.ts
- */
-contract Storage {
+   * @filename Storage.sol
+   */
 
-    uint256 number;
+  // SPDX-License-Identifier: GPL-3.0
 
-    /**
-     * @dev Store value in variable
-     * @param num value to store
-     */
-    function store(uint256 num) public {
-        number = num;
-    }
+  pragma solidity >=0.7.0 <0.9.0;
 
-    /**
-     * @dev Return value
-     * @return value of 'number'
-     */
-    function retrieve() public view returns (uint256){
-        return number;
-    }
-}
+  /**
+   * @title Storage
+   * @dev Store & retrieve value in a variable
+   * @custom:dev-run-script ./scripts/deploy_with_ethers.ts
+   */
+  contract Storage {
+
+      uint256 number;
+
+      /**
+       * @dev Store value in variable
+       * @param num value to store
+       */
+      function store(uint256 num) public {
+          number = num;
+      }
+
+      /**
+       * @dev Return value
+       * @return value of 'number'
+       */
+      function retrieve() public view returns (uint256){
+          return number;
+      }
+  }
 ```
