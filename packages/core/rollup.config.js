@@ -26,7 +26,7 @@ export default {
         json(),
         resolve({
           preferBuiltins: true,
-          mainFields: ['events', 'buffer', 'url', 'assert', 'util']
+          mainFields: ['events', 'buffer', 'url', 'assert', 'util', 'process']
         }),
         commonjs(),
         typescript({ useTsconfigDeclarationDir: true }),

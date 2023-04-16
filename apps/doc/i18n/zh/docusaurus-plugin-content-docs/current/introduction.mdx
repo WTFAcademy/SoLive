@@ -1,8 +1,21 @@
 ---
-title: Introduction
+title: 介绍
 sidebar_position: 0
 slug: /introduction
 hide_title: true
 ---
 
-### Coming Soon...
+## 介绍
+Solive是一个灵活的在线Solidity智能合约的试验场，受到了remix-IDE和react-live的启发。 Solive可让您在一个React组件中编辑、编译、部署和交互Solidity智能合约。 您可以将solive嵌入您的网站或教程，并让用户在浏览器中运行Solidity代码。 Solive也兼容移动浏览器。
+
+### 使用场景：
+1. 教育：我们将在WTF Solidity教程中使用solive替换代码块，让学生能够阅读和运行代码。
+2. 开发人员入门：Layer2项目可以使用Solive来招募以太坊开发人员。
+
+### 这是如何做的
+1. 参考remix-ide：一个在线IDE，用于开发智能合约
+2. 参考react-live：一个灵活的React代码实时编辑器。我们建立solive的原因是希望学生在阅读WTF Solidity教程的同时能运行示例代码。Solive的设计很轻便，只包含必要的模块以便编辑、编译、部署和与智能合约进行交互。
+3. 编辑模块：我们使用代码编辑器Monaco Editor。
+4. 编译模块：我们使用`solcjs`根据选定的Solidity版本进行编译智能合约。
+5. 部署：我们使用`ethersjs V5`和`ethereumjs vm`两者结合，将编译后的合约部署到本地EVM上。
+6. 交互：我们使用`ethersjs V5`和一个自定义的ABI-UI转换器来与部署的合约进行交互。

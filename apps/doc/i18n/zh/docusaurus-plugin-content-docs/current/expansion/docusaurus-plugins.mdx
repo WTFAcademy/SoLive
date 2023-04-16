@@ -1,0 +1,136 @@
+---
+title: Docusaurus 插件
+hide_title: true
+---
+
+## Docusaurus 插件
+
+> 你可以使用 `solive-docusaurus-theme-code` 插件快速集成一个轻量级Solidity Editor嵌入你的文档.
+
+### 安装
+
+1. 首先我们需要安装 `solive-docusaurus-theme-code` 插件：
+```bash npm2yarn
+npm install --save solive-docusaurus-theme-code
+```
+
+2. 其次你需要在你的 `docusaurus.config.js` 中配置 `solive` 插件.
+
+```js {3}
+module.exports = {
+  // ...
+  themes: ['solive-docusaurus-theme-code'],
+  // ...
+};
+```
+
+### 快速使用
+
+1. 你需要注意在代码块标记solive，和配置solive的属性：
+```md
+  ```solidity solive height=300px
+    // your code
+  ```\
+```
+
+2. 你可以在代码块中配置solive相关属性 `height`（具体参考[属性表](./introduction.mdx)）：
+```md
+  ```solidity solive height=300px
+    // your code
+  ```\
+```
+
+3. 配置代码块文件名（可多文件）：
+```md
+  ```solidity solive height=300px
+    /**
+     * @filename Storage.sol
+     */
+
+    // your code
+
+    /**
+     * @filename Storage2.sol
+     */
+
+    // your code
+  ```\
+```
+
+3. 完整的代码块示例：
+````md
+```solidity solive height=300px
+/**
+ * @filename Storage.sol
+ */
+
+
+// SPDX-License-Identifier: GPL-3.0
+
+pragma solidity >=0.7.0 <0.9.0;
+
+/**
+ * @title Storage
+ * @dev Store & retrieve value in a variable
+ * @custom:dev-run-script ./scripts/deploy_with_ethers.ts
+ */
+contract Storage {
+
+    uint256 number;
+
+    /**
+     * @dev Store value in variable
+     * @param num value to store
+     */
+    function store(uint256 num) public {
+        number = num;
+    }
+
+    /**
+     * @dev Return value
+     * @return value of 'number'
+     */
+    function retrieve() public view returns (uint256){
+        return number;
+    }
+}
+```\
+````
+
+### 展示结果：
+
+```solidity solive height=300px
+  /**
+   * @filename Storage.sol
+   */
+
+  // SPDX-License-Identifier: GPL-3.0
+
+  pragma solidity >=0.7.0 <0.9.0;
+
+  /**
+   * @title Storage
+   * @dev Store & retrieve value in a variable
+   * @custom:dev-run-script ./scripts/deploy_with_ethers.ts
+   */
+  contract Storage {
+
+      uint256 number;
+
+      /**
+       * @dev Store value in variable
+       * @param num value to store
+       */
+      function store(uint256 num) public {
+          number = num;
+      }
+
+      /**
+       * @dev Return value
+       * @return value of 'number'
+       */
+      function retrieve() public view returns (uint256){
+          return number;
+      }
+  }
+```

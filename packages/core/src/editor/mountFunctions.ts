@@ -19,6 +19,7 @@ import {
   solidityTokensProvider,
 } from './syntaxes/solidity';
 import {findModel} from './utils/model';
+import solidityFormatter from "./utils/format-code";
 
 function initTheme(monaco: Monaco) {
   monaco.editor.defineTheme('myCustomTheme', {
@@ -107,6 +108,21 @@ function registerCommandsAndActions(monaco: Monaco, editor: BaseMonacoEditor, di
 
   editor.addAction(zoomOutAction);
   editor.addAction(zoominAction);
+
+  const formatAction = {
+    id: 'solidity-format',
+    label: 'Format Solidity Code',
+    keybindings: [monaco.KeyMod.CtrlCmd | monaco.KeyCode.KeyF], // 绑定 Ctrl+F 或 Cmd+F 键作为快捷键
+    contextMenuGroupId: 'navigation',
+    contextMenuOrder: 1.5,
+    run: function (editor: any) {
+      const unformattedCode = editor.getValue();
+      const formattedCode = solidityFormatter(unformattedCode);
+      editor.setValue(formattedCode);
+    },
+  };
+
+  editor.addAction(formatAction);
 
   // @ts-ignore
   const editorService = editor._codeEditorService;

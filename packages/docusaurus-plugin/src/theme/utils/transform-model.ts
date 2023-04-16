@@ -1,14 +1,14 @@
 import {SupportLanguage} from "solive-core";
 import {ModelInfoType} from "solive-core/src";
 
-import {TMeta} from "./resolveMeta";
-
+import {TMeta} from "./resolve-meta";
+import solidityFormatter from "./format-code";
 
 const transformModel = (metas: TMeta[]) => {
   return metas.map(meta => new ModelInfoType({
-    filename: meta.meta.filename,
-    value: meta.content,
-    language: (meta.meta.language as SupportLanguage) || SupportLanguage.Solidity,
+    filename: meta.filename,
+    value: solidityFormatter(meta.content),
+    language: SupportLanguage.Solidity,
   }))
 }
 

@@ -1,0 +1,51 @@
+---
+title: 组件属性
+sidebar_position: 2
+hide_title: true
+---
+
+# 组件属性
+
+## 属性表
+
+| 属性名 | 介绍 | 类型 | 默认值 | 是否必填 |
+| ----- | ----- | ----- | ----- | ----- |
+| id | 表单唯一标志 | string | - | ✅ |
+| modelInfos | 文件信息 | array | [] | ✅ |
+| height | 高度 | string | - | ✅ |
+| rounded | 窗口弧度 | string | 12px | - |
+| fileNav | 顶部文件导航 | TFileNav | (参考 [TFileNav](/docs/solive-props#tfilenav)) | - |
+| console | 日志块 | TConsole | (参考 [TConsole](/docs/solive-props#tconsole)) | - |
+| deploy | 部署块 | TDeploy | (参考 [TDeploy](/docs/solive-props#tdeploy)) | - |
+
+## TFileNav
+
+顶部文件导航属性表
+
+| 属性名 | 介绍 | 类型 | 默认值 | 是否必填 |
+| ----- | ----- | ----- | ----- | ----- |
+| open | 是否开启功能 | boolean | true | - |
+
+## TConsole
+
+日志块属性表
+
+| 属性名 | 介绍 | 类型 | 默认值 | 是否必填 |
+| ----- | ----- | ----- | ----- | ----- |
+| defaultVisible | 默认是否显示 | boolean | true | - |
+| defaultHeight | 默认高度 | string | "30%" | - |
+| minHeight | 最小高度 | number | 78 | - |
+| triggerControl | 是否开启控制 | boolean | true | - |
+| open | 是否开启功能 | boolean | true | - |
+
+## TDeploy
+
+部署块属性表
+
+| 属性名 | 介绍 | 类型 | 默认值 | 是否必填 |
+| ----- | ----- | ----- | ----- | ----- |
+| defaultVisible | 默认是否显示 | boolean | true | - |
+| defaultWidth | 默认宽度 | string | "200px" | - |
+| minWidth | 最小宽度 | number | 140 | - |
+| maxWidth | 最大宽度 | number | 240 | - |
+| open | 是否开启功能 | boolean | true | - |
