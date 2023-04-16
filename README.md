@@ -3,16 +3,14 @@
 A flexible online playground for Solidity smart contract, inspired by remix-IDE and react-live
 
 ### Demo
-- Check demo website: https://solive-demo.vercel.app/
+- Check demo website: https://solive.wtf
 
 - build demo: [demo](./apps/demo)
 
-### Todo
-- [] NPM Publish
-- [] Metamask Provider
-- [] Finish Deploy
-- [] Optimize logging system
-- [] Build Mdx Component
+### DOC
+- Check doc website: https://solive-doc-git-dev-wtfacademy.vercel.app
+
+- build doc: [doc](./apps/doc)
 
 ### Dev
 
