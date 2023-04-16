@@ -1,9 +1,11 @@
-import React, {useEffect, useMemo, useReducer, useRef} from "react";
-import monacoForTypes, {editor} from "monaco-editor";
-import VmProvider from "solive-provider";
+import React, {
+  useEffect, useMemo, useReducer, useRef,
+} from 'react';
 
-import {BaseMonacoEditor, ModelType} from "../../types/monaco";
-import CodeParser from "../codeParser";
+import monacoForTypes, { editor } from 'monaco-editor';
+
+import { BaseMonacoEditor, ModelType } from '../../types/monaco';
+import CodeParser from '../codeParser';
 
 export interface IEditorInitState {
   editor: editor.IStandaloneCodeEditor | undefined;
@@ -15,13 +17,13 @@ export interface IEditorInitState {
 }
 
 export interface IEditorReducerActionType {
-  type: "updateEditor" |
-    "updateMonaco" |
-    "updateModels" |
-    "updateModelIndex" |
-    "setCodeParser" |
-    "updateCodeParserLoading" |
-    "cleanModels"
+  type: 'updateEditor' |
+    'updateMonaco' |
+    'updateModels' |
+    'updateModelIndex' |
+    'setCodeParser' |
+    'updateCodeParserLoading' |
+    'cleanModels'
   payload: Partial<IEditorInitState> & { id?: string };
 }
 
@@ -38,7 +40,6 @@ export type TEditorReducerAction = {
 export type TEditorContext = {
   state: IEditorInitState;
   stateRef: React.MutableRefObject<IEditorInitState>;
-  vmProviderRef: React.MutableRefObject<VmProvider | null>;
   dispatch: React.Dispatch<IEditorReducerActionType>;
   actions: TEditorReducerAction;
   id: string;
@@ -54,50 +55,47 @@ const editorInitState: IEditorInitState = {
   modelIndex: 0,
   codeParser: {} as CodeParser,
   codeParserInitLoading: false,
-}
+};
 
 const editorReducer = (state: IEditorInitState, action: IEditorReducerActionType): IEditorInitState => {
   switch (action.type) {
-    case "updateEditor":
-      return {...state, editor: action.payload.editor}
-    case "updateMonaco":
-      return {...state, monaco: action.payload.monaco}
-    case "updateModels":
-      return {...state, models: action.payload.models}
-    case "updateModelIndex":
-      return {...state, modelIndex: action.payload.modelIndex}
-    case "setCodeParser":
-      return {...state, codeParser: action.payload.codeParser || {} as CodeParser}
-    case "updateCodeParserLoading":
-      return {...state, codeParserInitLoading: action.payload.codeParserInitLoading || false}
+    case 'updateEditor':
+      return { ...state, editor: action.payload.editor };
+    case 'updateMonaco':
+      return { ...state, monaco: action.payload.monaco };
+    case 'updateModels':
+      return { ...state, models: action.payload.models };
+    case 'updateModelIndex':
+      return { ...state, modelIndex: action.payload.modelIndex };
+    case 'setCodeParser':
+      return { ...state, codeParser: action.payload.codeParser || {} as CodeParser };
+    case 'updateCodeParserLoading':
+      return { ...state, codeParserInitLoading: action.payload.codeParserInitLoading || false };
     default:
       return state;
   }
-}
+};
 
 const editorStateMap = new Map<string, IEditorInitState>();
 
 // TODO: 待删减拆分后的部分
 // Editor Provider
-export function EditorProvider({children, id}: { children: React.ReactNode, id: string }) {
+export function EditorProvider({ children, id }: { children: React.ReactNode, id: string }) {
   const [state, dispatch] = useReducer<React.Reducer<IEditorInitState, IEditorReducerActionType>>(editorReducer, editorInitState);
-  const vmProviderRef = useRef<VmProvider | null>(null);
   const stateRef = useRef<IEditorInitState>(state);
   // some provider need to access the state directly
-  const actions: TEditorReducerAction = useMemo(() => {
-    return {
-      updateEditor: (editor: BaseMonacoEditor) => dispatch({type: "updateEditor", payload: {editor}}),
-      updateMonaco: (monaco: typeof monacoForTypes) => dispatch({type: "updateMonaco", payload: {monaco}}),
-      updateModels: (models: ModelType[]) => dispatch({type: "updateModels", payload: {models}}),
-      updateModelIndex: (modelIndex: number) => dispatch({type: "updateModelIndex", payload: {modelIndex}}),
-      setCodeParser: (codeParser: CodeParser) => dispatch({type: "setCodeParser", payload: {codeParser}}),
-      updateCodeParserLoading: (codeParserInitLoading: boolean) => dispatch({
-        type: "updateCodeParserLoading",
-        payload: {codeParserInitLoading}
-      }),
-      cleanModels: () => dispatch({type: "updateModels", payload: {models: []}}),
-    }
-  }, [])
+  const actions: TEditorReducerAction = useMemo(() => ({
+    updateEditor: (editor: BaseMonacoEditor) => dispatch({ type: 'updateEditor', payload: { editor } }),
+    updateMonaco: (monaco: typeof monacoForTypes) => dispatch({ type: 'updateMonaco', payload: { monaco } }),
+    updateModels: (models: ModelType[]) => dispatch({ type: 'updateModels', payload: { models } }),
+    updateModelIndex: (modelIndex: number) => dispatch({ type: 'updateModelIndex', payload: { modelIndex } }),
+    setCodeParser: (codeParser: CodeParser) => dispatch({ type: 'setCodeParser', payload: { codeParser } }),
+    updateCodeParserLoading: (codeParserInitLoading: boolean) => dispatch({
+      type: 'updateCodeParserLoading',
+      payload: { codeParserInitLoading },
+    }),
+    cleanModels: () => dispatch({ type: 'updateModels', payload: { models: [] } }),
+  }), []);
 
   useEffect(() => {
     const oldState = editorStateMap.get(id) || {};
@@ -105,17 +103,16 @@ export function EditorProvider({children, id}: { children: React.ReactNode, id: 
     stateRef.current = Object.assign(oldState, state || {});
   }, [state, id]);
 
+  const contextState = useMemo(() => ({
+    state,
+    dispatch,
+    stateRef,
+    actions,
+    id,
+  }), [state, dispatch, actions, id]);
+
   return (
-    <EditorContext.Provider
-      value={{
-        state,
-        dispatch,
-        stateRef,
-        vmProviderRef,
-        actions,
-        id
-      }}
-    >
+    <EditorContext.Provider value={contextState}>
       {children}
     </EditorContext.Provider>
   );
@@ -125,7 +122,7 @@ export function useEditor() {
   const context = React.useContext(EditorContext);
 
   if (context === undefined) {
-    throw new Error("useEditor must be used withing a provider");
+    throw new Error('useEditor must be used withing a provider');
   }
 
   return context;

@@ -1,3 +1,3 @@
-## Solive Solc
+## Solive Provider
 
-use solc to compile solidity code
+use Evm VM to run solidity code

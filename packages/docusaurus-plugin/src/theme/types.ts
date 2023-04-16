@@ -1,4 +1,4 @@
-import type {Props} from '@theme-init/CodeBlock'
+import type { Props } from '@theme-init/CodeBlock';
 
 export interface SoliveCodeBlockProps extends Props {
   solive: string;
@@ -6,6 +6,7 @@ export interface SoliveCodeBlockProps extends Props {
   width?: string;
   deployDefaultVisible?: string;
   consoleDefaultVisible?: string;
+  fileNavOpen?: string;
 }
 
 export type DispatchTypes = 'reset' | 'loading' | 'loaded' | 'error'

@@ -14,16 +14,20 @@ importers:
       '@rollup/plugin-typescript': ^11.0.0
       '@tsconfig/node16-strictest-esm': ^1.0.1
       '@types/node': 17.0.41
-      '@typescript-eslint/eslint-plugin': ^5.39.0
-      '@typescript-eslint/parser': ^5.39.0
-      eslint: ^8.25.0
+      '@typescript-eslint/eslint-plugin': ^5.57.1
+      '@typescript-eslint/parser': ^5.57.1
+      eslint: ^8.37.0
+      eslint-config-airbnb: ^19.0.4
       eslint-config-prettier: ^8.5.0
       eslint-define-config: ^1.5.1
       eslint-import-resolver-typescript: ^2.7.1
-      eslint-plugin-import: ^2.26.0
+      eslint-plugin-import: ^2.27.5
+      eslint-plugin-jsx-a11y: ^6.7.1
       eslint-plugin-prettier: ^4.2.1
-      husky: ^8.0.1
-      lint-staged: ^13.0.3
+      eslint-plugin-react: ^7.32.2
+      eslint-plugin-react-hooks: ^4.6.0
+      husky: ^8.0.3
+      lint-staged: ^13.2.0
       nx: ^15.0.0
       postcss: ^8
       postcss-cli: ^8
@@ -56,10 +60,14 @@ importers:
       '@typescript-eslint/eslint-plugin': 5.57.1_iify4w3mi7rbbu6mxzspkpx4b4
       '@typescript-eslint/parser': 5.57.1_ip5up2nocltd47wbnuyybe5dxu
       eslint: 8.37.0
+      eslint-config-airbnb: r2.cnpmjs.org/eslint-config-airbnb/19.0.4_m7fpnnvzewd4bw2kt67dqtucga
       eslint-config-prettier: 8.8.0_eslint@8.37.0
       eslint-define-config: 1.17.0
       eslint-import-resolver-typescript: 2.7.1_rbts4wm34tb3x7owcp777e4f4y
       eslint-plugin-import: 2.27.5_yo7k32idqwcpvt57tyfdxls5fe
+      eslint-plugin-jsx-a11y: 6.7.1_eslint@8.37.0
+      eslint-plugin-react: 7.32.2_eslint@8.37.0
+      eslint-plugin-react-hooks: 4.6.0_eslint@8.37.0
       husky: 8.0.3
       lint-staged: 13.2.0
       nx: 15.9.2
@@ -207,7 +215,7 @@ importers:
       postcss: 8.4.21
       react: 18.2.0
       react-dom: 18.2.0
-      solive-core: workspace:0.0.1-aplha
+      solive-core: workspace:*
       tailwindcss: 3.3.1
       typescript: 5.0.4
     dependencies:
@@ -261,6 +269,7 @@ importers:
       identity-obj-proxy: ^3.0.0
       lodash: ^4.17.21
       monaco-editor: ^0.35.0
+      process: ^0.11.10
       react: ^18.0.0
       react-dev-utils: ^12.0.1
       react-dom: ^18.0.0
@@ -285,6 +294,7 @@ importers:
       ethers: 5.7.2
       lodash: r2.cnpmjs.org/lodash/4.17.21
       monaco-editor: 0.35.0
+      process: r2.cnpmjs.org/process/0.11.10
       react-hook-form: 7.43.9_react@18.2.0
       react-json-view: r2.cnpmjs.org/react-json-view/1.21.3_zn3vyfk3tbnwebg5ldvieekjaq
       semver: 7.3.8
@@ -369,7 +379,10 @@ importers:
 
   packages/solc:
     specifiers:
+      solc: ^0.8.19
       solive-tsconfig: workspace:*
+    dependencies:
+      solc: 0.8.19
     devDependencies:
       solive-tsconfig: link:../tsconfig
 
@@ -5129,7 +5142,6 @@ packages:
     resolution: {integrity: sha512-R5iJ5lkuHybztUfuOAznmboyjWq8O6sqNqtK7CLOqdydi54VNbORp49mb14KbWgG1QD3JFO9hJdZ+y4KutfdOQ==}
     dependencies:
       deep-equal: 2.2.0
-    dev: false
 
   /array-buffer-byte-length/1.0.0:
     resolution: {integrity: sha512-LPuwb2P+NrQw3XhxGc36+XSvuBPopovXYTR9Ew++Du9Yb/bx5AzBfrIsBoj0EZUifjQU+sHL21sseZ3jerWO/A==}
@@ -5184,7 +5196,6 @@ packages:
       es-abstract: 1.21.2
       es-shim-unscopables: 1.0.0
       get-intrinsic: 1.2.0
-    dev: false
 
   /async/2.6.4:
     resolution: {integrity: sha512-mzo5dfJYwAn29PeiJ0zvwTo04zj8HDJj0Mn8TD7sno7q12prdbnasKJHhkm2c1LgrhlJ0teaea8860oxi51mGA==}
@@ -5235,7 +5246,6 @@ packages:
   /axe-core/4.6.3:
     resolution: {integrity: sha512-/BQzOX780JhsxDnPpH4ZiyrJAzcd8AfzFPkv+89veFSr1rcMjuq2JDCwypKaPeB6ljHp9KjXhPpjgCvQlWYuqg==}
     engines: {node: '>=4'}
-    dev: false
 
   /axios/0.25.0:
     resolution: {integrity: sha512-cD8FOb0tRH3uuEe6+evtAbgJtfxr7ly3fQjYcMcuPlgkwVS9xboaVIpcDV+cYQe+yGykgwZCs1pzjntcGa6l5g==}
@@ -5267,7 +5277,6 @@ packages:
     resolution: {integrity: sha512-goKlv8DZrK9hUh975fnHzhNIO4jUnFCfv/dszV5VwUGDFjI6vQ2VwoyjYjYNEbBE8AH87TduWP5uyDR1D+Iteg==}
     dependencies:
       deep-equal: 2.2.0
-    dev: false
 
   /babel-jest/27.5.1_@babel+core@7.21.4:
     resolution: {integrity: sha512-cdQ5dXjGRd0IBRATiQ4mZGlGlRE8kJpjPOixdNRdT+m3UcNqmYWN6rK6nvtXYfY3D76cb8s/O1Ss8ea24PIwcg==}
@@ -6015,7 +6024,6 @@ packages:
 
   /damerau-levenshtein/1.0.8:
     resolution: {integrity: sha512-sdQSFB7+llfUcQHUQO3+B8ERRj0Oa4w9POWMI/puGtuf7gFywGmkaLCElnudfTiKZV+NvHqL0ifzdrI8Ro7ESA==}
-    dev: false
 
   /dayjs/1.11.7:
     resolution: {integrity: sha512-+Yw9U6YO5TQohxLcIkrXBeY73WP3ejHWVvx8XCk3gxvQDCTEmS48ZrSZCKciI7Bhl/uCMyxYtE9UqRILmFphkQ==}
@@ -6069,7 +6077,6 @@ packages:
       which-boxed-primitive: r2.cnpmjs.org/which-boxed-primitive/1.0.2
       which-collection: r2.cnpmjs.org/which-collection/1.0.1
       which-typed-array: 1.1.9
-    dev: false
 
   /deepmerge/4.3.1:
     resolution: {integrity: sha512-3sUqbMEc77XqpdNO7FRyRog+eW3ph+GYCbj+rK+uYyRMuwsVy0rMiVtPn+QJlKFvWP/1PYpapqYn0Me2knFn+A==}
@@ -6274,7 +6281,6 @@ packages:
       is-string: r2.cnpmjs.org/is-string/1.0.7
       isarray: r2.cnpmjs.org/isarray/2.0.5
       stop-iteration-iterator: 1.0.0
-    dev: false
 
   /es-set-tostringtag/2.0.1:
     resolution: {integrity: sha512-g3OMbtlwY3QewlqAiMLI47KywjWZoEytKr8pf6iTC8uJq5bIAH52Z9pnQ8pVL6whrCto53JZDuUIsifGeLorTg==}
@@ -6656,7 +6662,6 @@ packages:
       object.entries: 1.1.6
       object.fromentries: 2.0.6
       semver: r2.cnpmjs.org/semver/6.3.0
-    dev: false
 
   /eslint-plugin-jsx-a11y/6.7.1_eslint@8.38.0:
     resolution: {integrity: sha512-63Bog4iIethyo8smBklORknVjB0T2dwB8Mr/hIC+fBS0uyHdYYpzM/Ed+YC8VxTjlXHEWFOdmgwcDn1U2L9VCA==}
@@ -6707,7 +6712,6 @@ packages:
       eslint: ^3.0.0 || ^4.0.0 || ^5.0.0 || ^6.0.0 || ^7.0.0 || ^8.0.0-0
     dependencies:
       eslint: 8.37.0
-    dev: false
 
   /eslint-plugin-react-hooks/4.6.0_eslint@8.38.0:
     resolution: {integrity: sha512-oFc7Itz9Qxh2x4gNHStv3BqJq54ExXmfC+a1NjAta66IAN87Wu0R/QArgIS9qKzX3dXKPI9H5crl9QchNMY9+g==}
@@ -6740,7 +6744,6 @@ packages:
       resolve: 2.0.0-next.4
       semver: r2.cnpmjs.org/semver/6.3.0
       string.prototype.matchall: 4.0.8
-    dev: false
 
   /eslint-plugin-react/7.32.2_eslint@8.38.0:
     resolution: {integrity: sha512-t2fBMa+XzonrrNkyVirzKlvn5RXzzPwRHtMvLAtVZrt8oxgnTQaYbU6SXTOO1mwQgp1y5+toMSKInnzGr0Knqg==}
@@ -8226,7 +8229,6 @@ packages:
     dependencies:
       array-includes: 3.1.6
       object.assign: 4.1.4
-    dev: false
 
   /keccak/3.0.3:
     resolution: {integrity: sha512-JZrLIAJWuZxKbCilMpNz5Vj7Vtb4scDG3dMXLOsbzBmQGyjwE61BbW7bJkfKKCShXiQZt3T6sBgALRtmd+nZaQ==}
@@ -8256,7 +8258,6 @@ packages:
 
   /language-subtag-registry/0.3.22:
     resolution: {integrity: sha512-tN0MCzyWnoz/4nHS6uxdlFWoUZT7ABptwKPQ52Ea7URk6vll88bWBVhodtnlfEuCcKWNGoc+uGbw1cwa9IKh/w==}
-    dev: false
 
   /launch-editor/2.6.0:
     resolution: {integrity: sha512-JpDCcQnyAAzZZaZ7vEiSqL690w7dAEyLao+KC96zBplnYbJS7TYNjvM3M7y3dGz+v7aIsJk3hllWuc0kWAjyRQ==}
@@ -8643,7 +8644,6 @@ packages:
       call-bind: r2.cnpmjs.org/call-bind/1.0.2
       define-properties: 1.2.0
       es-abstract: 1.21.2
-    dev: false
 
   /object.fromentries/2.0.6:
     resolution: {integrity: sha512-VciD13dswC4j1Xt5394WR4MzmAQmlgN72phd/riNp9vtD7tp4QQWJ0R4wvclXcafgcYK8veHRed2W6XeGBvcfg==}
@@ -8652,7 +8652,6 @@ packages:
       call-bind: r2.cnpmjs.org/call-bind/1.0.2
       define-properties: 1.2.0
       es-abstract: 1.21.2
-    dev: false
 
   /object.getownpropertydescriptors/2.1.5:
     resolution: {integrity: sha512-yDNzckpM6ntyQiGTik1fKV1DcVDRS+w8bvpWNCBanvH5LfRX9O8WTHqQzG4RZwRAM4I0oU7TV11Lj5v0g20ibw==}
@@ -8669,7 +8668,6 @@ packages:
     dependencies:
       define-properties: 1.2.0
       es-abstract: 1.21.2
-    dev: false
 
   /object.values/1.1.6:
     resolution: {integrity: sha512-FVVTkD1vENCsAcwNs9k6jea2uHC/X0+JcjG8YA60FN5CMaJmG95wT9jek/xX9nornqGRrBkKtzuAu2wuHpKqvw==}
@@ -10043,7 +10041,6 @@ packages:
       is-core-module: 2.11.0
       path-parse: r2.cnpmjs.org/path-parse/1.0.7
       supports-preserve-symlinks-flag: 1.0.0
-    dev: false
 
   /responselike/2.0.1:
     resolution: {integrity: sha512-4gl03wn3hj1HP3yzgdI7d3lCkF95F21Pz4BPGvKHinyQzALR5CapwC8yIi0Rh58DEMQ/SguC03wFj2k0M/mHhw==}
@@ -10236,6 +10233,22 @@ packages:
       sax: r2.cnpmjs.org/sax/1.2.4
     dev: false
 
+  /solc/0.8.19:
+    resolution: {integrity: sha512-yqurS3wzC4LdEvmMobODXqprV4MYJcVtinuxgrp61ac8K2zz40vXA0eSAskSHPgv8dQo7Nux39i3QBsHx4pqyA==}
+    engines: {node: '>=10.0.0'}
+    hasBin: true
+    dependencies:
+      command-exists: r2.cnpmjs.org/command-exists/1.2.9
+      commander: r2.cnpmjs.org/commander/8.3.0
+      follow-redirects: 1.15.2
+      js-sha3: r2.cnpmjs.org/js-sha3/0.8.0
+      memorystream: r2.cnpmjs.org/memorystream/0.3.1
+      semver: r2.cnpmjs.org/semver/5.7.1
+      tmp: r2.cnpmjs.org/tmp/0.0.33
+    transitivePeerDependencies:
+      - debug
+    dev: false
+
   /sort-css-media-queries/2.1.0:
     resolution: {integrity: sha512-IeWvo8NkNiY2vVYdPa27MCQiR0MN0M80johAYFVxWWXQ44KU84WNxjslwBHmc/7ZL2ccwkM7/e6S5aiKZXm7jA==}
     engines: {node: '>= 6.3.0'}
@@ -10309,7 +10322,6 @@ packages:
     engines: {node: '>= 0.4'}
     dependencies:
       internal-slot: 1.0.5
-    dev: false
 
   /string-width/5.1.2:
     resolution: {integrity: sha512-HnLOCR3vjcY8beoNLtcjZ5/nxn2afmME6lhrDrebokqMap+XbeW8n9TXpPDOqdGK5qcI3oT0GKTW6wC7EMiVqA==}
@@ -10330,7 +10342,6 @@ packages:
       internal-slot: 1.0.5
       regexp.prototype.flags: 1.4.3
       side-channel: r2.cnpmjs.org/side-channel/1.0.4
-    dev: false
 
   /string.prototype.padend/3.1.4:
     resolution: {integrity: sha512-67otBXoksdjsnXXRUq+KMVTdlVRZ2af422Y0aTyTjVaoQkGr3mxl2Bc5emi7dOQ3OGVVQQskmLEWwFXwommpNw==}
@@ -13053,7 +13064,6 @@ packages:
     resolution: {integrity: sha512-eBvWn1lvIApYMhzQMsu9ciLfkBY499mFZlNqG+/9WR7PVlroQw0vG30cOQQbaKz3sCEc44TAOu2ykzqXSNnwag==, registry: https://r.cnpmjs.org/, tarball: https://r2.cnpmjs.org/ast-types-flow/-/ast-types-flow-0.0.7.tgz}
     name: ast-types-flow
     version: 0.0.7
-    dev: false
 
   r2.cnpmjs.org/astral-regex/2.0.0:
     resolution: {integrity: sha512-Z7tMw1ytTXt5jqMcOP+OQteU1VuNK9Y02uuJtKQ1Sv69jXQKKg5cibLwGJow8yzZP+eAc18EmLGPal0bp36rvQ==, registry: https://r.cnpmjs.org/, tarball: https://r2.cnpmjs.org/astral-regex/-/astral-regex-2.0.0.tgz}
@@ -14035,7 +14045,6 @@ packages:
     resolution: {integrity: sha512-JsPKdmh8ZkmnHxDk55FZ1TqVLvEQTvoByJZRN9jzI0UjxK/QgAmsphz7PGtqgPieQZ/CQcHWXCR7ATDNhGe+YA==, registry: https://r.cnpmjs.org/, tarball: https://r2.cnpmjs.org/confusing-browser-globals/-/confusing-browser-globals-1.0.11.tgz}
     name: confusing-browser-globals
     version: 1.0.11
-    dev: false
 
   r2.cnpmjs.org/consola/2.15.3:
     resolution: {integrity: sha512-9vAdYbHj6x2fLKC4+oPH0kFzY/orMZyG2Aj+kNylHxKGJ/Ed4dpNyAQYwJOdqO4zdM7XpVHmyejQDcQHrnuXbw==, registry: https://r.cnpmjs.org/, tarball: https://r2.cnpmjs.org/consola/-/consola-2.15.3.tgz}
@@ -14900,6 +14909,47 @@ packages:
     optionalDependencies:
       source-map: r2.cnpmjs.org/source-map/0.6.1
     dev: false
+
+  r2.cnpmjs.org/eslint-config-airbnb-base/15.0.0_rbts4wm34tb3x7owcp777e4f4y:
+    resolution: {integrity: sha512-xaX3z4ZZIcFLvh2oUNvcX5oEofXda7giYmuplVxoOg5A7EXJMrUyqRgR+mhDhPK8LZ4PttFOBvCYDbX3sUoUig==, registry: https://r.cnpmjs.org/, tarball: https://r2.cnpmjs.org/eslint-config-airbnb-base/-/eslint-config-airbnb-base-15.0.0.tgz}
+    id: r2.cnpmjs.org/eslint-config-airbnb-base/15.0.0
+    name: eslint-config-airbnb-base
+    version: 15.0.0
+    engines: {node: ^10.12.0 || >=12.0.0}
+    peerDependencies:
+      eslint: ^7.32.0 || ^8.2.0
+      eslint-plugin-import: ^2.25.2
+    dependencies:
+      confusing-browser-globals: r2.cnpmjs.org/confusing-browser-globals/1.0.11
+      eslint: 8.37.0
+      eslint-plugin-import: 2.27.5_yo7k32idqwcpvt57tyfdxls5fe
+      object.assign: 4.1.4
+      object.entries: 1.1.6
+      semver: r2.cnpmjs.org/semver/6.3.0
+    dev: true
+
+  r2.cnpmjs.org/eslint-config-airbnb/19.0.4_m7fpnnvzewd4bw2kt67dqtucga:
+    resolution: {integrity: sha512-T75QYQVQX57jiNgpF9r1KegMICE94VYwoFQyMGhrvc+lB8YF2E/M/PYDaQe1AJcWaEgqLE+ErXV1Og/+6Vyzew==, registry: https://r.cnpmjs.org/, tarball: https://r2.cnpmjs.org/eslint-config-airbnb/-/eslint-config-airbnb-19.0.4.tgz}
+    id: r2.cnpmjs.org/eslint-config-airbnb/19.0.4
+    name: eslint-config-airbnb
+    version: 19.0.4
+    engines: {node: ^10.12.0 || ^12.22.0 || ^14.17.0 || >=16.0.0}
+    peerDependencies:
+      eslint: ^7.32.0 || ^8.2.0
+      eslint-plugin-import: ^2.25.3
+      eslint-plugin-jsx-a11y: ^6.5.1
+      eslint-plugin-react: ^7.28.0
+      eslint-plugin-react-hooks: ^4.3.0
+    dependencies:
+      eslint: 8.37.0
+      eslint-config-airbnb-base: r2.cnpmjs.org/eslint-config-airbnb-base/15.0.0_rbts4wm34tb3x7owcp777e4f4y
+      eslint-plugin-import: 2.27.5_yo7k32idqwcpvt57tyfdxls5fe
+      eslint-plugin-jsx-a11y: 6.7.1_eslint@8.37.0
+      eslint-plugin-react: 7.32.2_eslint@8.37.0
+      eslint-plugin-react-hooks: 4.6.0_eslint@8.37.0
+      object.assign: 4.1.4
+      object.entries: 1.1.6
+    dev: true
 
   r2.cnpmjs.org/eslint-plugin-flowtype/8.0.3_eslint@8.37.0:
     resolution: {integrity: sha512-dX8l6qUL6O+fYPtpNRideCFSpmWOUVx5QcaGLVqe/vlDiBSe4vYljDWDETwnyFzpl7By/WVIu6rcrniCgH9BqQ==, registry: https://r.cnpmjs.org/, tarball: https://r2.cnpmjs.org/eslint-plugin-flowtype/-/eslint-plugin-flowtype-8.0.3.tgz}
@@ -16575,7 +16625,6 @@ packages:
     resolution: {integrity: sha512-cOZFQQozTha1f4MxLFzlgKYPTyj26picdZTx82hbc/Xf4K/tZOOXSCkMvU4pKioRXGDLJRn0GM7Upe7kR721yg==, registry: https://r.cnpmjs.org/, tarball: https://r2.cnpmjs.org/is-map/-/is-map-2.0.2.tgz}
     name: is-map
     version: 2.0.2
-    dev: false
 
   r2.cnpmjs.org/is-module/1.0.0:
     resolution: {integrity: sha512-51ypPSPCoTEIN9dy5Oy+h4pShgJmPCygKfyRCISBI+JoWT/2oJvK8QPxmwv7b/p239jXrm9M1mlQbyKJ5A152g==, registry: https://r.cnpmjs.org/, tarball: https://r2.cnpmjs.org/is-module/-/is-module-1.0.0.tgz}
@@ -16707,7 +16756,6 @@ packages:
     resolution: {integrity: sha512-+2cnTEZeY5z/iXGbLhPrOAaK/Mau5k5eXq9j14CpRTftq0pAJu2MwVRSZhyZWBzx3o6X795Lz6Bpb6R0GKf37g==, registry: https://r.cnpmjs.org/, tarball: https://r2.cnpmjs.org/is-set/-/is-set-2.0.2.tgz}
     name: is-set
     version: 2.0.2
-    dev: false
 
   r2.cnpmjs.org/is-stream/2.0.1:
     resolution: {integrity: sha512-hFoiJiTl63nn+kstHGBtewWSKnQLpyb155KHheA1l39uvtO9nWIop1p3udqPcUd/xbF1VLMO4n7OI6p7RbngDg==, registry: https://r.cnpmjs.org/, tarball: https://r2.cnpmjs.org/is-stream/-/is-stream-2.0.1.tgz}
@@ -16758,7 +16806,6 @@ packages:
     resolution: {integrity: sha512-NSBR4kH5oVj1Uwvv970ruUkCV7O1mzgVFO4/rev2cLRda9Tm9HrL70ZPut4rOHgY0FNrUu9BCbXA2sdQ+x0chA==, registry: https://r.cnpmjs.org/, tarball: https://r2.cnpmjs.org/is-weakmap/-/is-weakmap-2.0.1.tgz}
     name: is-weakmap
     version: 2.0.1
-    dev: false
 
   r2.cnpmjs.org/is-weakref/1.0.2:
     resolution: {integrity: sha512-qctsuLZmIQ0+vSSMfoVvyFe2+GSEvnmZ2ezTup1SBse9+twCCeial6EEi3Nc2KFcf6+qz2FBPnjXsk8xhKSaPQ==, registry: https://r.cnpmjs.org/, tarball: https://r2.cnpmjs.org/is-weakref/-/is-weakref-1.0.2.tgz}
@@ -16774,7 +16821,6 @@ packages:
     dependencies:
       call-bind: r2.cnpmjs.org/call-bind/1.0.2
       get-intrinsic: 1.2.0
-    dev: false
 
   r2.cnpmjs.org/is-whitespace-character/1.0.4:
     resolution: {integrity: sha512-SDweEzfIZM0SJV0EUga669UTKlmL0Pq8Lno0QDQsPnvECB3IM2aP0gdx5TrU0A01MAPfViaZiI2V1QMZLaKK5w==, registry: https://r.cnpmjs.org/, tarball: https://r2.cnpmjs.org/is-whitespace-character/-/is-whitespace-character-1.0.4.tgz}
@@ -16825,7 +16871,6 @@ packages:
     resolution: {integrity: sha512-xHjhDr3cNBK0BzdUJSPXZntQUx/mwMS5Rw4A7lPJ90XGAO6ISP/ePDNuo0vhqOZU+UD5JoodwCAAoZQd3FeAKw==, registry: https://r.cnpmjs.org/, tarball: https://r2.cnpmjs.org/isarray/-/isarray-2.0.5.tgz}
     name: isarray
     version: 2.0.5
-    dev: false
 
   r2.cnpmjs.org/isexe/2.0.0:
     resolution: {integrity: sha512-RHxMLp9lnKHGHRng9QFhRCMbYAcVpn69smSGcq3f36xjgVVWThj4qqLbTLlq7Ssj8B+fIQ1EuCEGI2lKsyQeIw==, registry: https://r.cnpmjs.org/, tarball: https://r2.cnpmjs.org/isexe/-/isexe-2.0.0.tgz}
@@ -17113,7 +17158,6 @@ packages:
     version: 1.0.5
     dependencies:
       language-subtag-registry: 0.3.22
-    dev: false
 
   r2.cnpmjs.org/latest-version/5.1.0:
     resolution: {integrity: sha512-weT+r0kTkRQdCdYCNtkMwWXQTMEswKrFBkm4ckQOMVhhqhIMI1UT2hMj+1iigIhgSZm5gTmrRXBNoGUgaTY1xA==, registry: https://r.cnpmjs.org/, tarball: https://r2.cnpmjs.org/latest-version/-/latest-version-5.1.0.tgz}
@@ -21586,7 +21630,6 @@ packages:
       is-set: r2.cnpmjs.org/is-set/2.0.2
       is-weakmap: r2.cnpmjs.org/is-weakmap/2.0.1
       is-weakset: r2.cnpmjs.org/is-weakset/2.0.2
-    dev: false
 
   r2.cnpmjs.org/which-module/2.0.0:
     resolution: {integrity: sha512-B+enWhmw6cjfVC7kS8Pj9pCrKSc5txArRyaYGe088shv/FGWH+0Rjx/xPgtsWfsUtS27FkP697E4DDhgrgoc0Q==, registry: https://r.cnpmjs.org/, tarball: https://r2.cnpmjs.org/which-module/-/which-module-2.0.0.tgz}

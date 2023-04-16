@@ -56,7 +56,7 @@ export type CompilerInput = {
       // "strip" removes all revert strings (if possible, i.e. if literals are used) keeping side-effects
       // "debug" injects strings for compiler-generated internal reverts (not yet implemented)
       // "verboseDebug" even appends further information to user-supplied revert strings (not yet implemented)
-      revertStrings: "default" | "strip" | "debug" | "verboseDebug";
+      revertStrings: 'default' | 'strip' | 'debug' | 'verboseDebug';
     };
     // Metadata settings (optional)
     metadata?: {
@@ -66,7 +66,7 @@ export type CompilerInput = {
       // The metadata hash can be removed from the bytecode via option "none".
       // The other options are "ipfs" and "bzzr1".
       // If the option is omitted, "ipfs" is used by default.
-      bytecodeHash: "ipfs" | "bzzr1" | "none";
+      bytecodeHash: 'ipfs' | 'bzzr1' | 'none';
     };
     // Addresses of the libraries. If not all libraries are given here,
     // it can result in unlinked objects whose output data is different.
@@ -120,20 +120,20 @@ export type CompilerInput = {
     // target part of that output. Additionally, `*` can be used as a wildcard to request everything.
     //
     outputSelection?: {
-      "*": {
-        "": ["ast"];
-        "*": [
-          "abi",
-          "metadata",
-          "devdoc",
-          "userdoc",
-          "storageLayout",
-          "evm.legacyAssembly",
-          "evm.bytecode",
-          "evm.deployedBytecode",
-          "evm.methodIdentifiers",
-          "evm.gasEstimates",
-          "evm.assembly"
+      '*': {
+        '': ['ast'];
+        '*': [
+          'abi',
+          'metadata',
+          'devdoc',
+          'userdoc',
+          'storageLayout',
+          'evm.legacyAssembly',
+          'evm.bytecode',
+          'evm.deployedBytecode',
+          'evm.methodIdentifiers',
+          'evm.gasEstimates',
+          'evm.assembly'
         ];
       };
     };
@@ -170,23 +170,23 @@ export type CompilerInputOptions = {
 // berlin：以太坊的第十个硬分叉（EIP 2565）引入的 EVM 版本。
 // london：以太坊的第十一个硬分叉（EIP 1559）引入的 EVM 版本。
 export type EVMVersion =
-  | "homestead"
-  | "tangerineWhistle"
-  | "spuriousDragon"
-  | "byzantium"
-  | "constantinople"
-  | "petersburg"
-  | "istanbul"
-  | "berlin"
-  | "london"
-  | "paris"
+  | 'homestead'
+  | 'tangerineWhistle'
+  | 'spuriousDragon'
+  | 'byzantium'
+  | 'constantinople'
+  | 'petersburg'
+  | 'istanbul'
+  | 'berlin'
+  | 'london'
+  | 'paris'
   | null;
 
-export type Language = "Solidity" | "Yul";
+export type Language = 'Solidity' | 'Yul';
 
 export enum CompilerRetriggerMode {
-  "none",
-  "retrigger",
+  'none',
+  'retrigger',
 }
 
 export type CompilerState = {
@@ -277,28 +277,28 @@ export type CompilationError = {
   /** Error type */
   type?: CompilationErrorType;
   /** Component where the error originated, such as "general", "ewasm", etc. */
-  component?: "general" | "ewasm" | string;
-  severity?: "error" | "warning";
+  component?: 'general' | 'ewasm' | string;
+  severity?: 'error' | 'warning';
   message?: string;
-  mode?: "panic";
+  mode?: 'panic';
   /** the message formatted with source location */
   formattedMessage?: string;
 };
 
 type CompilationErrorType =
-  | "JSONError"
-  | "IOError"
-  | "ParserError"
-  | "DocstringParsingError"
-  | "SyntaxError"
-  | "DeclarationError"
-  | "TypeError"
-  | "UnimplementedFeatureError"
-  | "InternalCompilerError"
-  | "Exception"
-  | "CompilerError"
-  | "FatalError"
-  | "Warning";
+  | 'JSONError'
+  | 'IOError'
+  | 'ParserError'
+  | 'DocstringParsingError'
+  | 'SyntaxError'
+  | 'DeclarationError'
+  | 'TypeError'
+  | 'UnimplementedFeatureError'
+  | 'InternalCompilerError'
+  | 'Exception'
+  | 'CompilerError'
+  | 'FatalError'
+  | 'Warning';
 
 /// //////////
 // SOURCE CODE //
@@ -383,14 +383,14 @@ export type CompiledContract = {
     gasEstimates: {
       creation: {
         codeDepositCost: string;
-        executionCost: "infinite" | string;
-        totalCost: "infinite" | string;
+        executionCost: 'infinite' | string;
+        totalCost: 'infinite' | string;
       };
       external: {
         [functionIdentifier: string]: string;
       };
       internal: {
-        [functionIdentifier: string]: "infinite" | string;
+        [functionIdentifier: string]: 'infinite' | string;
       };
     };
   };
@@ -409,17 +409,16 @@ export type CompiledContract = {
 export type ABIDescription = FunctionDescription | EventDescription;
 
 export const isFunctionDescription = (
-  item: ABIDescription
-): item is FunctionDescription =>
-  (item as FunctionDescription).stateMutability !== undefined;
+  item: ABIDescription,
+): item is FunctionDescription => (item as FunctionDescription).stateMutability !== undefined;
 
 export const isEventDescription = (
-  item: ABIDescription
-): item is EventDescription => (item as EventDescription).type === "event";
+  item: ABIDescription,
+): item is EventDescription => (item as EventDescription).type === 'event';
 
 export type FunctionDescription = {
   /** Type of the method. default is 'function' */
-  type?: "function" | "constructor" | "fallback" | "receive";
+  type?: 'function' | 'constructor' | 'fallback' | 'receive';
   /** The name of the function. Constructor and fallback function never have name */
   name?: string;
   /** List of parameters of the method. Fallback function doesn’t have inputs. */
@@ -427,7 +426,7 @@ export type FunctionDescription = {
   /** List of the outputs parameters for the method, if any */
   outputs?: ABIParameter[];
   /** State mutability of the method */
-  stateMutability: "pure" | "view" | "nonpayable" | "payable";
+  stateMutability: 'pure' | 'view' | 'nonpayable' | 'payable';
   /** true if function accepts Ether, false otherwise. Default is false */
   payable?: boolean;
   /** true if function is either pure or view, false otherwise. Default is false  */
@@ -435,7 +434,7 @@ export type FunctionDescription = {
 };
 
 export type EventDescription = {
-  type: "event";
+  type: 'event';
   name: string;
   inputs: ABIParameter &
     {
@@ -456,24 +455,24 @@ export type ABIParameter = {
 };
 
 export type ABITypeParameter =
-  | "uint"
-  | "uint[]" // TODO : add <M>
-  | "int"
-  | "int[]" // TODO : add <M>
-  | "address"
-  | "address[]"
-  | "bool"
-  | "bool[]"
-  | "fixed"
-  | "fixed[]" // TODO : add <M>
-  | "ufixed"
-  | "ufixed[]" // TODO : add <M>
-  | "bytes"
-  | "bytes[]" // TODO : add <M>
-  | "function"
-  | "function[]"
-  | "tuple"
-  | "tuple[]"
+  | 'uint'
+  | 'uint[]' // TODO : add <M>
+  | 'int'
+  | 'int[]' // TODO : add <M>
+  | 'address'
+  | 'address[]'
+  | 'bool'
+  | 'bool[]'
+  | 'fixed'
+  | 'fixed[]' // TODO : add <M>
+  | 'ufixed'
+  | 'ufixed[]' // TODO : add <M>
+  | 'bytes'
+  | 'bytes[]' // TODO : add <M>
+  | 'function'
+  | 'function[]'
+  | 'tuple'
+  | 'tuple[]'
   | string; // Fallback
 
 /// ////////////////////////

@@ -12,15 +12,11 @@ export type TConsoleMessage = {
   timestamp: number;
 }
 
-export const createConsoleMessage = ({type, message}: TInputConsoleMessage): TConsoleMessage => {
-  return {
-    id: uniqueId(),
-    type,
-    message,
-    timestamp: Date.now(),
-  }
-}
+export const createConsoleMessage = ({ type, message }: TInputConsoleMessage): TConsoleMessage => ({
+  id: uniqueId(),
+  type,
+  message,
+  timestamp: Date.now(),
+});
 
-export const generateConsoleMessageToShow = (message: TConsoleMessage) => {
-  return `[${new Date(message.timestamp).toLocaleTimeString()}]: ${message.message}`
-}
+export const generateConsoleMessageToShow = (message: TConsoleMessage) => `[${new Date(message.timestamp).toLocaleTimeString()}]: ${message.message}`;

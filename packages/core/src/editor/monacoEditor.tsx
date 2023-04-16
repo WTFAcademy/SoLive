@@ -1,11 +1,12 @@
-import React, {useEffect, useRef} from 'react';
+import React, { useEffect, useRef } from 'react';
+
 import BaseMonaco from 'monaco-editor';
-import ReactBaseMonacoEditor, {Monaco, loader} from "@monaco-editor/react";
-import {ErrorMarker, MarkerSeverity} from 'solive-compiler-utils';
+import ReactBaseMonacoEditor, { Monaco, loader } from '@monaco-editor/react';
+import { ErrorMarker, MarkerSeverity } from 'solive-compiler-utils';
 
-import {BaseMonacoEditor, EditorApi, ModelInfoType} from '../types/monaco';
+import { BaseMonacoEditor, EditorApi, ModelInfoType } from '../types/monaco';
 
-import {useEditor} from "./contexts/editorContext";
+import { useEditor } from './contexts/editorContext';
 import {
   initTheme,
   registerLangs,
@@ -14,7 +15,7 @@ import {
   registerListeners,
 } from './mountFunctions';
 import CodeParser from './codeParser';
-import {findModel} from './utils/model';
+import { findModel } from './utils/model';
 
 loader.config({ paths: { vs: 'https://cdn.jsdelivr.net/npm/monaco-editor@0.37.1/min/vs' } });
 
@@ -22,8 +23,10 @@ interface IProps {
   modelInfos: ModelInfoType[];
 }
 
-function App({modelInfos}: IProps) {
-  const {stateRef, dispatch, actions, id} = useEditor();
+function App({ modelInfos }: IProps) {
+  const {
+    stateRef, dispatch, actions, id,
+  } = useEditor();
   const editorRef = useRef<BaseMonacoEditor>();
   const monacoRef = useRef<Monaco>();
   const editorApiRef = useRef<EditorApi>({} as EditorApi);
@@ -53,19 +56,19 @@ function App({modelInfos}: IProps) {
 
   useEffect(() => {
     editorApiRef.current.addErrorMarker = (errors: ErrorMarker[], from = id) => {
-      const allMarkersPerfile: Record<string, Array<BaseMonaco.editor.IMarkerData>> = {}
+      const allMarkersPerfile: Record<string, Array<BaseMonaco.editor.IMarkerData>> = {};
 
       for (const error of errors) {
-        const filePath = error.file
+        const filePath = error.file;
 
-        if (!filePath) return
+        if (!filePath) return;
         const model = findModel(stateRef.current.models || [], filePath);
         const errorServerityMap = {
-          'error': MarkerSeverity.Error,
-          'warning': MarkerSeverity.Warning,
-          'info': MarkerSeverity.Info
-        }
-        if (model) {
+          error: MarkerSeverity.Error,
+          warning: MarkerSeverity.Warning,
+          info: MarkerSeverity.Info,
+        };
+        if (model!) {
           const markerData: BaseMonaco.editor.IMarkerData = {
             severity: (typeof error.severity === 'string') ? errorServerityMap[error.severity] : error.severity,
             startLineNumber: ((error.position.start && error.position.start.line) || 0),
@@ -73,35 +76,35 @@ function App({modelInfos}: IProps) {
             endLineNumber: ((error.position.end && error.position.end.line) || 0),
             endColumn: ((error.position.end && error.position.end.column) || 0),
             message: error.message,
-          }
+          };
           if (!allMarkersPerfile[filePath]) {
-            allMarkersPerfile[filePath] = []
+            allMarkersPerfile[filePath] = [];
           }
-          allMarkersPerfile[filePath].push(markerData)
+          allMarkersPerfile[filePath].push(markerData);
         }
       }
       for (const filePath in allMarkersPerfile) {
         const model = findModel(stateRef.current.models || [], filePath);
         if (model) {
-          monacoRef.current?.editor.setModelMarkers(model.model, from, allMarkersPerfile[filePath])
+          monacoRef.current?.editor.setModelMarkers(model.model, from, allMarkersPerfile[filePath]);
         }
       }
-    }
+    };
 
     editorApiRef.current.removeErrorMarker = (sources: string[], from = id) => {
       const files = Object.keys(sources);
       for (const file of files) {
         const model = findModel(stateRef.current.models || [], file);
         if (model) {
-          monacoRef.current?.editor.setModelMarkers(model.model, from, [])
+          monacoRef.current?.editor.setModelMarkers(model.model, from, []);
         }
       }
-    }
-  }, [])
+    };
+  }, []);
 
   return (
     <ReactBaseMonacoEditor
-      key={id + "_editor"}
+      key={`${id}_editor`}
       onMount={handleEditorDidMount}
       beforeMount={handleEditorBeforeMount}
       defaultLanguage="solidity"
@@ -109,10 +112,10 @@ function App({modelInfos}: IProps) {
       options={{
         minimap: {
           enabled: false,
-        }
+        },
       }}
     />
-  )
+  );
 }
 
 export default App;

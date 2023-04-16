@@ -5,30 +5,33 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import React from 'react'
-import CodeBlock from '@theme-init/CodeBlock'
+import React from 'react';
+
+import CodeBlock from '@theme-init/CodeBlock';
 import BrowserOnly from '@docusaurus/BrowserOnly';
 
-import type {SoliveCodeBlockProps} from '../types'
+import type { SoliveCodeBlockProps } from '../types';
 
-const componentWrapper = (Component: typeof CodeBlock) => {
-  const WrappedComponent = (props: SoliveCodeBlockProps) => {
-
-    if (props.solive && typeof window !== 'undefined') {
+const componentWrapper = () => {
+  function WrappedComponent(props: SoliveCodeBlockProps) {
+    const { solive } = props;
+    if (solive && typeof window !== 'undefined') {
       return (
+        // @ts-ignore
         <BrowserOnly fallback={<div>Loading...</div>}>
           {() => {
+            // eslint-disable-next-line @typescript-eslint/no-var-requires,global-require
             const SoliveCodeBlock = require('../SoliveCodeBlock').default;
             return <SoliveCodeBlock {...props} />;
           }}
         </BrowserOnly>
-      )
+      );
     }
 
-    return <CodeBlock {...props} />
-  };
+    return <CodeBlock {...props} />;
+  }
 
   return WrappedComponent;
 };
 
-module.exports = componentWrapper(CodeBlock)
+module.exports = componentWrapper();
