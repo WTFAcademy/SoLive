@@ -32,7 +32,7 @@ jobs:
         id: changesets
         uses: changesets/action@v1
         with:
-          publish: pnpm run build:lib
+          publish: pnpm run build:lib && pnpm -w run release
         env:
           GITHUB_TOKEN: ${{ secrets.SOLIVE_GITHUB_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
