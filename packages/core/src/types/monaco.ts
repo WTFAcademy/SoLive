@@ -15,11 +15,17 @@ export enum SupportLanguage {
 
 export class ModelInfoType {
   notInitial?: boolean;
+
   shown?: boolean;
+
   readOnly?: boolean;
+
   tested?: boolean;
+
   filename = '';
+
   value = '';
+
   language: SupportLanguage = SupportLanguage.Solidity;
 
   constructor({
@@ -31,7 +37,7 @@ export class ModelInfoType {
     value = '',
     language = SupportLanguage.Solidity,
   }: Partial<ModelInfoType> = {}) {
-    this.filename = filename; // TODO: 需要根据Editor ID做一个filename的唯一性处理，防止多组件情况下重复filename对原有model覆盖问题（核心问题在于monaco只有一个实例创建）
+    this.filename = filename;
     this.value = value;
     this.language = language;
     this.notInitial = notInitial;

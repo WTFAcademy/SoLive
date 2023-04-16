@@ -6,7 +6,7 @@ import {
 } from 'solive-compiler-utils';
 import axios from 'axios';
 
-import { IEditorInitState } from '../contexts/editorContext';
+import type { IEditorInitState } from '../contexts/editorContext';
 import { EditorApi, ModelType } from '../../types/monaco';
 import { cache, getCache } from '../utils/cache';
 
@@ -14,14 +14,17 @@ import ParserVersion from './parserVersion';
 
 class CodeParserCompiler {
   editorApi: EditorApi;
+
   editorState: IEditorInitState;
+
   compiler: any;
+
   parseVersion: ParserVersion;
 
   constructor(
     editorApi: EditorApi,
     editorState: IEditorInitState,
-    parseVersion: ParserVersion
+    parseVersion: ParserVersion,
   ) {
     this.editorApi = editorApi;
     this.editorState = editorState;
@@ -35,19 +38,17 @@ class CodeParserCompiler {
 
     try {
       codeVersion = this.parseVersion.resolveCodeVersion(
-        currentModel.model.getValue()
+        currentModel.model.getValue(),
       );
     } catch (error) { /* empty */ }
     const versionUrl = this.parseVersion.getVersionUri(codeVersion);
     const imports = this.resolveImports(currentModel);
-    const sources = Object.assign(
-      {
-        [currentModel.filename]: {
-          content: currentModel.model.getValue(),
-        },
+    const sources = {
+      [currentModel.filename]: {
+        content: currentModel.model.getValue(),
       },
-      this.resolveSource(imports)
-    );
+      ...this.resolveSource(imports),
+    };
 
     // wasm compiler use string config
     const compilerConfig = makeCompilerInput(sources, {
@@ -65,9 +66,10 @@ class CodeParserCompiler {
 
   resolveImports(model: ModelType) {
     const code = model.model.getValue();
-    const importRegex = new RegExp("^\\s*import\\s+[\"']([^\"']+\\.(sol))[\"']", "gm");
+    const importRegex = new RegExp("^\\s*import\\s+[\"']([^\"']+\\.(sol))[\"']", 'gm');
     const importHints: string[] = [];
     let match;
+    // eslint-disable-next-line no-cond-assign
     while ((match = importRegex.exec(code)) !== null) {
       let importFilePath = match[1];
       if (importFilePath.startsWith('./')) {
@@ -76,15 +78,14 @@ class CodeParserCompiler {
           ? importFilePath.replace('./', path[1])
           : importFilePath.slice(2);
       }
-      if (!importHints.includes(importFilePath))
-        importHints.push(importFilePath);
+      if (!importHints.includes(importFilePath)) importHints.push(importFilePath);
     }
 
     return importHints;
   }
 
   resolveSource(imports: string[]): Source {
-    const monaco = this.editorState.monaco;
+    const { monaco } = this.editorState;
     const domain = 'github.com';
 
     const find = (value: string): ModelType['model'] => {
@@ -100,9 +101,9 @@ class CodeParserCompiler {
         Object.assign(sources, {
           [im]: { content: find(im).getValue() },
         });
-      }else if(im.includes(domain)){
-        this.importRemoteFile(im).then(res => {
-          Object.assign(sources, res)
+      } else if (im.includes(domain)) {
+        this.importRemoteFile(im).then((res) => {
+          Object.assign(sources, res);
         });
       }
     });
@@ -115,28 +116,27 @@ class CodeParserCompiler {
     const fileRaw = url.replace('//github.com/', `//${fileDomain}/`).replace('/blob/', '/');
     const fileName = `github:${fileRaw.split(`${fileDomain}/`).pop()}`;
     let fileContent = '';
-    if(fileName) {
+    if (fileName) {
       const cacheFile = getCache(fileName);
-      if(cacheFile.value){
+      if (cacheFile.value) {
         fileContent = cacheFile.value as string;
-      }else{
-        try{
+      } else {
+        try {
           const res = await axios.get(fileRaw);
           fileContent = res.data;
           cache(fileName, fileContent, { cacheTime: 1000 * 60 * 60 * 24 });
-        }catch(err){
+        } catch (err) {
           console.error(`Error fetching file: ${url}`, err);
           throw err;
         }
       }
-    }else{
+    } else {
       console.warn('fileName is null');
     }
     return {
-      [fileName] : fileContent,
+      [fileName]: fileContent,
     };
   }
-
 }
 
 export default CodeParserCompiler;

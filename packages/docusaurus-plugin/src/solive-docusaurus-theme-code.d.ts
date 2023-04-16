@@ -18,5 +18,6 @@ declare module 'solive-docusaurus-theme-code' {
 
 declare module 'solive-docusaurus-theme-code/client' {
     import type { ThemeConfig } from 'solive-docusaurus-theme-code';
+
     export function useCodeblockThemeConfig(): ThemeConfig['codeblock'];
 }

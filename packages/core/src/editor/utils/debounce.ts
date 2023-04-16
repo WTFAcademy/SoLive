@@ -1,6 +1,6 @@
 function debounce(
   func: (...args: any[]) => any,
-  delay: number
+  delay: number,
 ) {
   let timer: any = null; // 定时器
 
@@ -11,7 +11,8 @@ function debounce(
     // eslint-disable-next-line prefer-rest-params
     const args: any = arguments; // 函数参数
 
-    //如果定时器存在，则清除定时器(如果没有,也没必要进行处理)
+    // 如果定时器存在，则清除定时器(如果没有,也没必要进行处理)
+    // eslint-disable-next-line no-unused-expressions
     timer ? clearTimeout(timer) : null;
 
     timer = setTimeout(() => {

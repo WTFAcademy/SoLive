@@ -26,12 +26,13 @@ export const coerceValue = (value: string, type: TPropType) => {
     default:
       return value;
   }
-}
+};
 
 export const matchProps = (metaString: string, propsInfo: TPropsInfo): TResultProps => {
   const dynamicRex = /(?<key>[^=]+)="(?<value>[^"]*)"/g;
   const props: any = {};
   let match;
+  // eslint-disable-next-line no-cond-assign
   while ((match = dynamicRex.exec(metaString)) !== null) {
     const { key, value } = match.groups as any;
     const keyName = key.trim();
@@ -44,7 +45,7 @@ export const matchProps = (metaString: string, propsInfo: TPropsInfo): TResultPr
     if (props[key] === undefined) {
       props[key] = propsInfo[key].default;
     }
-  })
+  });
 
   return props;
-}
+};

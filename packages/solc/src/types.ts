@@ -1,17 +1,17 @@
 export type EVMVersion =
-  | "homestead"
-  | "tangerineWhistle"
-  | "spuriousDragon"
-  | "byzantium"
-  | "constantinople"
-  | "petersburg"
-  | "istanbul"
-  | "berlin"
-  | "london"
-  | "paris"
+  | 'homestead'
+  | 'tangerineWhistle'
+  | 'spuriousDragon'
+  | 'byzantium'
+  | 'constantinople'
+  | 'petersburg'
+  | 'istanbul'
+  | 'berlin'
+  | 'london'
+  | 'paris'
   | null;
 
-export type Language = "Solidity" | "Yul";
+export type Language = 'Solidity' | 'Yul';
 
 export type Source = {
   [fileName: string]: {
@@ -81,7 +81,7 @@ export type CompilerInput = {
       // "strip" removes all revert strings (if possible, i.e. if literals are used) keeping side-effects
       // "debug" injects strings for compiler-generated internal reverts (not yet implemented)
       // "verboseDebug" even appends further information to user-supplied revert strings (not yet implemented)
-      revertStrings: "default" | "strip" | "debug" | "verboseDebug";
+      revertStrings: 'default' | 'strip' | 'debug' | 'verboseDebug';
     };
     // Metadata settings (optional)
     metadata?: {
@@ -91,7 +91,7 @@ export type CompilerInput = {
       // The metadata hash can be removed from the bytecode via option "none".
       // The other options are "ipfs" and "bzzr1".
       // If the option is omitted, "ipfs" is used by default.
-      bytecodeHash: "ipfs" | "bzzr1" | "none";
+      bytecodeHash: 'ipfs' | 'bzzr1' | 'none';
     };
     // Addresses of the libraries. If not all libraries are given here,
     // it can result in unlinked objects whose output data is different.
@@ -145,20 +145,20 @@ export type CompilerInput = {
     // target part of that output. Additionally, `*` can be used as a wildcard to request everything.
     //
     outputSelection?: {
-      "*": {
-        "": ["ast"];
-        "*": [
-          "abi",
-          "metadata",
-          "devdoc",
-          "userdoc",
-          "storageLayout",
-          "evm.legacyAssembly",
-          "evm.bytecode",
-          "evm.deployedBytecode",
-          "evm.methodIdentifiers",
-          "evm.gasEstimates",
-          "evm.assembly"
+      '*': {
+        '': ['ast'];
+        '*': [
+          'abi',
+          'metadata',
+          'devdoc',
+          'userdoc',
+          'storageLayout',
+          'evm.legacyAssembly',
+          'evm.bytecode',
+          'evm.deployedBytecode',
+          'evm.methodIdentifiers',
+          'evm.gasEstimates',
+          'evm.assembly'
         ];
       };
     };

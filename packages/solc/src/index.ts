@@ -1,4 +1,4 @@
-export * from "./types";
+export * from './types';
 
 const workerMap = new Map();
 
@@ -9,17 +9,17 @@ export const solidityCompiler = async (
   }: {
     version: string;
     input: any;
-  }
+  },
 ) => {
   // eslint-disable-next-line prefer-const
   let oldWorkerInfo = workerMap.get(version);
   let worker: Worker = {} as Worker;
   if (oldWorkerInfo) {
-    const timestamp = oldWorkerInfo.timestamp;
+    // const { timestamp } = oldWorkerInfo;
     worker = oldWorkerInfo.worker;
   } else {
-    worker = new Worker(new URL('./worker.js', import.meta.url), {type: 'module'});
-    worker.postMessage({type: 'init-solc', version: version})
+    worker = new Worker(new URL('./worker.js', import.meta.url), { type: 'module' });
+    worker.postMessage({ type: 'init-solc', version });
     workerMap.set(version, {
       worker,
       version,
@@ -28,8 +28,8 @@ export const solidityCompiler = async (
   }
 
   return new Promise((resolve, reject) => {
-    worker.postMessage({input: JSON.stringify(input), version});
-    worker.onmessage = function ({data}: any) {
+    worker.postMessage({ input: JSON.stringify(input), version });
+    worker.onmessage = function ({ data }: any) {
       resolve(data);
     };
     worker.onerror = reject;
@@ -37,10 +37,10 @@ export const solidityCompiler = async (
 };
 
 export const getCompilerVersions = async () => {
-  const worker = new Worker(new URL('./worker.js', import.meta.url), {type: 'module'});
+  const worker = new Worker(new URL('./worker.js', import.meta.url), { type: 'module' });
   return new Promise((resolve, reject) => {
-    worker.postMessage("fetch-compiler-versions");
-    worker.onmessage = function ({data}) {
+    worker.postMessage('fetch-compiler-versions');
+    worker.onmessage = function ({ data }) {
       resolve(data);
     };
     worker.onerror = reject;
