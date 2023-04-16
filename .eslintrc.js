@@ -29,6 +29,8 @@ module.exports = {
     JSX: true,
     React: 'readonly',
     localStorage: true,
+    HTMLElement: true,
+    window: true,
     // 在这里添加其他全局变量
   },
   rules: {

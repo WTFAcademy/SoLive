@@ -1,10 +1,11 @@
 {
   "extends": "solive-tsconfig/lib.json",
   "compilerOptions": {
-    "baseUrl": "./",
-    "outDir": "dist",
-    "declarationDir": "dist",
-    "isolatedModules": false
+    "target": "es2016",
+    "module": "es2020",
+    "emitDeclarationOnly": true,
+    "outDir": "./dist",
+    "forceConsistentCasingInFileNames": true,
   },
-  "include": ["src", "**/*.json"]
+  "include": ["src"],
 }

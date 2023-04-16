@@ -379,7 +379,10 @@ importers:
 
   packages/solc:
     specifiers:
+      solc: ^0.8.19
       solive-tsconfig: workspace:*
+    dependencies:
+      solc: 0.8.19
     devDependencies:
       solive-tsconfig: link:../tsconfig
 
@@ -10228,6 +10231,22 @@ packages:
       '@types/sax': r2.cnpmjs.org/@types/sax/1.2.4
       arg: 5.0.2
       sax: r2.cnpmjs.org/sax/1.2.4
+    dev: false
+
+  /solc/0.8.19:
+    resolution: {integrity: sha512-yqurS3wzC4LdEvmMobODXqprV4MYJcVtinuxgrp61ac8K2zz40vXA0eSAskSHPgv8dQo7Nux39i3QBsHx4pqyA==}
+    engines: {node: '>=10.0.0'}
+    hasBin: true
+    dependencies:
+      command-exists: r2.cnpmjs.org/command-exists/1.2.9
+      commander: r2.cnpmjs.org/commander/8.3.0
+      follow-redirects: 1.15.2
+      js-sha3: r2.cnpmjs.org/js-sha3/0.8.0
+      memorystream: r2.cnpmjs.org/memorystream/0.3.1
+      semver: r2.cnpmjs.org/semver/5.7.1
+      tmp: r2.cnpmjs.org/tmp/0.0.33
+    transitivePeerDependencies:
+      - debug
     dev: false
 
   /sort-css-media-queries/2.1.0:
