@@ -1,8 +1,8 @@
-import {Monaco} from '@monaco-editor/react';
-import {IPosition} from 'monaco-editor';
+import { Monaco } from '@monaco-editor/react';
+import { IPosition } from 'monaco-editor';
 import * as helper from 'solive-compiler-utils';
-import {ErrorMarker} from 'solive-compiler-utils';
-import debounce from "lodash/debounce";
+import { ErrorMarker } from 'solive-compiler-utils';
+import debounce from 'lodash/debounce';
 
 import {
   BaseMonacoEditor,
@@ -12,26 +12,26 @@ import {
   SupportLanguage,
 } from '../types/monaco';
 
-import {IEditorInitState} from './contexts/editorContext';
-import {DefinitionProvider} from './providers/definition/provider';
+import { IEditorInitState } from './contexts/editorContext';
+import { DefinitionProvider } from './providers/definition/provider';
 import {
   solidityLanguageConfig,
   solidityTokensProvider,
 } from './syntaxes/solidity';
-import {findModel} from './utils/model';
-import solidityFormatter from "./utils/format-code";
+import { findModel } from './utils/model';
+import solidityFormatter from './utils/format-code';
 
 function initTheme(monaco: Monaco) {
   monaco.editor.defineTheme('myCustomTheme', {
-    "base": "vs-dark",
-    "inherit": true,
-    "rules": [],
-    "colors": {
-      "editor.foreground": "#ffffff",
-      "editor.background": "#1e293b",
-      "editor.selectionBackground": "#6280AC",
-      "editor.lineHighlightBackground": "#ffffff12",
-    }
+    base: 'vs-dark',
+    inherit: true,
+    rules: [],
+    colors: {
+      'editor.foreground': '#ffffff',
+      'editor.background': '#1e293b',
+      'editor.selectionBackground': '#6280AC',
+      'editor.lineHighlightBackground': '#ffffff12',
+    },
   });
   monaco.editor.setTheme('myCustomTheme');
 }
@@ -41,7 +41,7 @@ function initModels(
   editor: BaseMonacoEditor,
   modelInfos: ModelInfoType[],
   dispatch: any,
-  overWriteExisting = false
+  overWriteExisting = false,
 ) {
   addModels(monaco, editor, 0, modelInfos, [], dispatch, overWriteExisting);
 }
@@ -49,28 +49,33 @@ function initModels(
 // this state link to the editor state
 function registerLangs(monaco: Monaco, state: IEditorInitState) {
   // Register a new language
-  monaco.languages.register({id: SupportLanguage.Solidity});
+  monaco.languages.register({ id: SupportLanguage.Solidity });
 
   // Register a tokens provider for the language
   monaco.languages.setMonarchTokensProvider(
     SupportLanguage.Solidity,
-    solidityTokensProvider as any
+    solidityTokensProvider as any,
   );
   monaco.languages.setLanguageConfiguration(
     SupportLanguage.Solidity,
-    solidityLanguageConfig as any
+    solidityLanguageConfig as any,
   );
 
   monaco.languages.registerDefinitionProvider(
     SupportLanguage.Solidity,
-    new DefinitionProvider(monaco, state)
+    new DefinitionProvider(monaco, state),
   );
 
   registerFileCompletion(monaco);
   registerFileImports(monaco, state);
 }
 
-function registerCommandsAndActions(monaco: Monaco, editor: BaseMonacoEditor, dispatch: any, stateRef: IEditorInitState) {
+function registerCommandsAndActions(
+  monaco: Monaco,
+  editor: BaseMonacoEditor,
+  dispatch: any,
+  stateRef: IEditorInitState,
+) {
   // save
   editor.addCommand(monaco.KeyMod.CtrlCmd | monaco.KeyCode.KeyS, () => {
     // save
@@ -89,7 +94,7 @@ function registerCommandsAndActions(monaco: Monaco, editor: BaseMonacoEditor, di
       monaco.KeyMod.CtrlCmd | monaco.KeyCode.Equal,
     ],
     run: () => {
-      editor.updateOptions({fontSize: Number(editor.getOption(46)) + 1});
+      editor.updateOptions({ fontSize: Number(editor.getOption(46)) + 1 });
     },
   };
   const zoomOutAction = {
@@ -102,7 +107,7 @@ function registerCommandsAndActions(monaco: Monaco, editor: BaseMonacoEditor, di
       monaco.KeyMod.CtrlCmd | monaco.KeyCode.Minus,
     ],
     run: () => {
-      editor.updateOptions({fontSize: Number(editor.getOption(46)) - 1});
+      editor.updateOptions({ fontSize: Number(editor.getOption(46)) - 1 });
     },
   };
 
@@ -115,16 +120,17 @@ function registerCommandsAndActions(monaco: Monaco, editor: BaseMonacoEditor, di
     keybindings: [monaco.KeyMod.CtrlCmd | monaco.KeyCode.KeyF], // 绑定 Ctrl+F 或 Cmd+F 键作为快捷键
     contextMenuGroupId: 'navigation',
     contextMenuOrder: 1.5,
-    run: function (editor: any) {
-      const unformattedCode = editor.getValue();
+    run(_editor: any) {
+      const unformattedCode = _editor.getValue();
       const formattedCode = solidityFormatter(unformattedCode);
-      editor.setValue(formattedCode);
+      _editor.setValue(formattedCode);
     },
   };
 
   editor.addAction(formatAction);
 
   // @ts-ignore
+  // eslint-disable-next-line no-underscore-dangle
   const editorService = editor._codeEditorService;
   const openEditorBase = editorService.openCodeEditor.bind(editorService);
   editorService.openCodeEditor = async (input: any, source: any) => {
@@ -132,10 +138,11 @@ function registerCommandsAndActions(monaco: Monaco, editor: BaseMonacoEditor, di
     if (input && input.resource && input.resource.path) {
       try {
         if (input.options && input.options.selection) {
-          const path = input.resource.path.replace('/', '')
-          const nextModel = findModel(stateRef.models as ModelType[], path)
-          const nextModelIndex = stateRef.models?.findIndex(model => model.filename === path)
-          dispatch({type: "updateModelIndex", payload: {modelIndex: nextModelIndex}});
+          const path = input.resource.path.replace('/', '');
+          const nextModel = findModel(stateRef.models as ModelType[], path);
+          const nextModelIndex = stateRef.models?.findIndex((model) => model.filename === path);
+          dispatch({ type: 'updateModelIndex', payload: { modelIndex: nextModelIndex } });
+          // @ts-ignore
           editor.setModel(nextModel?.model as any);
           editor.revealRange(input.options.selection);
           editor.setPosition({
@@ -170,18 +177,16 @@ function registerFileCompletion(monaco: Monaco) {
       };
 
       const suggestions = [
-        ...solidityTokensProvider.keywords.map((k) => {
-          return {
-            label: k,
-            kind: monaco.languages.CompletionItemKind.Keyword,
-            insertText: k,
-            range,
-          };
-        }),
+        ...solidityTokensProvider.keywords.map((k) => ({
+          label: k,
+          kind: monaco.languages.CompletionItemKind.Keyword,
+          insertText: k,
+          range,
+        })),
       ];
 
       return {
-        suggestions: suggestions,
+        suggestions,
       } as any;
     },
   });
@@ -200,7 +205,7 @@ function registerFileImports(monaco: Monaco, state: any) {
       const match = textUntilPosition.match(/import\s+/);
 
       if (!match) {
-        return {suggestions: []};
+        return { suggestions: [] };
       }
       const word = model.getWordUntilPosition(position);
       const range = {
@@ -212,16 +217,14 @@ function registerFileImports(monaco: Monaco, state: any) {
 
       const suggestions = state.models
         .filter(
-          (m: any) => m.filename !== state.models[state.modelIndex].filename
+          (m: any) => m.filename !== state.models[state.modelIndex].filename,
         )
-        .map((m: any) => {
-          return {
-            label: `./${m.filename}`,
-            kind: monaco.languages.CompletionItemKind.File,
-            insertText: `./${m.filename}`,
-            range,
-          };
-        });
+        .map((m: any) => ({
+          label: `./${m.filename}`,
+          kind: monaco.languages.CompletionItemKind.File,
+          insertText: `./${m.filename}`,
+          range,
+        }));
 
       return {
         suggestions,
@@ -233,7 +236,7 @@ function registerFileImports(monaco: Monaco, state: any) {
 function registerListeners(
   editor: BaseMonacoEditor,
   editorApi: EditorApi,
-  editorState: IEditorInitState
+  editorState: IEditorInitState,
 ) {
   const transformCompileError = async (data: { output: any; input: any }) => {
     const models = editorState?.models || [];
@@ -253,30 +256,29 @@ function registerListeners(
           console.log(error);
           if (!error.sourceLocation) {
             const errorMarker = helper.createErrorMarker(error, curFile, {
-              start: {line: 0, column: 0},
-              end: {line: 0, column: 100},
+              start: { line: 0, column: 0 },
+              end: { line: 0, column: 100 },
             });
             allErrors = [...allErrors, errorMarker];
           } else {
             const lineBreaks = helper.getLinebreakPositions(
-              sources[error.sourceLocation.file].content
+              sources[error.sourceLocation.file].content,
             );
             const lineColumn = helper.convertOffsetToLineColumn(
               {
                 start: error.sourceLocation.start,
                 length: error.sourceLocation.end - error.sourceLocation.start,
               },
-              lineBreaks
+              lineBreaks,
             );
 
             const filePath = error.sourceLocation.file;
 
             if (filePath !== curFile) {
-              const importFilePositions =
-                await helper.getPositionForImportErrors(
-                  filePath,
-                  curFileContent
-                );
+              const importFilePositions = await helper.getPositionForImportErrors(
+                filePath,
+                curFileContent,
+              );
 
               for (const importFilePosition of importFilePositions) {
                 for (const line of importFilePosition.lines) {
@@ -303,10 +305,8 @@ function registerListeners(
   const throttledCompile = debounce(async () => {
     editorState.codeParser.compilerService
       .compile()
-      .then((data: unknown) =>
-        transformCompileError(data as unknown as { output: any; input: any })
-      );
-  }, 1000, {leading: true, trailing: true});
+      .then((data: unknown) => transformCompileError(data as unknown as { output: any; input: any }));
+  }, 1000, { leading: true, trailing: true });
 
   const registerListenErrorMarkers = () => {
     editor.onDidChangeModelContent(throttledCompile);
@@ -324,31 +324,31 @@ function addModels(
   modelInfos: ModelInfoType[],
   currentModels: ModelType[],
   dispatch: any,
-  overWriteExisting = false
+  overWriteExisting = false,
 ) {
   const formatModels: any[] = [];
   for (const modelInfo of modelInfos) {
     let model = monaco.editor.getModel(monaco.Uri.file(modelInfo.filename));
 
-    //If model not exist create, otherwise replace value (for editor resets).
+    // If model not exist create, otherwise replace value (for editor resets).
     if (model === null) {
       model = monaco.editor.createModel(
         modelInfo.value,
         modelInfo.language,
-        monaco.Uri.file(modelInfo.filename)
+        monaco.Uri.file(modelInfo.filename),
       );
       monaco.editor.setModelLanguage(model, modelInfo.language);
     } else if (overWriteExisting) {
       model.setValue(modelInfo.value);
     }
-    model.updateOptions({tabSize: 2});
+    model.updateOptions({ tabSize: 2 });
     formatModels.push({
       ...modelInfo,
       model,
     });
   }
 
-  //undefined initially so ternary operator deals with edge case, useContext typing issue
+  // undefined initially so ternary operator deals with edge case, useContext typing issue
   dispatch({
     type: 'updateModels',
     payload: {
@@ -358,7 +358,7 @@ function addModels(
 
   const firstModelInfo = modelInfos[0];
   const firstModel = formatModels[0];
-  //The last model with initial true should be initial
+  // The last model with initial true should be initial
   if (!firstModelInfo?.notInitial) {
     // @ts-ignore
     editor.setModel(firstModel.model);
@@ -374,7 +374,7 @@ function addModels(
 function getCursorPosition(
   monaco: Monaco,
   state: IEditorInitState,
-  offset = true
+  offset = true,
 ) {
   if (!monaco) return;
   const models = state?.models || [];
@@ -382,12 +382,11 @@ function getCursorPosition(
 
   const model = models[index]?.model;
   if (model) {
+    // eslint-disable-next-line consistent-return
     return offset
       ? model.getOffsetAt(state.editor?.getPosition() as IPosition)
       : state.editor?.getPosition();
   }
-
-  return;
 }
 
 export {

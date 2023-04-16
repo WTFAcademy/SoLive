@@ -1,6 +1,6 @@
 {
   "name": "solive-compiler-utils",
-  "version": "0.0.1-alpha",
+  "version": "0.0.0",
   "main": "dist/index.js",
   "typings": "dist/src/index.d.ts",
   "files": [

@@ -1,12 +1,12 @@
-import { CompilerInput, CompilerInputOptions, Source } from "./types";
+import { CompilerInput, CompilerInputOptions, Source } from './types';
 
 const makeCompilerInput = (
   sources: Source,
-  opts: CompilerInputOptions
+  opts: CompilerInputOptions,
 ): CompilerInput => {
   const baseInput: CompilerInput = {
-    language: "Solidity",
-    sources: sources,
+    language: 'Solidity',
+    sources,
     settings: {
       optimizer: {
         enabled: opts.optimize === true || opts.optimize === 1,
@@ -14,20 +14,20 @@ const makeCompilerInput = (
       },
       libraries: opts.libraries,
       outputSelection: {
-        "*": {
-          "": ["ast"],
-          "*": [
-            "abi",
-            "metadata",
-            "devdoc",
-            "userdoc",
-            "storageLayout",
-            "evm.legacyAssembly",
-            "evm.bytecode",
-            "evm.deployedBytecode",
-            "evm.methodIdentifiers",
-            "evm.gasEstimates",
-            "evm.assembly",
+        '*': {
+          '': ['ast'],
+          '*': [
+            'abi',
+            'metadata',
+            'devdoc',
+            'userdoc',
+            'storageLayout',
+            'evm.legacyAssembly',
+            'evm.bytecode',
+            'evm.deployedBytecode',
+            'evm.methodIdentifiers',
+            'evm.gasEstimates',
+            'evm.assembly',
           ],
         },
       },
@@ -35,7 +35,8 @@ const makeCompilerInput = (
   };
 
   if (opts.evmVersion) {
-    if (opts.evmVersion.toLowerCase() == "default") {
+    if (opts.evmVersion.toLowerCase() === 'default') {
+      // eslint-disable-next-line no-param-reassign
       opts.evmVersion = null;
     } else {
       baseInput.settings.evmVersion = opts.evmVersion;
@@ -44,7 +45,7 @@ const makeCompilerInput = (
   if (opts.language) {
     baseInput.language = opts.language;
   }
-  if (opts.language === "Yul" && baseInput.settings.optimizer.enabled) {
+  if (opts.language === 'Yul' && baseInput.settings.optimizer.enabled) {
     if (!baseInput.settings.optimizer.details) {
       baseInput.settings.optimizer.details = {};
     }

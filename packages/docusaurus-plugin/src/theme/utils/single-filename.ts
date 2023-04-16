@@ -1,7 +1,5 @@
 let id = 1;
 
-const singleFilename = () => {
-  return `solive-${id++}.sol`;
-}
+const singleFilename = () => `solive-${id++}.sol`;
 
 export default singleFilename;

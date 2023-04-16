@@ -1,4 +1,3 @@
-
 // An highlighted block
 import { useState, useEffect } from 'react';
 
@@ -20,4 +19,4 @@ export const useWidth = () => {
   }, []);
 
   return windowSize;
-}
+};

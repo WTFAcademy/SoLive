@@ -1,6 +1,4 @@
 ---
-"solive-doc": patch
-"next_demo": patch
 "solive-docusaurus-theme-code": patch
 ---
 

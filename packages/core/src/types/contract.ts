@@ -1,5 +1,4 @@
-
-import {ContractInterface} from 'ethers';
+import { ContractInterface } from 'ethers';
 
 export type TCompiledContract = {
   name: string;

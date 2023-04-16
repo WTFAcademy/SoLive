@@ -6,8 +6,9 @@ import { findModel } from '../../utils/model';
 import { ModelType } from '../../../types/monaco';
 
 export class DefinitionProvider
-  implements BaseMonaco.languages.DefinitionProvider {
+implements BaseMonaco.languages.DefinitionProvider {
   monaco: Monaco;
+
   state: IEditorInitState;
 
   constructor(monaco: Monaco, state: IEditorInitState) {
@@ -18,17 +19,16 @@ export class DefinitionProvider
   provideDefinition(
     model: BaseMonaco.editor.ITextModel,
     position: BaseMonaco.Position,
-    token: BaseMonaco.CancellationToken
   ): BaseMonaco.languages.ProviderResult<BaseMonaco.languages.Definition> {
     // throw new Error('Method not implemented.');
-    const line = model.getLineContent(position.lineNumber)
-    const wordAtPosition = model.getWordAtPosition(position);
+    const line = model.getLineContent(position.lineNumber);
+    // const wordAtPosition = model.getWordAtPosition(position);
     // 检测是否为import语句
-    const checkResult = /import [',"].+[',"];/.test(line)
+    const checkResult = /import [',"].+[',"];/.test(line);
     if (checkResult) {
-      const filePath = line.match(new RegExp(`(?<=[',"])(.+?)(?=[',"])`, 'g'))
-      if (filePath === null) { return null }
-      const nextModel = findModel(this.state.models as ModelType[], filePath[0]?.replace('./', ''))
+      const filePath = line.match(new RegExp('(?<=[\',"])(.+?)(?=[\',"])', 'g'));
+      if (filePath === null) { return null; }
+      const nextModel = findModel(this.state.models as ModelType[], filePath[0]?.replace('./', ''));
       return {
         uri: nextModel?.model.uri as BaseMonaco.Uri,
         // uri: model.uri,
@@ -39,8 +39,7 @@ export class DefinitionProvider
           endLineNumber: 1,
         },
       };
-    } else {
-      return null
     }
+    return null;
   }
 }

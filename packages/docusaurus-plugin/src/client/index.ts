@@ -1,1 +1,1 @@
-export {useCodeblockThemeConfig} from './useCodeblockThemeConfig.js'
+export { useCodeblockThemeConfig } from './useCodeblockThemeConfig';

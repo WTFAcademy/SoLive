@@ -1,9 +1,11 @@
-import typescript from "rollup-plugin-typescript2";
-import resolve from "@rollup/plugin-node-resolve";
+import nodeResolve from "@rollup/plugin-node-resolve";
+import babel from 'rollup-plugin-babel';
+import peerDepsExternal from "rollup-plugin-peer-deps-external";
+
+const extensions = ['.js', '.ts'];
 
 export default {
   input: {
-    script: 'src/script.ts',
     worker: 'src/worker.ts',
     index: 'src/index.ts',
   },
@@ -12,7 +14,15 @@ export default {
     format: 'esm',
   },
   plugins: [
-    typescript({ useTsconfigDeclarationDir: true }),
-    resolve(),
+    peerDepsExternal(),
+    nodeResolve({
+      extensions,
+      modulesOnly: true,
+    }),
+    babel({
+      exclude: 'node_modules/**',
+      extensions,
+    }),
   ],
+  external: ['@ethereumjs/common', 'ethers', '@remix-project/remix-simulator'],
 };

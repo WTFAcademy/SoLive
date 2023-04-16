@@ -1,20 +1,22 @@
 {
   "name": "solive-solc",
-  "version": "0.0.1-aplha",
+  "version": "0.0.0",
   "description": "",
-  "main": "dist/index.js",
-  "typings": "dist/src/index.d.ts",
-  "files": [
-    "dist"
-  ],
+  "module": "dist/index.js",
+  "types": "dist/index.d.ts",
   "scripts": {
-    "build": "rollup -c",
-    "start": "rollup -c -w"
+    "build": "tsc && rollup -c",
+    "start": "rollup -w -c",
+    "tsc": "tsc",
+    "lint": "eslint 'src/**/*.{js,ts}'"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
     "solive-tsconfig": "workspace:*"
+  },
+  "dependencies": {
+    "solc": "^0.8.19"
   }
 }
