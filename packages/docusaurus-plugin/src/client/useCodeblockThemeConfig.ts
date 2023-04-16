@@ -1,4 +1,4 @@
-// eslint-disable-next-line import/no-unresolved
+// @ts-ignore
 import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
 import type { ThemeConfig } from 'solive-docusaurus-theme-code';
 

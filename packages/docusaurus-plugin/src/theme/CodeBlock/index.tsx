@@ -17,6 +17,7 @@ const componentWrapper = () => {
     const { solive } = props;
     if (solive && typeof window !== 'undefined') {
       return (
+        // @ts-ignore
         <BrowserOnly fallback={<div>Loading...</div>}>
           {() => {
             // eslint-disable-next-line @typescript-eslint/no-var-requires,global-require
