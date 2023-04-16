@@ -1,6 +1,6 @@
 {
   "name": "solive-core",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "",
   "main": "dist/index.js",
   "module": "dist/index.es.js",
