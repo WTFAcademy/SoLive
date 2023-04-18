@@ -29,15 +29,18 @@ export const coerceValue = (value: string, type: TPropType) => {
 };
 
 export const matchProps = (metaString: string, propsInfo: TPropsInfo): TResultProps => {
-  const dynamicRex = /(?<key>[^=]+)="(?<value>[^"]*)"/g;
-  const props: any = {};
+  const dynamicRex = /(?<key>[^=\s]+)=(?:"(?<value1>[^"]*)"|'(?<value2>[^']*)'|(?<value3>[^\s]*))/g;
+  const props: TResultProps = {};
   let match;
   // eslint-disable-next-line no-cond-assign
   while ((match = dynamicRex.exec(metaString)) !== null) {
-    const { key, value } = match.groups as any;
-    const keyName = key.trim();
-    if (propsInfo[keyName]) {
-      props[keyName] = coerceValue(value, propsInfo[keyName].type);
+    const { groups } = match;
+    if (groups) {
+      const key = groups.key.trim();
+      const value = groups.value1 || groups.value2 || groups.value3;
+      if (propsInfo[key]) {
+        props[key] = value;
+      }
     }
   }
 
