@@ -1,5 +1,13 @@
 # solive-docusaurus-theme-code
 
+## 0.0.3
+
+### Patch Changes
+
+- 91a216e: update package info
+- Updated dependencies [91a216e]
+  - solive-core@0.0.2
+
 ## 0.0.2
 
 ### Patch Changes
