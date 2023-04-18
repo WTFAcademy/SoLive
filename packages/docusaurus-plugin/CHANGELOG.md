@@ -1,5 +1,11 @@
 # solive-docusaurus-theme-code
 
+## 0.0.2
+
+### Patch Changes
+
+- 5a8c475: fix match props error
+
 ## 0.0.1
 
 ### Patch Changes
