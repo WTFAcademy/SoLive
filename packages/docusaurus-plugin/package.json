@@ -19,19 +19,6 @@
     "test": "jest",
     "start": "tsc --watch"
   },
-  "repository": {
-    "type": "git",
-    "url": ""
-  },
-  "keywords": [
-    "docusarus"
-  ],
-  "author": "WTF",
-  "license": "MIT",
-  "bugs": {
-    "url": ""
-  },
-  "homepage": "",
   "devDependencies": {
     "@types/node": "^17.0.38",
     "@types/react": "^18.0.0",
@@ -51,5 +38,25 @@
     "@docusaurus/types": "^2.3.1",
     "solive-core": "workspace:*",
     "uuid": "^8.3.2"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/WTFAcademy/solive",
+    "directory": "packages/docusaurus-theme-code"
+  },
+  "keywords": [
+    "solidity",
+    "monaco-editor",
+    "solidity-editor",
+    "solive",
+    "docusaurus",
+    "docusaurus-plugin",
+    "docusaurus-theme"
+  ],
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/WTFAcademy/solive/issues"
+  },
+  "homepage": "https://github.com/WTFAcademy/solive",
+  "author": "WTFAcademy"
 }

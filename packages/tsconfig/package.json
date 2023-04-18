@@ -1,7 +1,6 @@
 {
   "name": "solive-tsconfig",
   "version": "0.0.1",
-  "license": "MIT",
   "scripts": {
     "build": "echo 'nothing to build'"
   },
@@ -15,5 +14,24 @@
   },
   "nx": {
     "ignore": true
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/WTFAcademy/solive",
+    "directory": "packages/tsconfig"
+  },
+  "keywords": [
+    "react",
+    "solidity",
+    "monaco-editor",
+    "solidity-editor",
+    "solive",
+    "tsconfig"
+  ],
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/WTFAcademy/solive/issues"
+  },
+  "homepage": "https://github.com/WTFAcademy/solive",
+  "author": "WTFAcademy"
 }

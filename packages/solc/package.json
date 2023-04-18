@@ -1,7 +1,7 @@
 {
   "name": "solive-solc",
   "version": "0.0.1",
-  "description": "",
+  "description": "Solidity Contract Compiler Tool - Browser Supported",
   "module": "dist/index.js",
   "types": "dist/index.d.ts",
   "scripts": {
@@ -10,13 +10,29 @@
     "tsc": "tsc",
     "lint": "eslint 'src/**/*.{js,ts}'"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
   "devDependencies": {
     "solive-tsconfig": "workspace:*"
   },
   "dependencies": {
     "solc": "^0.8.19"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/WTFAcademy/solive",
+    "directory": "packages/solc"
+  },
+  "keywords": [
+    "solidity",
+    "monaco-editor",
+    "solidity-editor",
+    "solive",
+    "solc",
+    "compiler"
+  ],
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/WTFAcademy/solive/issues"
+  },
+  "homepage": "https://github.com/WTFAcademy/solive",
+  "author": "WTFAcademy"
 }

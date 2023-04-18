@@ -1,7 +1,7 @@
 {
   "name": "solive-core",
   "version": "0.0.1",
-  "description": "",
+  "description": "Solidity Monaco Editor Core Library",
   "main": "dist/index.js",
   "module": "dist/index.es.js",
   "files": [
@@ -13,9 +13,6 @@
     "start:css": "tailwindcss -i src/index.css -o dist/index.css --watch",
     "build:css": "NODE_ENV=production tailwindcss -i src/index.css -o dist/index.css -m"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
   "peerDependencies": {
     "react": ">=17.0.2",
     "react-dom": ">=17.0.2"
@@ -57,5 +54,25 @@
     "solive-compiler-utils": "workspace:*",
     "solive-provider": "workspace:*",
     "solive-solc": "workspace:*"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/WTFAcademy/solive",
+    "directory": "packages/core"
+  },
+  "keywords": [
+    "react",
+    "solidity",
+    "monaco-editor",
+    "solidity-editor",
+    "solive",
+    "solive-editor",
+    "solive-core"
+  ],
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/WTFAcademy/solive/issues"
+  },
+  "homepage": "https://github.com/WTFAcademy/solive",
+  "author": "WTFAcademy"
 }

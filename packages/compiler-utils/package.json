@@ -16,5 +16,24 @@
   "devDependencies": {
     "@types/semver": "^7.3.13",
     "solive-tsconfig": "workspace:*"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/WTFAcademy/solive",
+    "directory": "packages/compiler-utils"
+  },
+  "keywords": [
+    "solidity",
+    "monaco-editor",
+    "solidity-editor",
+    "solive",
+    "compiler",
+    "compiler-utils"
+  ],
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/WTFAcademy/solive/issues"
+  },
+  "homepage": "https://github.com/WTFAcademy/solive",
+  "author": "WTFAcademy"
 }
