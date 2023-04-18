@@ -28,11 +28,14 @@ jobs:
       - name: Install Dependencies
         run: pnpm install --no-frozen-lockfile
 
+      - name: Build Projects
+        run: pnpm build
+
       - name: Create Release Pull Request or Publish to npm
         id: changesets
         uses: changesets/action@v1
         with:
-          publish: pnpm run build:lib && pnpm changeset publish
+          publish: pnpm release
         env:
           GITHUB_TOKEN: ${{ secrets.SOLIVE_GITHUB_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
