@@ -53,7 +53,7 @@ module.exports = {
     'class-methods-use-this': 'off',
     radix: 'off',
     'guard-for-in': 'off',
-    'max-len': ['error', { code: 150 }],
+    'max-len': ['error', { code: 250 }],
 
     // TypeScript 相关
     '@typescript-eslint/explicit-function-return-type': 'off',
