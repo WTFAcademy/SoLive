@@ -1,7 +1,7 @@
 {
   "name": "solive-provider",
   "version": "0.0.1",
-  "description": "",
+  "description": "Ethereum VM Provider",
   "module": "dist/index.js",
   "types": "dist/index.d.ts",
   "scripts": {
@@ -11,9 +11,6 @@
     "tsc": "tsc",
     "lint": "eslint 'src/**/*.{js,ts}'"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
   "devDependencies": {
     "lodash.merge": "^4.6.2",
     "npm-run-all": "^4.1.5",
@@ -28,5 +25,25 @@
     "js-sha3": "^0.8.0",
     "bn.js": "5.2.1",
     "hash.js": "1.1.7"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/WTFAcademy/solive",
+    "directory": "packages/provider"
+  },
+  "keywords": [
+    "solidity",
+    "monaco-editor",
+    "solidity-editor",
+    "solive",
+    "vm-provider",
+    "evm",
+    "provider"
+  ],
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/WTFAcademy/solive/issues"
+  },
+  "homepage": "https://github.com/WTFAcademy/solive",
+  "author": "WTFAcademy"
 }

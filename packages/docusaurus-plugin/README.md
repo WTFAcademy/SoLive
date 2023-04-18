@@ -1,6 +1,9 @@
-Docusaurus Solive
-=================================
+## Docusaurus Solidity Plugin
 
-A Docusaurus v2 plugin that supports referencing code examples from public GitHub repositories.
+A Docusaurus v2 plugin that supports solidity code live.
 
-> Note: this theme plugin requires [Docusaurus v2](https://v2.docusaurus.io/)
+### Demo
+- Check demo website: https://solive.wtf
+
+### DOC
+- Check doc website: https://solive-doc.vercel.app

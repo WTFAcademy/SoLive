@@ -24,7 +24,6 @@
     "pre-commit": "lint-staged --no-stash",
     "clean": "rimraf **/dist && rimraf node_modules **/node_modules"
   },
-  "keywords": [],
   "devDependencies": {
     "@babel/core": "^7.19.1",
     "@babel/preset-env": "^7.19.1",
@@ -67,8 +66,6 @@
     "uuid": "^8.3.2",
     "webpack": "^5.77.0"
   },
-  "author": "",
-  "license": "ISC",
   "husky": {
     "hooks": {
       "pre-commit": "lint-staged"
