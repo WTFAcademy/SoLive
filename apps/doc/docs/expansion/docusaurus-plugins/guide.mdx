@@ -1,11 +1,13 @@
 ---
-title: Docusaurus 插件
+title: 引导
 hide_title: true
+slug: /docusaurus-plugins
 ---
+
 
 ## Docusaurus 插件
 
-> 你可以使用 `solive-docusaurus-theme-code` 插件快速集成一个轻量级Solidity Editor嵌入你的文档.
+> 你可以使用 `solive-docusaurus-theme-code` 插件快速集成一个轻量级Solidity Editor嵌入你的文档. （完善中）
 
 ### 安装
 
@@ -27,22 +29,22 @@ module.exports = {
 ### 快速使用
 
 1. 你需要注意在代码块标记solive，和配置solive的属性：
-```md
-  ```solidity solive height=300px
+````md
+  ```solidity solive height=500px
     // your code
-  ```\
-```
+  ```
+````
 
-2. 你可以在代码块中配置solive相关属性 `height`（具体参考[属性表](/docs/solive-props)）：
-```md
+2. 你可以在代码块中配置solive相关属性 `height`（具体参考[属性表](/docs/docusaurus-plugins/props)）：
+````md
   ```solidity solive height=300px
     // your code
-  ```\
-```
+  ```
+````
 
 3. 配置代码块文件名（可多文件）：
-```md
-  ```solidity solive height=300px
+````md
+  ```solidity solive height=500px
     /**
      * @filename Storage.sol
      */
@@ -54,12 +56,12 @@ module.exports = {
      */
 
     // your code
-  ```\
-```
+  ```
+````
 
 3. 完整的代码块示例：
 ````md
-```solidity solive height=300px
+```solidity solive height=500px
 /**
  * @filename Storage.sol
  */
@@ -94,12 +96,12 @@ contract Storage {
         return number;
     }
 }
-```\
+```
 ````
 
 ### 展示结果：
 
-```solidity solive height=300px
+```solidity solive height=500px
   /**
    * @filename Storage.sol
    */
