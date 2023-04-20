@@ -39,7 +39,7 @@ export const matchProps = (metaString: string, propsInfo: TPropsInfo): TResultPr
       const key = groups.key.trim();
       const value = groups.value1 || groups.value2 || groups.value3;
       if (propsInfo[key]) {
-        props[key] = value;
+        props[key] = coerceValue(value, propsInfo[key].type);
       }
     }
   }
