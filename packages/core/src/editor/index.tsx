@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import { Allotment } from 'allotment';
 import { CommandLineIcon } from '@heroicons/react/24/outline';
 import merge from 'lodash/merge';
+import BaseMonaco from 'monaco-editor';
 
 import { ModelInfoType } from '../types/monaco';
 import FileNavBar from '../components/FileNavBar';
@@ -40,10 +41,12 @@ export type TEditorProps = {
   id: string;
   modelInfos: ModelInfoType[];
   height: string;
+  disableValidation?: boolean;
   fileNav?: TFileNavProps;
   rounded?: string;
   console?: TConsoleProps;
   deploy?: TDeployProps;
+  monacoEditorOptions?: BaseMonaco.editor.IStandaloneEditorConstructionOptions;
   // onSuccess?: Dispatch<SetStateAction<number>>;
   // onFailure?: () => void;
   // onCompile?: () => void;
@@ -79,6 +82,7 @@ function Main(props: TEditorProps) {
     fileNav = {},
     rounded = '12px',
     modelInfos,
+    ...others
   } = props;
   const consoleProps = merge(DefaultConsoleProps, console);
   const deployProps = merge(DefaultDeployProps, deploy);
@@ -123,7 +127,7 @@ function Main(props: TEditorProps) {
                   }}
                   />
                 )}
-                <MonacoEditor modelInfos={modelInfos} />
+                <MonacoEditor modelInfos={modelInfos} {...others} />
               </Allotment.Pane>
               {consoleProps.open && (
                 <Allotment.Pane

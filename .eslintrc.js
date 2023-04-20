@@ -71,6 +71,7 @@ module.exports = {
     'react/require-default-props': 'warn',
     'react/no-unused-prop-types': 'warn',
     'jsx-a11y/click-events-have-key-events': 'warn',
+    'react/jsx-no-bind': 'off',
 
     // import 相关
     'import/prefer-default-export': 'off',

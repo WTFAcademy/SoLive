@@ -21,9 +21,11 @@ loader.config({ paths: { vs: 'https://cdn.jsdelivr.net/npm/monaco-editor@0.37.1/
 
 interface IProps {
   modelInfos: ModelInfoType[];
+  disableValidation?: boolean;
+  monacoEditorOptions?: BaseMonaco.editor.IStandaloneEditorConstructionOptions;
 }
 
-function App({ modelInfos }: IProps) {
+function App({ modelInfos, disableValidation = false, monacoEditorOptions = {} }: IProps) {
   const {
     stateRef, dispatch, actions, id,
   } = useEditor();
@@ -46,7 +48,9 @@ function App({ modelInfos }: IProps) {
     actions.updateCodeParserLoading(false);
 
     registerCommandsAndActions(monaco, editor, dispatch, stateRef.current);
-    registerListeners(editor, editorApiRef.current, stateRef.current);
+    // TODO 目前监听仅有处理语法校验问题，后续状态控制需要特殊处理
+    // eslint-disable-next-line no-unused-expressions
+    !disableValidation && registerListeners(editor, editorApiRef.current, stateRef.current);
   }
 
   function handleEditorBeforeMount(monaco: Monaco) {
@@ -113,6 +117,8 @@ function App({ modelInfos }: IProps) {
         minimap: {
           enabled: false,
         },
+        fontSize: 14,
+        ...monacoEditorOptions,
       }}
     />
   );
