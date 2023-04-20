@@ -104,7 +104,7 @@ contract Storage {
 ```
 ````
 
-### 展示结果：
+5. 你将看到：
 
 ```solidity solive height=500px
   /**
@@ -140,4 +140,27 @@ contract Storage {
           return number;
       }
   }
+```
+
+### 极简模式
+
+在部分场景下可能只需要展示代码块，而不需要编辑器，你可以使用极简模式（这将关闭语法校验，部署，编译，文件导航功能）：
+
+````md
+  ```solidity solive simple=true height=160px
+    // SPDX-License-Identifier: MIT
+    pragma solidity ^0.8.4;
+    contract HelloWeb3{
+        string public _string = "Hello Web3!";
+    }
+  ```
+````
+
+```solidity solive simple=true height=160px
+
+   // SPDX-License-Identifier: MIT
+   pragma solidity ^0.8.4;
+   contract HelloWeb3{
+       string public _string = "Hello Web3!";
+   }
 ```
