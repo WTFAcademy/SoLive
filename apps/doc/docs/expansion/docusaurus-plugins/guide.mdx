@@ -16,6 +16,11 @@ slug: /docusaurus-plugins
 npm install --save solive-docusaurus-theme-code
 ```
 
+2. 安装一些配置需要的依赖项(暂未找到较好的方案内置)：
+```bash npm2yarn
+npm install -D stream-http https-browserify stream-browserify crypto-browserify stream-browserify path-browserify events os-browserify buffer url assert tty-browserify util browserify-zlib
+```
+
 2. 其次你需要在你的 `docusaurus.config.js` 中配置 `solive` 插件.
 
 ```js {3}
