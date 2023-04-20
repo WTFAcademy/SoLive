@@ -1,5 +1,11 @@
 # solive-docusaurus-theme-code
 
+## 0.0.4
+
+### Patch Changes
+
+- ebb8ef5: fix plugin transform-model.ts import error lib
+
 ## 0.0.3
 
 ### Patch Changes
