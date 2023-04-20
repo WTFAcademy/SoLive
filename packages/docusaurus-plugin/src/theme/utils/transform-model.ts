@@ -1,5 +1,4 @@
-import { SupportLanguage } from 'solive-core';
-import { ModelInfoType } from 'solive-core/src';
+import { ModelInfoType, SupportLanguage } from 'solive-core';
 
 import { TMeta } from './resolve-meta';
 import solidityFormatter from './format-code';
