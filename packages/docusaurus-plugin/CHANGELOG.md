@@ -1,5 +1,14 @@
 # solive-docusaurus-theme-code
 
+## 0.0.5
+
+### Patch Changes
+
+- 74ef4b0: fix boolean prop not coerce transform
+- 74ef4b0: add simple mode
+- Updated dependencies [74ef4b0]
+  - solive-core@0.0.3
+
 ## 0.0.4
 
 ### Patch Changes

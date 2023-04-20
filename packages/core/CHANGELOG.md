@@ -1,5 +1,11 @@
 # solive-core
 
+## 0.0.3
+
+### Patch Changes
+
+- 74ef4b0: add disableValidation and monacoEditorOptions
+
 ## 0.0.2
 
 ### Patch Changes
