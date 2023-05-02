@@ -1,5 +1,5 @@
 ---
-title: 开始
+title: Getting Started
 sidebar_position: 1
 hide_title: true
 ---
@@ -7,9 +7,9 @@ hide_title: true
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-## 开始
+# Getting Started
 
-### 安装
+## Installation
 
 <Tabs>
 <TabItem value="npm" label="Npm">
@@ -35,9 +35,9 @@ pnpm install solive-core
 </TabItem>
 </Tabs>
 
-### 使用
+## Import SoLive to your website
 
-#### 1. 配置webpack
+### 1. Configure Webpack
 
 <Tabs>
 <TabItem value="react" label="React">
@@ -132,13 +132,13 @@ module.exports = nextConfig
 </TabItem>
 </Tabs>
 
-#### 2. 引入样式
+### 2. Import Styles
 
 ```js
 import 'solive-core/dist/index.css';
 ```
 
-#### 3. 使用
+### 3. Usage
 
 ```react
 <Editor
@@ -153,7 +153,7 @@ import 'solive-core/dist/index.css';
 />
 ```
 
-即可看到效果：
+Now you can see the SoLive Component on your page:
 
 ```solidity solive height="500px" consoleDefaultVisible="true" deployDefaultVisible="true"
 /**

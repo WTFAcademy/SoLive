@@ -1,20 +1,26 @@
 ---
-title: Docusaurus 插件
+title: Guide
 hide_title: true
+slug: /docusaurus-plugins
 ---
 
-## Docusaurus 插件
+# SoLive Doc: a Docusaurus Extension for SoLive
 
-> 你可以使用 `solive-docusaurus-theme-code` 插件快速集成一个轻量级Solidity Editor嵌入你的文档.
+> You can quickly integrate a lightweight Solidity Editor into your documentation using the `solive-docusaurus-theme-code` plugin. (Currently being improved)
 
-### 安装
+## Installation
 
-1. 首先我们需要安装 `solive-docusaurus-theme-code` 插件：
+1. First, we need to install the `solive-docusaurus-theme-code` plugin:
 ```bash npm2yarn
 npm install --save solive-docusaurus-theme-code
 ```
 
-2. 其次你需要在你的 `docusaurus.config.js` 中配置 `solive` 插件.
+2. Install some required dependencies for configuration (currently no better solution is available):
+```bash npm2yarn
+npm install -D stream-http https-browserify stream-browserify crypto-browserify stream-browserify path-browserify events os-browserify buffer url assert tty-browserify util browserify-zlib
+```
+
+3. Next, you need to configure the `solive` plugin in your `docusaurus.config.js`.
 
 ```js {3}
 module.exports = {
@@ -24,25 +30,25 @@ module.exports = {
 };
 ```
 
-### 快速使用
+## Quick Start
 
-1. 你需要注意在代码块标记solive，和配置solive的属性：
-```md
+1. To import SoLive in your document, you need to mark the Solidity code block with `solive` and its attributes:
+````md
+  ```solidity solive height=500px
+    // your code
+  ```
+````
+
+2. You can configure solive attributes like `height` in the code block (refer to the [Properties Table](/docs/docusaurus-plugins/props)):
+````md
   ```solidity solive height=300px
     // your code
-  ```\
-```
+  ```
+````
 
-2. 你可以在代码块中配置solive相关属性 `height`（具体参考[属性表](./introduction.mdx)）：
-```md
-  ```solidity solive height=300px
-    // your code
-  ```\
-```
-
-3. 配置代码块文件名（可多文件）：
-```md
-  ```solidity solive height=300px
+3. Configure the file name in the code block (supports multiple files), please note that duplicated file name in one page will result in error:
+````md
+  ```solidity solive height=500px
     /**
      * @filename Storage.sol
      */
@@ -54,12 +60,12 @@ module.exports = {
      */
 
     // your code
-  ```\
-```
+  ```
+````
 
-3. 完整的代码块示例：
+4. A complete SoLive code block example:
 ````md
-```solidity solive height=300px
+```solidity solive height=500px
 /**
  * @filename Storage.sol
  */
@@ -94,12 +100,12 @@ contract Storage {
         return number;
     }
 }
-```\
+```
 ````
 
-### 展示结果：
+5. You will see:
 
-```solidity solive height=300px
+```solidity solive height=500px
   /**
    * @filename Storage.sol
    */
@@ -134,3 +140,4 @@ contract Storage {
       }
   }
 ```
+
