@@ -1,4 +1,4 @@
-# Solive Demo
+# SoLive Demo
 
 ## run
 ```
