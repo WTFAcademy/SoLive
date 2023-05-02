@@ -1,24 +1,17 @@
 ---
-title: 引导
+title: Docusaurus 插件
 hide_title: true
-slug: /docusaurus-plugins
 ---
 
+# Docusaurus 插件
 
-## Docusaurus 插件
+> 你可以使用 `solive-docusaurus-theme-code` 插件快速集成一个轻量级Solidity Editor嵌入你的文档.
 
-> 你可以使用 `solive-docusaurus-theme-code` 插件快速集成一个轻量级Solidity Editor嵌入你的文档. （完善中）
-
-### 安装
+## 安装
 
 1. 首先我们需要安装 `solive-docusaurus-theme-code` 插件：
 ```bash npm2yarn
 npm install --save solive-docusaurus-theme-code
-```
-
-2. 安装一些配置需要的依赖项(暂未找到较好的方案内置)：
-```bash npm2yarn
-npm install -D stream-http https-browserify stream-browserify crypto-browserify stream-browserify path-browserify events os-browserify buffer url assert tty-browserify util browserify-zlib
 ```
 
 2. 其次你需要在你的 `docusaurus.config.js` 中配置 `solive` 插件.
@@ -31,25 +24,25 @@ module.exports = {
 };
 ```
 
-### 快速使用
+## 快速使用
 
 1. 你需要注意在代码块标记solive，和配置solive的属性：
-````md
-  ```solidity solive height=500px
-    // your code
-  ```
-````
-
-2. 你可以在代码块中配置solive相关属性 `height`（具体参考[属性表](/docs/docusaurus-plugins/props)）：
-````md
+```md
   ```solidity solive height=300px
     // your code
-  ```
-````
+  ```\
+```
+
+2. 你可以在代码块中配置solive相关属性 `height`（具体参考[属性表](./introduction.mdx)）：
+```md
+  ```solidity solive height=300px
+    // your code
+  ```\
+```
 
 3. 配置代码块文件名（可多文件）：
-````md
-  ```solidity solive height=500px
+```md
+  ```solidity solive height=300px
     /**
      * @filename Storage.sol
      */
@@ -61,12 +54,12 @@ module.exports = {
      */
 
     // your code
-  ```
-````
+  ```\
+```
 
 3. 完整的代码块示例：
 ````md
-```solidity solive height=500px
+```solidity solive height=300px
 /**
  * @filename Storage.sol
  */
@@ -101,12 +94,12 @@ contract Storage {
         return number;
     }
 }
-```
+```\
 ````
 
-5. 你将看到：
+## 展示结果：
 
-```solidity solive height=500px
+```solidity solive height=300px
   /**
    * @filename Storage.sol
    */
@@ -140,27 +133,4 @@ contract Storage {
           return number;
       }
   }
-```
-
-### 极简模式
-
-在部分场景下可能只需要展示代码块，而不需要编辑器，你可以使用极简模式（这将关闭语法校验，部署，编译，文件导航功能）：
-
-````md
-  ```solidity solive simple=true height=160px
-    // SPDX-License-Identifier: MIT
-    pragma solidity ^0.8.4;
-    contract HelloWeb3{
-        string public _string = "Hello Web3!";
-    }
-  ```
-````
-
-```solidity solive simple=true height=160px
-
-   // SPDX-License-Identifier: MIT
-   pragma solidity ^0.8.4;
-   contract HelloWeb3{
-       string public _string = "Hello Web3!";
-   }
 ```

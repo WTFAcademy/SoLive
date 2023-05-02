@@ -1,53 +1,53 @@
 ---
-title: 组件属性
+title: Component Properties
 sidebar_position: 2
 hide_title: true
 ---
 
-# 组件属性
+# Component Properties
 
-## 属性表
+## Property Table
 
-| 属性名 | 介绍 | 类型 | 默认值 | 是否必填 |
-| ----- | ----- | ----- | ----- | ----- |
-| id | 表单唯一标志 | string | - | ✅ |
-| modelInfos | 文件信息 | array | [] | ✅ |
-| height | 高度 | string | - | ✅ |
-| rounded | 窗口弧度 | string | 12px | - |
-| disableValidation | 是否禁用校验 | boolean | false | - |
-| monacoEditorOptions | monaco编辑器配置 | (参考 [IStandaloneEditorConstructionOptions](https://microsoft.github.io/monaco-editor/typedoc/interfaces/editor.IStandaloneEditorConstructionOptions.html)) | - | - |
-| fileNav | 顶部文件导航 | TFileNav | (参考 [TFileNav](/docs/solive-props#tfilenav)) | - |
-| console | 日志块 | TConsole | (参考 [TConsole](/docs/solive-props#tconsole)) | - |
-| deploy | 部署块 | TDeploy | (参考 [TDeploy](/docs/solive-props#tdeploy)) | - |
+| Property Name | Description | Type | Default Value | Required |
+| ------------- | ----------- | ---- | ------------- | -------- |
+| id | Unique form identifier | string | - | ✅ |
+| modelInfos | File information | array | [] | ✅ |
+| height | Height | string | - | ✅ |
+| rounded | Window corner radius | string | 12px | - |
+| disableValidation | Whether to disable validation | boolean | false | - |
+| monacoEditorOptions | Monaco editor configuration | (Refer to [IStandaloneEditorConstructionOptions](https://microsoft.github.io/monaco-editor/typedoc/interfaces/editor.IStandaloneEditorConstructionOptions.html)) | - | - |
+| fileNav | Top file navigation | TFileNav | (Refer to [TFileNav](/docs/solive-props#tfilenav)) | - |
+| console | Log block | TConsole | (Refer to [TConsole](/docs/solive-props#tconsole)) | - |
+| deploy | Deployment block | TDeploy | (Refer to [TDeploy](/docs/solive-props#tdeploy)) | - |
 
 ## TFileNav
 
-顶部文件导航属性表
+Top file navigation property table
 
-| 属性名 | 介绍 | 类型 | 默认值 | 是否必填 |
-| ----- | ----- | ----- | ----- | ----- |
-| open | 是否开启功能 | boolean | true | - |
+| Property Name | Description | Type | Default Value | Required |
+| ------------- | ----------- | ---- | ------------- | -------- |
+| open | Whether to enable the feature | boolean | true | - |
 
 ## TConsole
 
-日志块属性表
+Log block property table
 
-| 属性名 | 介绍 | 类型 | 默认值 | 是否必填 |
-| ----- | ----- | ----- | ----- | ----- |
-| defaultVisible | 默认是否显示 | boolean | true | - |
-| defaultHeight | 默认高度 | string | "30%" | - |
-| minHeight | 最小高度 | number | 78 | - |
-| triggerControl | 是否开启控制 | boolean | true | - |
-| open | 是否开启功能 | boolean | true | - |
+| Property Name | Description | Type | Default Value | Required |
+| ------------- | ----------- | ---- | ------------- | -------- |
+| defaultVisible | Default visibility | boolean | true | - |
+| defaultHeight | Default height | string | "30%" | - |
+| minHeight | Minimum height | number | 78 | - |
+| triggerControl | Whether to enable control | boolean | true | - |
+| open | Whether to enable the feature | boolean | true | - |
 
 ## TDeploy
 
-部署块属性表
+Deployment block property table
 
-| 属性名 | 介绍 | 类型 | 默认值 | 是否必填 |
-| ----- | ----- | ----- | ----- | ----- |
-| defaultVisible | 默认是否显示 | boolean | true | - |
-| defaultWidth | 默认宽度 | string | "200px" | - |
-| minWidth | 最小宽度 | number | 140 | - |
-| maxWidth | 最大宽度 | number | 240 | - |
-| open | 是否开启功能 | boolean | true | - |
+| Property Name | Description | Type | Default Value | Required |
+| ------------- | ----------- | ---- | ------------- | -------- |
+| defaultVisible | Default visibility | boolean | true | - |
+| defaultWidth | Default width | string | "200px" | - |
+| minWidth | Minimum width | number | 140 | - |
+| maxWidth | Maximum width | number | 240 | - |
+| open | Whether to enable the feature | boolean | true | - |
