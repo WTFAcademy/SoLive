@@ -31,7 +31,7 @@ const SECTIONS = [
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
-  title: "Solive",
+  title: "SoLive",
   tagline: "Online playground for Solidity",
   favicon: "img/favicon.ico",
 
@@ -43,8 +43,8 @@ const config = {
 
   // GitHub pages deployment config.
   // If you aren't using GitHub pages, you don't need these.
-  organizationName: "Solive", // Usually your GitHub org/user name.
-  projectName: "Solive", // Usually your repo name.
+  organizationName: "SoLive", // Usually your GitHub org/user name.
+  projectName: "SoLive", // Usually your repo name.
 
   onBrokenLinks: "throw",
   onBrokenMarkdownLinks: "warn",
@@ -57,7 +57,7 @@ const config = {
     locales: ["en"],
   },
 
-  themes: ['solive-docusaurus-theme-code'],
+  themes: ['SoLive-docusaurus-theme-code'],
 
   presets: [
     [
@@ -93,9 +93,9 @@ const config = {
       // Replace with your project's social card
       image: "img/docusaurus-social-card.jpg",
       navbar: {
-        title: "Solive",
+        title: "SoLive",
         logo: {
-          alt: "Solive",
+          alt: "SoLive",
           src: "img/logo_300x300.png",
         },
         items: [
@@ -137,12 +137,12 @@ const config = {
             items: [
               {
                 label: "GitHub",
-                href: "https://github.com/WTFAcademy/solive",
+                href: "https://github.com/WTFAcademy/SoLive",
               },
             ],
           },
         ],
-        copyright: `Copyright © ${new Date().getFullYear()} Solive, Inc. Built with Docusaurus.`,
+        copyright: `Copyright © ${new Date().getFullYear()} SoLive, Inc. Built with Docusaurus.`,
       },
       prism: {
         theme: lightCodeTheme,

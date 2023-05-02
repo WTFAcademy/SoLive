@@ -53,9 +53,9 @@ export default function HomepageFeatures(): JSX.Element {
     <section className={styles.features}>
       <div className={styles.overview}>
         <div className={styles.overviewText}>
-          <h2 className={styles.overviewTextTitle}>Say hi to Solive 🤟</h2>
+          <h2 className={styles.overviewTextTitle}>Say hi to SoLive 🤟</h2>
           <br/>
-          <p className={styles.overviewTextDes}>Solive is a flexible online playground for Solidity smart contracts, inspired by remix-IDE and react-live. Solive enables you to edit, compile, deploy, and interact with solidity smart contracts in one React component. You can embed solive into your website/tutorials and let users run solidity code in the browser. Solive is also compatible with mobile browsers.</p>
+          <p className={styles.overviewTextDes}>SoLive is a flexible online playground for Solidity smart contracts, inspired by remix-IDE and react-live. SoLive enables you to edit, compile, deploy, and interact with solidity smart contracts in one React component. You can embed SoLive into your website/tutorials and let users run solidity code in the browser. SoLive is also compatible with mobile browsers.</p>
         </div>
       </div>
       <div className={styles.featureTitle}>What's next:</div>
