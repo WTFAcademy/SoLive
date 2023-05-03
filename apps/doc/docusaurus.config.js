@@ -57,7 +57,7 @@ const config = {
     locales: ["en"],
   },
 
-  themes: ['SoLive-docusaurus-theme-code'],
+  themes: ['solive-docusaurus-theme-code'],
 
   presets: [
     [
