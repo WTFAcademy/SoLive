@@ -112,7 +112,7 @@ const useDeploy = () => {
         throw new Error('Please select the deployed contract first.');
       }
       const signer = await provider.provider.getSigner(signerAddress);
-      const contract = await deploy(abi, bytecode, signer, callOptions, Object.values(params || {}));
+      const [contract, tx] = await deploy(abi, bytecode, signer, callOptions, Object.values(params || {}));
       console.log(contract, contract.address);
       addCompiledContract({
         name,
@@ -120,6 +120,12 @@ const useDeploy = () => {
         abi: abi,
         signerAddress,
       });
+      addConsole([
+        {
+          type: "success",
+          message: JSON.stringify(tx)
+        }
+      ])
       addConsole([
         {
           type: "success",
