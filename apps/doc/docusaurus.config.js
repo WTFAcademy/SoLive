@@ -54,7 +54,7 @@ const config = {
   // to replace "en" with "zh-Hans".
   i18n: {
     defaultLocale: "en",
-    locales: ["en"],
+    locales: ["en", `zh`],
   },
 
   themes: ['solive-docusaurus-theme-code'],
@@ -115,6 +115,9 @@ const config = {
             label: 'Playground',
             position: 'left',
           },
+          {
+            type: 'localeDropdown',
+          },  
         ],
       },
       footer: {
