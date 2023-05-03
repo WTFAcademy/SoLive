@@ -109,7 +109,12 @@ const config = {
             docId: "introduction",
             position: "left",
             label: "Docs",
-          }
+          },
+          {
+            href: 'https://demo.solive.wtf',
+            label: 'Playground',
+            position: 'left',
+          },
         ],
       },
       footer: {
