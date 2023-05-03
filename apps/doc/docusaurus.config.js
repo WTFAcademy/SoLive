@@ -91,6 +91,11 @@ const config = {
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({
       // Replace with your project's social card
+      colorMode: {
+        defaultMode: 'dark',
+        disableSwitch: false,
+        respectPrefersColorScheme: false,
+      },  
       image: "img/docusaurus-social-card.jpg",
       navbar: {
         title: "SoLive",
