@@ -7,7 +7,7 @@ const deploy = async (
   bytecode: string,
   signer: providers.JsonRpcSigner,
   callOptions: {value: number; gasLimit: number},
-  args: any[]
+  args: any[],
 ): Promise<[Contract, ethers.providers.TransactionReceipt]> => {
   const contractFactory = new ethers.ContractFactory(abi, bytecode, signer);
   const instance = await contractFactory.deploy(...(args || []), {
@@ -16,7 +16,7 @@ const deploy = async (
   });
   const tx = await instance.deployTransaction.wait();
   return [instance, tx];
-}
+};
 
 // const getBytecode = (compiledContract: any) => compiledContract.evm.bytecode.object;
 
