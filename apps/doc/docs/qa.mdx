@@ -3,3 +3,45 @@ title: FAQ
 sidebar_position: 4
 hide_title: true
 ---
+
+## 1. How to use Next.js?
+
+> Like [NextJs Demo](https://github.com/WTFAcademy/solive/tree/main/apps)
+
+```tsx
+import dynamic from 'next/dynamic';
+
+import 'solive-core/dist/index.css';
+
+const Editor = dynamic(
+  () => import('solive-core'),
+  { ssr: false },
+);
+
+// ...
+```
+
+## 2. How to use Docusaurus2 ？
+
+#### React Component
+> Like [Docusaurus2 Demo](https://github.com/WTFAcademy/solive/tree/main/apps/doc)
+
+```ts
+<BrowserOnly fallback={<div>Loading...</div>}>
+    {() => {
+      // eslint-disable-next-line @typescript-eslint/no-var-requires,global-require
+      const Editor = require('solive-core').default;
+      return (
+        <Editor
+          id="1"
+          modelInfos={[]}
+          height="500px"
+        />
+      );
+    }}
+</BrowserOnly>
+```
+
+#### Doc MDX Plugin
+
+> see [docusaurus-plugin-solive](/docs/docusaurus-plugins/index)

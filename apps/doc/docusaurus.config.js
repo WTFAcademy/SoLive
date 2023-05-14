@@ -117,6 +117,12 @@ const config = {
           },
           {
             type: 'localeDropdown',
+            position: 'right',
+          },
+          {
+            href: 'https://github.com/WTFAcademy/solive',
+            label: 'GitHub',
+            position: 'right',
           },
         ],
       },
