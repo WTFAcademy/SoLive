@@ -45,7 +45,7 @@ a:hover{
   position: relative;
   font-family: 'Inter';
   font-weight: 700;
-  font-size: 48px;
+  font-size: 60px;
   line-height: 1.2;
   margin-top: 75px;
   padding: 0 20px;
@@ -56,9 +56,10 @@ a:hover{
   font-family: 'Inter';
   font-weight: 400;
   font-size: 24px;
-  line-height: 1.2;
-  margin-top: 32px;
+  line-height: 1.5;
   padding: 0 20px;
+  max-width: 60%;
+  margin: 32px auto 0;
 }
 
 .buttons {
@@ -104,5 +105,9 @@ a:hover{
   }
   .heroBannerTitle{
     font-size: 42px;
+  }
+  .heroBannerSubTitle{
+    font-size: 20px;
+    max-width: 90%;
   }
 }
