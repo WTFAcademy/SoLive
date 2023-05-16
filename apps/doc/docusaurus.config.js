@@ -32,7 +32,7 @@ const SECTIONS = [
 /** @type {import('@docusaurus/types').Config} */
 const config = {
   title: "SoLive",
-  tagline: "Online playground for Solidity",
+  tagline: "SoLive is a platform for creating and managing Solidity smart contracts with a React component that works on mobile browsers and can be embedded into websites.",
   favicon: "img/favicon.ico",
 
   // Set the production url of your site here
@@ -117,7 +117,13 @@ const config = {
           },
           {
             type: 'localeDropdown',
-          },  
+            position: 'right',
+          },
+          {
+            href: 'https://github.com/WTFAcademy/solive',
+            label: 'GitHub',
+            position: 'right',
+          },
         ],
       },
       footer: {

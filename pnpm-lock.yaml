@@ -179,6 +179,7 @@ importers:
       react-hot-toast: ^2.4.0
       react-jazzicon: ^1.0.4
       react-scripts: 5.0.1
+      solive-core: workspace:*
       solive-docusaurus-theme-code: workspace:*
       typescript: ^4.7.4
     dependencies:
@@ -196,6 +197,7 @@ importers:
       react-hot-toast: 2.4.0_biqbaboplfbrettd7655fr4n2y
       react-jazzicon: 1.0.4_biqbaboplfbrettd7655fr4n2y
       react-scripts: 5.0.1_j5ip3o3v6sktjzl5cxtjyfbuo4
+      solive-core: link:../../packages/core
       solive-docusaurus-theme-code: link:../../packages/docusaurus-plugin
     devDependencies:
       '@docusaurus/module-type-aliases': 2.3.0_biqbaboplfbrettd7655fr4n2y
@@ -220,7 +222,6 @@ importers:
       solive-core: workspace:*
       tailwindcss: 3.3.1
       typescript: 5.0.4
-      webpack-node-externals: ^3.0.0
     dependencies:
       '@headlessui/react': 1.7.13_biqbaboplfbrettd7655fr4n2y
       '@heroicons/react': 2.0.17_react@18.2.0
@@ -237,8 +238,6 @@ importers:
       solive-core: link:../../packages/core
       tailwindcss: 3.3.1_postcss@8.4.21
       typescript: 5.0.4
-    devDependencies:
-      webpack-node-externals: r2.cnpmjs.org/webpack-node-externals/3.0.0
 
   packages/compiler-utils:
     specifiers:

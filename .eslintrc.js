@@ -91,7 +91,7 @@ module.exports = {
     'import/no-unresolved': [
       'error',
       {
-        ignore: ['^@theme-original', '^@docusaurus', '^@theme-init'],
+        ignore: ['^@theme-original', '^@docusaurus', '^@theme-init', '^@theme'],
       },
     ],
 

@@ -114,6 +114,7 @@ function App({ modelInfos, disableValidation = false, monacoEditorOptions = {} }
       defaultLanguage="solidity"
       defaultValue="// some comment"
       options={{
+        lineNumbersMinChars: 3,
         minimap: {
           enabled: false,
         },
