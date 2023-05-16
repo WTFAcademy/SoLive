@@ -1,6 +1,6 @@
 {
   "name": "solive-core",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "Solidity Monaco Editor Core Library",
   "main": "dist/index.js",
   "module": "dist/index.es.js",
