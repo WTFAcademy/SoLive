@@ -31,8 +31,8 @@ const SECTIONS = [
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
-  title: "Solive",
-  tagline: "Solive is a platform for creating and managing Solidity smart contracts with a React component that works on mobile browsers and can be embedded into websites.",
+  title: "SoLive",
+  tagline: "SoLive is a platform for creating and managing Solidity smart contracts with a React component that works on mobile browsers and can be embedded into websites.",
   favicon: "img/favicon.ico",
 
   // Set the production url of your site here
@@ -43,8 +43,8 @@ const config = {
 
   // GitHub pages deployment config.
   // If you aren't using GitHub pages, you don't need these.
-  organizationName: "Solive", // Usually your GitHub org/user name.
-  projectName: "Solive", // Usually your repo name.
+  organizationName: "SoLive", // Usually your GitHub org/user name.
+  projectName: "SoLive", // Usually your repo name.
 
   onBrokenLinks: "throw",
   onBrokenMarkdownLinks: "warn",
@@ -95,12 +95,12 @@ const config = {
         defaultMode: 'dark',
         disableSwitch: false,
         respectPrefersColorScheme: false,
-      },
+      },  
       image: "img/docusaurus-social-card.jpg",
       navbar: {
-        title: "Solive",
+        title: "SoLive",
         logo: {
-          alt: "Solive",
+          alt: "SoLive",
           src: "img/logo_300x300.png",
         },
         items: [
