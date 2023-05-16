@@ -1,5 +1,15 @@
 # solive-core
 
+## 0.0.4
+
+### Patch Changes
+
+- 303291f: Add auto scroll to bottom.
+- 303291f: Set monaco line numbers width to 3.
+- a612638: update default environment to Shanghai
+- 303291f: Log the deployment tx.
+- f70faad: Fix a lint problem.
+
 ## 0.0.3
 
 ### Patch Changes
