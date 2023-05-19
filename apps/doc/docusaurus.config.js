@@ -161,7 +161,7 @@ const config = {
             ],
           },
         ],
-        copyright: `Copyright © ${new Date().getFullYear()} SoLive, Inc. Built with Docusaurus.`,
+        copyright: `Copyright © ${new Date().getFullYear()} SoLive, Inc. Built by WTF Academy.`,
       },
       prism: {
         theme: lightCodeTheme,
