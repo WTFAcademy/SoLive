@@ -12,6 +12,46 @@ SoLive is a lightweight and fleaxible online Solidity playground, inspired by re
 1. Education: In the [WTF Solidity](https://github.com/AmazingAng/WTF-Solidity) tutorials, we will utilize SoLive to replace conventional code blocks, enabling students to read and run the code concurrently.
 2. Developer Onboarding: Layer2 projects can leverage SoLive to attract and recruit Ethereum developers.
 
+## Demo
+
+Below is a SoLive Codeblock, try to compile, deploy and interact with the contract!
+
+```solidity solive height="500px" consoleDefaultVisible="true" deployDefaultVisible="true"
+/**
+   * @filename Storage.sol
+   */
+
+  // SPDX-License-Identifier: MIT
+
+  pragma solidity >=0.7.0 <0.9.0;
+
+  /**
+   * @title Storage
+   * @dev Store & retrieve value in a variable
+   * @custom:dev-run-script ./scripts/deploy_with_ethers.ts
+   */
+  contract Storage {
+
+      uint256 number;
+
+      /**
+       * @dev Store value in variable
+       * @param num value to store
+       */
+      function store(uint256 num) public {
+          number = num;
+      }
+
+      /**
+       * @dev Return value
+       * @return value of 'number'
+       */
+      function retrieve() public view returns (uint256){
+          return number;
+      }
+  }
+```
+
 ## How it works
 SoLive is lightweight and flexible by design. It includes only the essential modules needed for editing, compiling, deploying, and interacting with smart contracts.
 1. Edit Module: We employ the Monaco Editor as the code editor.
