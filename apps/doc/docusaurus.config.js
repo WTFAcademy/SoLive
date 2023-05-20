@@ -32,7 +32,7 @@ const SECTIONS = [
 /** @type {import('@docusaurus/types').Config} */
 const config = {
   title: "SoLive",
-  tagline: "SoLive is a platform for creating and managing Solidity smart contracts with a React component that works on mobile browsers and can be embedded into websites.",
+  tagline: "SoLive is the first open-source lightweight Solidity Integrated Development Environment (IDE) that can be integrated into websites, documents, and tutorials easily",
   favicon: "img/favicon.ico",
 
   // Set the production url of your site here
