@@ -18,7 +18,7 @@ function HomepageHeader() {
           <HeroBannerRightStar />
         </div>
         <h1 className={styles.heroBannerTitle}>{siteConfig.title}</h1>
-        <p className={styles.heroBannerSubTitle}>The first open-source lightweight Solidity IDE that can be easily integrated into websites, documents, and tutorials. {"\n"} Powered by WTF Academy, Inspired by Remix-IDE and react-live.</p>
+        <p className={styles.heroBannerSubTitle}>{siteConfig.tagline}</p>
       </div>
     </header>
   );
