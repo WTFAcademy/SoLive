@@ -2,6 +2,7 @@ import React from 'react';
 
 import { BallotSol, OwnerSol } from '@site/src/constants/sol';
 import BrowserOnly from '@docusaurus/BrowserOnly';
+import Translate from '@docusaurus/Translate';
 
 import styles from './styles.module.css';
 
