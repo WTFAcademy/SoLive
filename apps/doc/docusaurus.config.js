@@ -32,7 +32,6 @@ const SECTIONS = [
 /** @type {import('@docusaurus/types').Config} */
 const config = {
   title: "SoLive",
-  tagline: "The first open-source lightweight Solidity IDE that can be easily integrated into websites, documents, and tutorials. Powered by WTF Academy, Inspired by Remix-IDE and react-live.",
   favicon: "img/favicon.ico",
 
   // Set the production url of your site here

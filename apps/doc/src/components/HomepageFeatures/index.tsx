@@ -17,7 +17,7 @@ const FeatureList: FeatureItem[] = [
     imgUrl: require('@site/static/img/home_feature_item1.png').default,
     description: (
       <>
-        you can connect metamask to solve and deploy smart contracts to layer2.
+        you can connect metamask to SoLive and deploy smart contracts to layer2.
       </>
     ),
   },
