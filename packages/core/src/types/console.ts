@@ -19,4 +19,4 @@ export const createConsoleMessage = ({ type, message }: TInputConsoleMessage): T
   timestamp: Date.now(),
 });
 
-export const generateConsoleMessageToShow = (message: TConsoleMessage) => `[${new Date(message.timestamp).toLocaleTimeString()}]: ${message.message}`;
+export const generateConsoleMessageToShow = (message: TConsoleMessage): string => `[${new Date(message.timestamp).toLocaleTimeString()}]: ${message.message}`;

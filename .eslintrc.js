@@ -61,6 +61,7 @@ module.exports = {
     '@typescript-eslint/no-explicit-any': 'off',
     '@typescript-eslint/no-non-null-asserted-optional-chain': 'off',
     '@typescript-eslint/no-non-null-assertion': 'off',
+    'no-unused-expressions': 'off',
 
     // React 相关
     'react/jsx-filename-extension': ['error', { extensions: ['.jsx', '.tsx'] }],
@@ -68,10 +69,12 @@ module.exports = {
     'react/jsx-props-no-spreading': 'off',
     'react-hooks/rules-of-hooks': 'error',
     'react-hooks/exhaustive-deps': 'warn',
-    'react/require-default-props': 'warn',
     'react/no-unused-prop-types': 'warn',
     'jsx-a11y/click-events-have-key-events': 'warn',
     'react/jsx-no-bind': 'off',
+    'react/require-default-props': 'off',
+    'react/no-array-index-key': 'off',
+    'jsx-a11y/no-static-element-interactions': 'off',
 
     // import 相关
     'import/prefer-default-export': 'off',

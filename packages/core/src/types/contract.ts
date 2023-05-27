@@ -1,8 +1,8 @@
-import { ContractInterface } from 'ethers';
+import { ABIDescription } from 'solive-compiler-utils';
 
 export type TCompiledContract = {
   name: string;
   address: string;
-  abi: ContractInterface;
+  abi: ABIDescription[];
   signerAddress: string;
 }

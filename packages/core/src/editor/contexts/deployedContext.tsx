@@ -1,7 +1,6 @@
-import React, {useState} from "react";
+import React, { useState } from 'react';
 
-import {TCompiledContract} from "../../types/contract";
-
+import { TCompiledContract } from '../../types/contract';
 
 type TContext = {
   compiledContracts: TCompiledContract[];
@@ -14,17 +13,17 @@ type TContext = {
 const DeployedContext = React.createContext<TContext | undefined>(undefined);
 
 // Editor Provider
-export function DeployedProvider({children}: { children: React.ReactNode }) {
+export function DeployedProvider({ children }: { children: React.ReactNode }) {
   const [compiledContracts, setCompiledContracts] = useState<TCompiledContract[]>([]);
   const [selectedNetwork, setSelectedNetwork] = useState<string>();
 
   const addCompiledContract = (compiledContract: TCompiledContract) => {
-    setCompiledContracts(old => [...old, compiledContract]);
-  }
+    setCompiledContracts((old) => [...old, compiledContract]);
+  };
 
   const clearCompiledContract = () => {
     setCompiledContracts([]);
-  }
+  };
 
   return (
     <DeployedContext.Provider
@@ -33,7 +32,7 @@ export function DeployedProvider({children}: { children: React.ReactNode }) {
         addCompiledContract,
         clearCompiledContract,
         setSelectedNetwork,
-        selectedNetwork
+        selectedNetwork,
       }}
     >
       {children}
@@ -45,7 +44,7 @@ export function useDeployed() {
   const context = React.useContext(DeployedContext);
 
   if (context === undefined) {
-    throw new Error("useDeploy must be used withing a provider");
+    throw new Error('useDeploy must be used withing a provider');
   }
 
   return context;

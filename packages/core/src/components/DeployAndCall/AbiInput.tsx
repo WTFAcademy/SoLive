@@ -5,7 +5,7 @@ import {forwardRef, useImperativeHandle} from "react";
 import RHFInput from "../HookForm/RHFInput";
 import {FormProvider} from "../HookForm";
 
-import {transformAbiParams} from "./utils";
+import {transformAbiParams} from "./utils/utils";
 
 type TProps = {
   inputs: ABIParameter[];
