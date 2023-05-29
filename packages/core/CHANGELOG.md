@@ -1,5 +1,11 @@
 # solive-core
 
+## 0.0.5
+
+### Patch Changes
+
+- 65beaad: refactor log output
+
 ## 0.0.4
 
 ### Patch Changes
