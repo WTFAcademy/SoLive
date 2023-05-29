@@ -19,7 +19,7 @@ import { useConsole } from '../../editor/contexts/consoleContext';
 import { useRelayNetwork } from '../../editor/contexts/relayNetworkContext';
 
 import AbiInput from './AbiInput';
-import { getAccountOptions } from './accounts';
+import { getAccountOptions } from './utils/accounts';
 
 const ENVIRONMENT_OPTIONS = [
   { label: 'London', value: Hardfork.London },
@@ -38,7 +38,7 @@ const resolveConstructor = (abi: any = []) => {
 };
 
 const useCompile = () => {
-  const { state, actions, id } = useEditor();
+  const { state } = useEditor();
   const { addConsole } = useConsole();
   const models = state.models || [];
   const modelIndex = state.modelIndex || 0;
@@ -57,8 +57,7 @@ const useCompile = () => {
       const compileResult: any = await state.codeParser.compilerService.compile();
       const hasError = compileResult.output.errors?.filter((item: any) => item.severity === 'error').length > 0;
       if (hasError) {
-        console.log(compileResult.errors);
-        throw new Error('编译失败');
+        throw new Error(compileResult.output.errors.map((item: any) => item.formattedMessage).join('\n'));
       }
 
       setError(false);
@@ -67,8 +66,11 @@ const useCompile = () => {
         label: key,
         value: key,
       })));
+      addConsole([{
+        type: 'success',
+        message: 'Compile success!',
+      }]);
     } catch (e: any) {
-      console.log(e);
       setError(true);
       addConsole([{
         type: 'error',
@@ -109,7 +111,7 @@ const useDeploy = () => {
     try {
       setLoading(true);
       if (!abi) {
-        throw new Error('Please select the deployed contract first.');
+        throw new Error('Please compile or select contract first!');
       }
       const signer = await provider.provider.getSigner(signerAddress);
       const [contract, tx] = await deploy(abi, bytecode, signer, callOptions, Object.values(params || {}));
@@ -124,15 +126,12 @@ const useDeploy = () => {
           type: 'success',
           message: JSON.stringify(tx),
         },
-      ]);
-      addConsole([
         {
           type: 'success',
           message: `${name} - Contract deployment succeeded: ${contract.address}`,
         },
       ]);
     } catch (e: any) {
-      console.log(e);
       addConsole([
         {
           type: 'error',

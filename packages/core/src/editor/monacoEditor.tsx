@@ -1,12 +1,12 @@
-import React, { useEffect, useRef } from 'react';
+import React, {useEffect, useRef} from 'react';
 
 import BaseMonaco from 'monaco-editor';
-import ReactBaseMonacoEditor, { Monaco, loader } from '@monaco-editor/react';
-import { ErrorMarker, MarkerSeverity } from 'solive-compiler-utils';
+import ReactBaseMonacoEditor, {Monaco, loader} from '@monaco-editor/react';
+import {ErrorMarker, MarkerSeverity} from 'solive-compiler-utils';
 
-import { BaseMonacoEditor, EditorApi, ModelInfoType } from '../types/monaco';
+import {BaseMonacoEditor, EditorApi, ModelInfoType} from '../types/monaco';
 
-import { useEditor } from './contexts/editorContext';
+import {useEditor} from './contexts/editorContext';
 import {
   initTheme,
   registerLangs,
@@ -15,9 +15,9 @@ import {
   registerListeners,
 } from './mountFunctions';
 import CodeParser from './codeParser';
-import { findModel } from './utils/model';
+import {findModel} from './utils/model';
 
-loader.config({ paths: { vs: 'https://cdn.jsdelivr.net/npm/monaco-editor@0.37.1/min/vs' } });
+loader.config({paths: {vs: 'https://cdn.jsdelivr.net/npm/monaco-editor@0.37.1/min/vs'}});
 
 interface IProps {
   modelInfos: ModelInfoType[];
@@ -25,7 +25,8 @@ interface IProps {
   monacoEditorOptions?: BaseMonaco.editor.IStandaloneEditorConstructionOptions;
 }
 
-function App({ modelInfos, disableValidation = false, monacoEditorOptions = {} }: IProps) {
+function App(props: IProps) {
+  const {modelInfos, disableValidation = false, monacoEditorOptions = {}} = props;
   const {
     stateRef, dispatch, actions, id,
   } = useEditor();
