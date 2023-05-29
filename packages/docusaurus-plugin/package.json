@@ -1,6 +1,6 @@
 {
   "name": "solive-docusaurus-theme-code",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "description": "A Docusaurus v2 plugin that supports solidity code live.",
   "main": "dist/index.js",
   "exports": {
