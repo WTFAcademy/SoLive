@@ -6,7 +6,8 @@ type TNavProps<T> = {
   label: string;
   id: string;
   data?: T;
-}
+  delDisabled?: boolean;
+};
 
 type TProps = {
   /**
@@ -18,11 +19,16 @@ type TProps = {
   onClick?: (nav: TNavProps<any>, index: number) => void;
   onDeleteClick?: (nav: TNavProps<any>, index: number) => void;
   placeholderElement?: React.ReactNode;
-}
+};
 
 function NavBar(props: TProps) {
   const {
-    navs = [], globalId = '', activeNavId, onClick, onDeleteClick, placeholderElement,
+    navs = [],
+    globalId = '',
+    activeNavId,
+    onClick,
+    onDeleteClick,
+    placeholderElement,
   } = props;
   const [activeId, setActiveId] = useState(activeNavId || navs[0]?.id);
 
@@ -46,24 +52,21 @@ function NavBar(props: TProps) {
       {navs.map((nav, index) => (
         <div
           key={`${globalId}_${nav.id}_${index}`}
-          className={`nav ${nav.id === activeId ? 'nav-active' : ''}${nav.id === 'empty' ? ' nav-empty' : ''}`}
+          className={`nav ${nav.id === activeId ? 'nav-active' : ''}${
+            nav.id === 'empty' ? ' nav-empty' : ''
+          }`}
           onClick={() => handleClick(nav, index)}
         >
           <span>{nav.label}</span>
-          {
-            nav.id === activeId
-            && (
+          {nav.id === activeId && !nav.delDisabled && (
             <XMarkIcon
               className="absolute right-2 w-3 h-3 cursor-pointer mt-[2px] text-[#94A0B3]"
               onClick={() => handleDeleteClick(nav, index)}
             />
-            )
-          }
+          )}
         </div>
       ))}
-      <div className="nav-placeholder">
-        {placeholderElement}
-      </div>
+      <div className="nav-placeholder">{placeholderElement}</div>
     </div>
   );
 }
