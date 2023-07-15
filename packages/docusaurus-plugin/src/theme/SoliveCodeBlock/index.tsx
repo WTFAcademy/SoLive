@@ -1,6 +1,6 @@
 import React, { useMemo } from 'react';
 
-import Editor from 'solive-core';
+import StandardEditor, { PureEditor } from 'solive-core';
 import { v4 as uuidv4 } from 'uuid';
 
 import 'solive-core/dist/index.css';
@@ -96,9 +96,10 @@ function SoliveCodeBlock(props: SoliveCodeBlockProps) {
     modelInfos,
   ]);
 
+  console.log(allProps);
   return (
     <div style={{ width: allProps.width, maxWidth: '800px', margin: 'auto' }}>
-      <Editor {...state} />
+      {allProps.mode === 'standard' ? <StandardEditor {...state} /> : <PureEditor {...state} />}
     </div>
   );
 }
