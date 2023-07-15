@@ -1,5 +1,5 @@
 import React, {
-  useEffect, useMemo, useState,
+  useEffect, useMemo, useRef, useState,
 } from 'react';
 
 import { Allotment } from 'allotment';
@@ -22,8 +22,8 @@ import Button from '../components/Button';
 import { getAccountOptions } from '../components/DeployAndCall/utils/accounts';
 import AbiForm from '../components/DeployAndCall/AbiForm';
 import { TCompiledContract } from '../types/contract';
+import AbiInput from '../components/DeployAndCall/AbiInput';
 
-import randomSolidityValue from './utils/ramdom-value';
 import {
   RelayNetworkProvider,
   useRelayNetwork,
@@ -250,6 +250,14 @@ function DeployForm() {
   const [, setAccountOptions] = useState<{ label: string; value: string }[]>(
     [],
   );
+  const abiInputRef = useRef<{
+    getValues:() => any;
+    watch: (v: string) => any;
+  }>();
+
+  const [deployParams, setDeployParams] = useState([]);
+
+  const [currentCompileResult, setCompileResult] = useState<any>();
 
   const methods = useForm({
     defaultValues: {
@@ -275,7 +283,7 @@ function DeployForm() {
     }
   };
 
-  const handleDeploy = async () => {
+  const handleCompileAndDeploy = async () => {
     const compileResult = await compile();
     const models = state.models || [];
     const modelIndex = state.modelIndex || 0;
@@ -283,24 +291,41 @@ function DeployForm() {
     const compiledContracts = compileResult.output.contracts[curModel?.filename];
     const contractName = Object.keys(compiledContracts)[0];
     const contracts: any = compiledContracts[contractName];
-
     const abi = contracts ? contracts?.abi : undefined;
     const bytecode = contracts ? contracts?.evm.bytecode.object : undefined;
-
     const deployParams = resolveConstructor(abi);
-
-    let deployParamsValues = {};
-
+    const value = methods.getValues('value');
+    const gasLimit = methods.getValues('gasLimit');
     if (deployParams.length > 0) {
-      deployParamsValues = deployParams.reduce((prev: any, next: any) => {
-        // eslint-disable-next-line no-param-reassign
-        prev[next.name] = randomSolidityValue(next.type);
-        return prev;
-      }, {});
+      setCompileResult(compileResult);
+      setDeployParams(deployParams);
+    } else {
+      await startDeploy(
+        contractName,
+        abi,
+        bytecode,
+        {},
+        selectAccount,
+        { value, gasLimit },
+        providerRef.current,
+      );
+      updateAccountOptions(accounts);
     }
+  };
+  const handleGoOnDeploy = async () => {
+    const compileResult = currentCompileResult;
+    const models = state.models || [];
+    const modelIndex = state.modelIndex || 0;
+    const curModel = models[modelIndex];
+    const compiledContracts = compileResult.output.contracts[curModel?.filename];
+    const contractName = Object.keys(compiledContracts)[0];
+    const contracts: any = compiledContracts[contractName];
+    const abi = contracts ? contracts?.abi : undefined;
+    const bytecode = contracts ? contracts?.evm.bytecode.object : undefined;
     const value = methods.getValues('value');
     const gasLimit = methods.getValues('gasLimit');
 
+    const deployParamsValues = abiInputRef.current?.getValues();
     await startDeploy(
       contractName,
       abi,
@@ -337,6 +362,8 @@ function DeployForm() {
     const curModel = deployOptions[index].data.model;
     actions.updateModelIndex(index);
     state.editor?.setModel(curModel);
+    setDeployParams([])
+    setCompileResult(null)
   };
   return (
     <div className="min-h-[500px] w-full flex flex-col overflow-auto p-[20px] max-w-[300px]">
@@ -347,10 +374,20 @@ function DeployForm() {
           options={deployOptions}
           onChange={onFileChange}
         />
+        {deployParams.length > 0 && (
+          <AbiInput ref={abiInputRef} inputs={deployParams} />
+        )}
         <div className="flex justify-start gap-2 mb-2">
-          <Button type="primary" loading={deployLoading} onClick={handleDeploy}>
-            Deploy
-          </Button>
+          {deployParams.length > 0 ? (
+            <Button type="primary" loading={deployLoading} onClick={handleGoOnDeploy}>
+              Go on
+            </Button>
+          )
+            : (
+              <Button type="primary" loading={deployLoading} onClick={handleCompileAndDeploy}>
+                Deploy
+              </Button>
+            )}
         </div>
       </FormProvider>
     </div>

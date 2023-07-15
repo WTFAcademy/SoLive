@@ -1,6 +1,4 @@
-import React, {
-  useEffect, useMemo, useReducer, useRef,
-} from 'react';
+import React, { useEffect, useReducer, useRef } from 'react';
 
 import monacoForTypes, { editor } from 'monaco-editor';
 
@@ -17,13 +15,14 @@ export interface IEditorInitState {
 }
 
 export interface IEditorReducerActionType {
-  type: 'updateEditor' |
-    'updateMonaco' |
-    'updateModels' |
-    'updateModelIndex' |
-    'setCodeParser' |
-    'updateCodeParserLoading' |
-    'cleanModels'
+  type:
+    | 'updateEditor'
+    | 'updateMonaco'
+    | 'updateModels'
+    | 'updateModelIndex'
+    | 'setCodeParser'
+    | 'updateCodeParserLoading'
+    | 'cleanModels';
   payload: Partial<IEditorInitState> & { id?: string };
 }
 
@@ -35,7 +34,7 @@ export type TEditorReducerAction = {
   setCodeParser: (m: any) => void;
   updateCodeParserLoading: (m: boolean) => void;
   cleanModels: () => void;
-}
+};
 
 export type TEditorContext = {
   state: IEditorInitState;
@@ -43,9 +42,11 @@ export type TEditorContext = {
   dispatch: React.Dispatch<IEditorReducerActionType>;
   actions: TEditorReducerAction;
   id: string;
-}
+};
 
-const EditorContext = React.createContext<TEditorContext | undefined>(undefined);
+const EditorContext = React.createContext<TEditorContext | undefined>(
+  undefined,
+);
 
 // Editor Reducer And State
 const editorInitState: IEditorInitState = {
@@ -57,7 +58,10 @@ const editorInitState: IEditorInitState = {
   codeParserInitLoading: false,
 };
 
-const editorReducer = (state: IEditorInitState, action: IEditorReducerActionType): IEditorInitState => {
+const editorReducer = (
+  state: IEditorInitState,
+  action: IEditorReducerActionType,
+): IEditorInitState => {
   switch (action.type) {
     case 'updateEditor':
       return { ...state, editor: action.payload.editor };
@@ -68,9 +72,15 @@ const editorReducer = (state: IEditorInitState, action: IEditorReducerActionType
     case 'updateModelIndex':
       return { ...state, modelIndex: action.payload.modelIndex };
     case 'setCodeParser':
-      return { ...state, codeParser: action.payload.codeParser || {} as CodeParser };
+      return {
+        ...state,
+        codeParser: action.payload.codeParser || ({} as CodeParser),
+      };
     case 'updateCodeParserLoading':
-      return { ...state, codeParserInitLoading: action.payload.codeParserInitLoading || false };
+      return {
+        ...state,
+        codeParserInitLoading: action.payload.codeParserInitLoading || false,
+      };
     default:
       return state;
   }
@@ -80,11 +90,19 @@ const editorStateMap = new Map<string, IEditorInitState>();
 
 // TODO: 待删减拆分后的部分
 // Editor Provider
-export function EditorProvider({ children, id }: { children: React.ReactNode, id: string }) {
-  const [state, dispatch] = useReducer<React.Reducer<IEditorInitState, IEditorReducerActionType>>(editorReducer, editorInitState);
+export function EditorProvider({
+  children,
+  id,
+}: {
+  children: React.ReactNode;
+  id: string;
+}) {
+  const [state, dispatch] = useReducer<
+    React.Reducer<IEditorInitState, IEditorReducerActionType>
+  >(editorReducer, editorInitState);
   const stateRef = useRef<IEditorInitState>(state);
   // some provider need to access the state directly
-  const actions: TEditorReducerAction = useMemo(() => ({
+  const actions: TEditorReducerAction = {
     updateEditor: (editor: BaseMonacoEditor) => dispatch({ type: 'updateEditor', payload: { editor } }),
     updateMonaco: (monaco: typeof monacoForTypes) => dispatch({ type: 'updateMonaco', payload: { monaco } }),
     updateModels: (models: ModelType[]) => dispatch({ type: 'updateModels', payload: { models } }),
@@ -95,7 +113,7 @@ export function EditorProvider({ children, id }: { children: React.ReactNode, id
       payload: { codeParserInitLoading },
     }),
     cleanModels: () => dispatch({ type: 'updateModels', payload: { models: [] } }),
-  }), []);
+  };
 
   useEffect(() => {
     const oldState = editorStateMap.get(id) || {};
@@ -103,14 +121,13 @@ export function EditorProvider({ children, id }: { children: React.ReactNode, id
     stateRef.current = Object.assign(oldState, state || {});
   }, [state, id]);
 
-  const contextState = useMemo(() => ({
+  const contextState = {
     state,
     dispatch,
     stateRef,
     actions,
     id,
-  }), [state, dispatch, actions, id]);
-
+  };
   return (
     <EditorContext.Provider value={contextState}>
       {children}
