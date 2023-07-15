@@ -47,6 +47,10 @@ const PropsInfo = {
     type: 'boolean',
     default: false,
   },
+  mode: {
+    type: 'string',
+    default: 'standard',
+  },
 };
 
 function SoliveCodeBlock(props: SoliveCodeBlockProps) {
