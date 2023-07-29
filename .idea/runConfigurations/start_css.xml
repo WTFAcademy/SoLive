@@ -6,7 +6,6 @@
       <script value="start:css" />
     </scripts>
     <node-interpreter value="project" />
-    <package-manager value="/opt/homebrew/Cellar/pnpm/8.1.0/libexec" />
     <envs />
     <method v="2" />
   </configuration>
