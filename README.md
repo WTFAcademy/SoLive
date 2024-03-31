@@ -3,12 +3,12 @@
 A flexible online playground for Solidity smart contract, inspired by remix-IDE and react-live
 
 ### Demo
-- Check demo website: https://demo.solive.wtf
+- Check demo website: https://demo.solive.dev
 
 - build demo: [demo](./apps/demo)
 
 ### DOC
-- Check doc website: https://solive.wtf
+- Check doc website: https://solive.dev
 
 - build doc: [doc](./apps/doc)
 
